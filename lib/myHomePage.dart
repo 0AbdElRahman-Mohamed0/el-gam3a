@@ -17,16 +17,19 @@ class _MyHomePageState extends State<MyHomePage> {
         length: 2,
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(150.0),
+            preferredSize: Size.fromHeight(160.0),
             child: AppBar(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.horizontal(
-                  right: Radius.circular(50),
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(200),
                 ),
               ),
               title: Text(widget.title),
               bottom: TabBar(
-//                labelColor: Colors.blue,
+                indicator: BoxDecoration(
+                  color: Colors.white,
+                ),
+                labelColor: Colors.blue,
                 labelStyle: TextStyle(
                   fontSize: 20.0,
 //                  backgroundColor: Colors.red,
