@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../services/login.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,6 +14,9 @@ class _LoginPageState extends State<LoginPage> {
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+          // To make app never resize when keyboard appear
+          resizeToAvoidBottomInset: false,
+          ////
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(120.0),
             child: AppBar(
@@ -23,7 +27,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
               title: Text('El-Gam3a'),
               centerTitle: true,
-              titleSpacing: 30.0,
             ),
           ),
           body: Center(
@@ -37,7 +40,6 @@ class _LoginPageState extends State<LoginPage> {
                   labelColor: Colors.blue,
                   labelStyle: TextStyle(
                     fontSize: 20.0,
-//                  backgroundColor: Colors.red,
                   ),
                   tabs: [
                     Tab(
@@ -51,8 +53,12 @@ class _LoginPageState extends State<LoginPage> {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      Icon(Icons.directions_car),
-                      Icon(Icons.directions_transit),
+                      Login(
+                        accountType: 'student',
+                      ),
+                      Login(
+                        accountType: 'doctor',
+                      ),
                     ],
                   ),
                 ),
