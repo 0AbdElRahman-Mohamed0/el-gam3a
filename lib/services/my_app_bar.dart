@@ -1,3 +1,4 @@
+import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -7,6 +8,7 @@ class MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: kPrimaryColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomRight: Radius.circular(150),

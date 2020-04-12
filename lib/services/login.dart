@@ -55,17 +55,8 @@ class Login extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0),
               ),
-              padding: EdgeInsets.only(
-                left: 132.0,
-                right: 132.0,
-                top: 20.0,
-                bottom: 20.0,
-              ),
-/////////////////For secondaryColor
-//              color: Color(0xFFFA685E),
-              color: Color(0xFFF08220),
-/////////////////For primaryColor
-//              color: Color(0xFF155E9F),
+              padding: kButtonSize,
+              color: kSecondaryColor,
               child: Text('Login'),
               textColor: kLoginButtonTextColor,
               onPressed: () {},

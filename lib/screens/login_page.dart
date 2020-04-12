@@ -1,3 +1,4 @@
+import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../services/login.dart';
@@ -19,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
           resizeToAvoidBottomInset: false,
           ////
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(120.0),
+            preferredSize: Size.fromHeight(100.0),
             child: MyAppBar(
               title: Text('El-Gam3a'),
             ),
@@ -28,11 +29,11 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: <Widget>[
                 TabBar(
-                  indicator: BoxDecoration(
-                    color: Colors.white,
-                  ),
+                  // To make underline to the selected tab
+                  indicatorColor: kPrimaryColor,
+                  ////
                   unselectedLabelColor: Colors.grey,
-                  labelColor: Colors.blue,
+                  labelColor: kSecondaryColor,
                   labelStyle: TextStyle(
                     fontSize: 20.0,
                   ),
