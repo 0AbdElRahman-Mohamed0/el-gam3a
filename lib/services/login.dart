@@ -61,7 +61,11 @@ class Login extends StatelessWidget {
                 top: 20.0,
                 bottom: 20.0,
               ),
-              color: kLoginButtonColor,
+/////////////////For secondaryColor
+//              color: Color(0xFFFA685E),
+              color: Color(0xFFF08220),
+/////////////////For primaryColor
+//              color: Color(0xFF155E9F),
               child: Text('Login'),
               textColor: kLoginButtonTextColor,
               onPressed: () {},
