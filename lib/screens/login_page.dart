@@ -32,11 +32,13 @@ class _LoginPageState extends State<LoginPage> {
                   // To make underline to the selected tab
                   indicatorColor: kPrimaryColor,
                   ////
+
                   unselectedLabelColor: Colors.grey,
                   labelColor: kSecondaryColor,
                   labelStyle: TextStyle(
                     fontSize: 20.0,
                   ),
+
                   tabs: [
                     Tab(
                       text: 'Student',

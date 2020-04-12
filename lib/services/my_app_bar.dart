@@ -15,10 +15,11 @@ class MyAppBar extends StatelessWidget {
         ),
       ),
       title: Padding(
-        padding: const EdgeInsets.only(top: 40.0),
+        padding: const EdgeInsets.only(top: 35.0),
         child: title,
       ),
       centerTitle: true,
+      textTheme: kTitleTextStyle,
     );
   }
 }

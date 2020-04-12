@@ -39,8 +39,10 @@ class _InputTextState extends State<InputText> {
         onChanged: onChanged,
         style: kTextFieldInputStyle,
         decoration: InputDecoration(
+//          focusedBorder: kSelectedTextFieldColor,
           filled: true,
           fillColor: Colors.white,
+
           // Icon before text
           prefixIcon: inputType == 'password'
               ? Icon(
@@ -50,6 +52,7 @@ class _InputTextState extends State<InputText> {
                   Icons.email,
                 ),
           //// I mean if inputType is password put lock icon else put email icon
+
           // Icon after text
           suffixIcon: inputType == 'password'
               ? IconButton(
@@ -66,12 +69,14 @@ class _InputTextState extends State<InputText> {
           //// I mean if it password put IconButton else put null means don't put anything
           //// If it password check if isHidden == true but visibility off icon
           //// Else put visibility
+
           // The inbox hint what i can do here
           hintText: inputType == 'password'
               ? 'Password'
               : person == 'student' ? 'University Number' : 'University Code',
           //// If inputType is password write a hint password else check if
           //// Person is a student put hint university number else put hint university code
+
           hintStyle: TextStyle(
             color: Colors.grey,
           ),
@@ -86,10 +91,15 @@ class _InputTextState extends State<InputText> {
         // This makes keyboard just numbers for this field
         keyboardType: inputType == 'email' ? TextInputType.number : null,
         //// If inputType is email make keyboard only numbers else do nothing
+
+        // Change cursor color of tet field
+        cursorColor: kSecondaryColor,
+        ////
       ),
+
       // To change color of input text border and icons when pressed
       data: Theme.of(context).copyWith(
-        primaryColor: kSecondaryColor,
+        primaryColor: kPrimaryColor,
       ),
       //// To use this property we make it into Theme widget
     );

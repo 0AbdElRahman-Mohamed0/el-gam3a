@@ -44,7 +44,7 @@ class Login extends StatelessWidget {
           ////
           FlatButton(
             child: Text('Forgot your password ?'),
-            textColor: kForgotPasswordColor,
+            textColor: kPrimaryColor,
             onPressed: () {},
           ),
           // Space
