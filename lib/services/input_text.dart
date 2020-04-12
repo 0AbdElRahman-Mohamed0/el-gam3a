@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 
 class InputText extends StatefulWidget {
-  InputText(
-      {@required this.inputType,
-      @required this.onChanged,
-      @required this.person});
+  InputText({
+    @required this.inputType,
+    @required this.onChanged,
+    @required this.person,
+  });
   final String inputType;
   final Function onChanged;
   final String person;

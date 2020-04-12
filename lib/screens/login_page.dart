@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../services/login.dart';
+import '../services/my_app_bar.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -19,14 +20,8 @@ class _LoginPageState extends State<LoginPage> {
           ////
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(120.0),
-            child: AppBar(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(150),
-                ),
-              ),
+            child: MyAppBar(
               title: Text('El-Gam3a'),
-              centerTitle: true,
             ),
           ),
           body: Center(
