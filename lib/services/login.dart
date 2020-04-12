@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
+import 'input_text.dart';
 
 class Login extends StatelessWidget {
   Login({@required this.accountType});
@@ -20,14 +21,9 @@ class Login extends StatelessWidget {
             style: kWelcomeTextStyle,
           ),
           kSizedBox,
-          TextField(
-            // This makes keyboard just numbers for this field
-            keyboardType: TextInputType.number,
-            ////
-            style: kTextFieldInputStyle,
-            decoration: accountType == 'student'
-                ? kStudentCodeFieldDecoration
-                : kDoctorCodeFieldDecoration,
+          InputText(
+            inputType: 'email',
+            person: accountType,
             onChanged: (value) {
               univCode = value;
             },
@@ -35,15 +31,12 @@ class Login extends StatelessWidget {
           // Space
           kSizedBox,
           ////
-          TextField(
-            style: kTextFieldInputStyle,
-            decoration: kPasswordFieldDecoration,
+          InputText(
+            inputType: 'password',
+            person: accountType,
             onChanged: (value) {
               password = value;
             },
-            // This makes password invisible
-            obscureText: true,
-            ////
           ),
           // Space
           kSizedBox,
@@ -58,6 +51,9 @@ class Login extends StatelessWidget {
           ////
           Center(
             child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0),
+              ),
               padding: EdgeInsets.only(
                 left: 132.0,
                 right: 132.0,
