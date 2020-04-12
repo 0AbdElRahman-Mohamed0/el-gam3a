@@ -1,15 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({this.title});
-
-  final String title;
-
+class LoginPage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +21,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   bottomRight: Radius.circular(150),
                 ),
               ),
-              title: Text(widget.title),
+              title: Text('El-Gam3a'),
+              centerTitle: true,
+              titleSpacing: 30.0,
             ),
           ),
           body: Center(
@@ -34,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   indicator: BoxDecoration(
                     color: Colors.white,
                   ),
+                  unselectedLabelColor: Colors.grey,
                   labelColor: Colors.blue,
                   labelStyle: TextStyle(
                     fontSize: 20.0,
@@ -48,12 +48,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-//                TabBarView(
-//                  children: [
-//                    Icon(Icons.directions_car),
-//                    Icon(Icons.directions_transit),
-//                  ],
-//                ),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      Icon(Icons.directions_car),
+                      Icon(Icons.directions_transit),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
