@@ -25,31 +25,35 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               title: Text(widget.title),
-              bottom: TabBar(
-                indicator: BoxDecoration(
-                  color: Colors.white,
-                ),
-                labelColor: Colors.blue,
-                labelStyle: TextStyle(
-                  fontSize: 20.0,
-//                  backgroundColor: Colors.red,
-                ),
-                tabs: [
-                  Tab(
-                    text: 'Student',
-                  ),
-                  Tab(
-                    text: 'Doctor',
-                  ),
-                ],
-              ),
             ),
           ),
           body: Center(
-            child: TabBarView(
-              children: [
-                Icon(Icons.directions_car),
-                Icon(Icons.directions_transit),
+            child: Column(
+              children: <Widget>[
+                TabBar(
+                  indicator: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  labelColor: Colors.blue,
+                  labelStyle: TextStyle(
+                    fontSize: 20.0,
+//                  backgroundColor: Colors.red,
+                  ),
+                  tabs: [
+                    Tab(
+                      text: 'Student',
+                    ),
+                    Tab(
+                      text: 'Doctor',
+                    ),
+                  ],
+                ),
+//                TabBarView(
+//                  children: [
+//                    Icon(Icons.directions_car),
+//                    Icon(Icons.directions_transit),
+//                  ],
+//                ),
               ],
             ),
           ),
