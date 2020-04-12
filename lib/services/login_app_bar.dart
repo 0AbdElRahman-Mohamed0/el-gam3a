@@ -1,8 +1,8 @@
-import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import '../utilities/constants.dart';
 
-class MyAppBar extends StatelessWidget {
-  const MyAppBar({@required this.title});
+class LoginAppBar extends StatelessWidget {
+  const LoginAppBar({@required this.title});
   final Text title;
 
   @override

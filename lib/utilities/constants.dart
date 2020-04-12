@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-const kForgotPasswordColor = Colors.blue;
-const kLoginButtonTextColor = Colors.white;
-
+const kButtonTextColor = Colors.white;
 const kPrimaryColor = Color(0xFF155E9F);
 const kSecondaryColor = Color(0xFFF08220);
-// const kSecondaryColor= Color(0xFFFA685E);
+//const kSecondaryColor = Color(0xFFFA685E);
 
 const kTitleTextStyle = TextTheme(
   title: TextStyle(

@@ -2,7 +2,7 @@ import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../services/login.dart';
-import '../services/my_app_bar.dart';
+import '../services/login_app_bar.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
           ////
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(100.0),
-            child: MyAppBar(
+            child: LoginAppBar(
               title: Text('El-Gam3a'),
             ),
           ),
