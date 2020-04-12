@@ -93,7 +93,7 @@ class _InputTextState extends State<InputText> {
         //// If inputType is email make keyboard only numbers else do nothing
 
         // Change cursor color of tet field
-        cursorColor: kSecondaryColor,
+        cursorColor: kPrimaryColor,
         ////
       ),
 
