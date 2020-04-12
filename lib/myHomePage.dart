@@ -17,11 +17,11 @@ class _MyHomePageState extends State<MyHomePage> {
         length: 2,
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(160.0),
+            preferredSize: Size.fromHeight(120.0),
             child: AppBar(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(200),
+                  bottomRight: Radius.circular(150),
                 ),
               ),
               title: Text(widget.title),
