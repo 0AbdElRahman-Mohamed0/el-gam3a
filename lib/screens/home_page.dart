@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
               ),
 
               //// with opacity 38%
-              backgroundColorSelected: Color(0x61BAA8A4),
+              backgroundColorSelected: kSelectedCalenderItemColor,
               onSelected: (item) {
                 //// to check which day is selected
                 print(item.name);

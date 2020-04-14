@@ -41,12 +41,6 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _showTitle(widget.showTitle),
-          SizedBox(
-            width: 150.0,
-            child: Divider(
-              color: Colors.blueGrey,
-            ),
-          ),
           Container(
             alignment: widget.alignment,
             child: Row(
@@ -64,7 +58,7 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
     if (select && widget.title != null) {
       return Container(
           margin:
-              EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 12.0),
+              EdgeInsets.only(left: 10.0, right: 16.0, top: 16.0, bottom: 12.0),
           alignment: Alignment.centerLeft,
           child: widget.title);
     } else {

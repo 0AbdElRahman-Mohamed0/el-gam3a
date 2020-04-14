@@ -4,6 +4,7 @@ const kButtonTextColor = Colors.white;
 const kPrimaryColor = Color(0xFF155E9F);
 const kSecondaryColor = Color(0xFFF08220);
 //const kSecondaryColor = Color(0xFFFA685E);
+const kSelectedCalenderItemColor = Color(0x61BAA8A4);
 
 const kTitleTextStyle = TextTheme(
   title: TextStyle(
@@ -62,7 +63,7 @@ const kWelcomeTextStyle = TextStyle(
 );
 
 const kWeekDaysTitleTextStyle = TextStyle(
-  color: Color(0xFF4E514E),
+  color: kPrimaryColor,
   fontSize: 18.0,
   fontWeight: FontWeight.bold,
 );
