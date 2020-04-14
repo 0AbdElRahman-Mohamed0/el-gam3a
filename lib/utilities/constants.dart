@@ -47,3 +47,9 @@ const kWelcomeTextStyle = TextStyle(
   fontSize: 20.0,
   color: kPrimaryColor,
 );
+
+const kWeekDaysTitleTextStyle = TextStyle(
+  color: Color(0xFF4E514E),
+  fontSize: 18.0,
+  fontWeight: FontWeight.bold,
+);
