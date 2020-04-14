@@ -18,7 +18,7 @@ class Login extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Welcome $accountType have a nice day.',
+            'Hello $accountType have a nice day.',
             style: kWelcomeTextStyle,
           ),
           kSizedBox,
@@ -55,7 +55,7 @@ class Login extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0),
               ),
-              padding: kButtonSize,
+              padding: kLoginButtonSize,
               color: kSecondaryColor,
               child: Text('Login'),
               textColor: kButtonTextColor,

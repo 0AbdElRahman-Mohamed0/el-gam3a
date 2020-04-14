@@ -12,9 +12,16 @@ const kTitleTextStyle = TextTheme(
   ),
 );
 
-const kButtonSize = EdgeInsets.only(
+const kLoginButtonSize = EdgeInsets.only(
   left: 132.0,
   right: 132.0,
+  top: 20.0,
+  bottom: 20.0,
+);
+
+const kLogoutButtonSize = EdgeInsets.only(
+  left: 80.0,
+  right: 80.0,
   top: 20.0,
   bottom: 20.0,
 );
@@ -25,15 +32,6 @@ const kTextFieldCircularBorder = OutlineInputBorder(
   ),
 );
 
-//const kSelectedTextFieldColor = OutlineInputBorder(
-//  borderRadius: BorderRadius.all(
-//    Radius.circular(18.0),
-//  ),
-//  borderSide: BorderSide(
-//    color: kSecondaryColor,
-//  ),
-//);
-
 const kTextFieldInputStyle = TextStyle(
   fontSize: 20.0,
   color: Colors.black,
@@ -41,6 +39,21 @@ const kTextFieldInputStyle = TextStyle(
 
 const kSizedBox = SizedBox(
   height: 15.0,
+);
+
+const kSizedBoxInSideMenu = SizedBox(
+  height: 20.0,
+  width: 200.0,
+  child: Divider(
+    color: Colors.white,
+  ),
+);
+
+const kSizedBoxForPagesStyle = SizedBox(
+//  width: 200.0,
+  child: Divider(
+    color: Colors.blueGrey,
+  ),
 );
 
 const kWelcomeTextStyle = TextStyle(

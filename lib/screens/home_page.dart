@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:elgam3a/utilities/constants.dart';
-import 'package:selection_picker/selection_item.dart';
+import '../utilities/constants.dart';
 import 'package:elgam3a/services/week_day_picker.dart';
+import 'package:selection_picker/selection_item.dart';
+import '../utilities/side_menu_animated_icon.dart';
+import '../services/side_menu.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,32 +26,44 @@ class Utilities {
 }
 
 class _HomePageState extends State<HomePage> {
+  GlobalKey<ScaffoldState> drawerKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        key: drawerKey,
         appBar: AppBar(
+          leading: SideMenuAnimatedIcon(
+            drawerKey: drawerKey,
+          ),
           backgroundColor: kPrimaryColor,
           title: Text('My Schedule'),
         ),
-
+        drawer: SideMenu(
+          userName: 'Bedo',
+        ),
         ///// Days buttons Picker widget
-        body: WeekDayPicker(
-          items: Utilities.getDays(),
-          textColor: Color(0xFF003A5D),
-          showTitle: true,
-          title: Text(
-            "Week days",
-            style: kWeekDaysTitleTextStyle,
-          ),
+        body: Column(
+          children: <Widget>[
+            WeekDayPicker(
+              items: Utilities.getDays(),
+              textColor: Color(0xFF003A5D),
+              showTitle: true,
+              title: Text(
+                "Week days",
+                style: kWeekDaysTitleTextStyle,
+              ),
 
-          //// with opacity 38%
-          backgroundColorSelected: Color(0x61BAA8A4),
-          onSelected: (item) {
-            //// to check which day is selected
-            print(item.name);
-          },
-          alignment: Alignment.center,
+              //// with opacity 38%
+              backgroundColorSelected: Color(0x61BAA8A4),
+              onSelected: (item) {
+                //// to check which day is selected
+                print(item.name);
+              },
+              alignment: Alignment.center,
+            ),
+            kSizedBoxForPagesStyle,
+          ],
         ),
       ),
     );

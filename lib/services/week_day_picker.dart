@@ -1,4 +1,6 @@
 import 'dart:collection';
+import 'package:elgam3a/utilities/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:selection_picker/selection_item.dart';
 import 'package:flutter/material.dart';
 
@@ -33,14 +35,22 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16.0),
+//      margin: EdgeInsets.all(16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _showTitle(widget.showTitle),
+          SizedBox(
+            width: 150.0,
+            child: Divider(
+              color: Colors.blueGrey,
+            ),
+          ),
           Container(
             alignment: widget.alignment,
-            child: Wrap(
+            child: Row(
+//              mainAxisAlignment: MainAxisAlignment.center,
               ///// 7 week days
               children: _createItems(),
             ),
@@ -69,30 +79,32 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
     _checkIdentifiers();
 
     widget.items.forEach((item) {
-      final widgetItem = Container(
-        width: 50,
-        height: 50,
+      final widgetItem = Expanded(
         child: Container(
-          margin: EdgeInsets.only(right: 5.0),
-          child: FlatButton(
-            padding: EdgeInsets.all(5.0),
-            onPressed: () {
-              setState(() {
-                //// to make all the buttons not selected
-                // then make the selected day isSelected = true
-                if (item.isSelected == false) {
-                  widget.items.forEach((item) {
-                    item.isSelected = false;
-                  });
-                  item.isSelected = true;
-                  _addToSelectedDays(item);
-                }
-                widget.onSelected(selectedDay);
-              });
-            },
-            child: _setName(item.name),
-            shape: CircleBorder(),
-            color: _setSelectedColor(item.isSelected),
+          width: 50,
+          height: 50,
+          child: Container(
+            margin: EdgeInsets.only(right: 5.0),
+            child: FlatButton(
+              padding: EdgeInsets.all(1.0),
+              onPressed: () {
+                setState(() {
+                  //// to make all the buttons not selected
+                  // then make the selected day isSelected = true
+                  if (item.isSelected == false) {
+                    widget.items.forEach((item) {
+                      item.isSelected = false;
+                    });
+                    item.isSelected = true;
+                    _addToSelectedDays(item);
+                  }
+                  widget.onSelected(selectedDay);
+                });
+              },
+              child: _setName(item.name),
+              shape: CircleBorder(),
+              color: _setSelectedColor(item.isSelected),
+            ),
           ),
         ),
       );
