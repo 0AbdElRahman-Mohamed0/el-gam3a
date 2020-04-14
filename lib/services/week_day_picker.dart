@@ -27,7 +27,7 @@ class WeekDayPicker extends StatefulWidget {
 }
 
 class _WeekDayPickerState extends State<WeekDayPicker> {
-  //// selectedDay will be only one item
+  //// selectedDay will be only one item.
   SelectionItem selectedDay;
 
   @override
