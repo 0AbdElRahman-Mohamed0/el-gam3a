@@ -13,14 +13,17 @@ class SideMenuItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatButton(
       onPressed: onPressed,
-      child: Row(
-        children: <Widget>[
-          Icon(pageIcon),
-          SizedBox(
-            width: 15.0,
-          ),
-          Text(pageName),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          children: <Widget>[
+            Icon(pageIcon),
+            SizedBox(
+              width: 15.0,
+            ),
+            Text(pageName),
+          ],
+        ),
       ),
     );
   }

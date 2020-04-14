@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'package:elgam3a/services/week_day_picker.dart';
 import 'package:selection_picker/selection_item.dart';
-import '../utilities/side_menu_animated_icon.dart';
+import '../utilities/my_app_bar.dart';
 import '../services/side_menu.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,12 +32,12 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
         key: drawerKey,
-        appBar: AppBar(
-          leading: SideMenuAnimatedIcon(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(55.0),
+          child: MyAppBar(
+            title: Text('My Schedual'),
             drawerKey: drawerKey,
           ),
-          backgroundColor: kPrimaryColor,
-          title: Text('My Schedule'),
         ),
         drawer: SideMenu(
           userName: 'Bedo',
