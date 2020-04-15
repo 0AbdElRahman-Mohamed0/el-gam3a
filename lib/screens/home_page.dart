@@ -35,12 +35,12 @@ class _HomePageState extends State<HomePage> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(55.0),
           child: MyAppBar(
-            title: Text('My Schedual'),
+            title: Text('My Schedule'),
             drawerKey: drawerKey,
           ),
         ),
         drawer: SideMenu(
-          userName: 'Bedo',
+          userName: 'User',
         ),
         ///// Days buttons Picker widget
         body: Column(
