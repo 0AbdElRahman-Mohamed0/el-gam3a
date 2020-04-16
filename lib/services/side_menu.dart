@@ -12,52 +12,52 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Theme(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 55.0),
-          child: Drawer(
-            child: ListView(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 150.0),
-                  child: Column(
-                    children: <Widget>[
-                      CircleAvatar(
+//        child: Padding(
+//          padding: const EdgeInsets.only(top: 55.0),
+        child: Drawer(
+          child: ListView(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 150.0),
+                child: Column(
+                  children: <Widget>[
+                    CircleAvatar(
 //                    backgroundImage: userPicture,
-                        backgroundColor: Colors.blue,
-                        radius: 50.0,
+                      backgroundColor: Colors.blue,
+                      radius: 50.0,
+                    ),
+                    kSizedBox,
+                    Text(userName),
+                    kSizedBoxInSideMenu,
+                    SideMenuItems(
+                      pageName: 'Profile',
+                      pageIcon: Icons.person,
+                      onPressed: () {},
+                    ),
+                    kSizedBoxInSideMenu,
+                    SideMenuItems(
+                      pageName: 'Settings',
+                      pageIcon: Icons.settings,
+                      onPressed: () {},
+                    ),
+                    kSizedBox,
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
                       ),
-                      kSizedBox,
-                      Text(userName),
-                      kSizedBoxInSideMenu,
-                      SideMenuItems(
-                        pageName: 'Profile',
-                        pageIcon: Icons.person,
-                        onPressed: () {},
-                      ),
-                      kSizedBoxInSideMenu,
-                      SideMenuItems(
-                        pageName: 'Settings',
-                        pageIcon: Icons.settings,
-                        onPressed: () {},
-                      ),
-                      kSizedBox,
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                        ),
-                        padding: kLogoutButtonSize,
-                        color: kSecondaryColor,
-                        child: Text('Logout'),
-                        textColor: kButtonTextColor,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
+                      padding: kLogoutButtonSize,
+                      color: kSecondaryColor,
+                      child: Text('Logout'),
+                      textColor: kButtonTextColor,
+                      onPressed: () {},
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+//        ),
         data: ThemeData.dark(),
       ),
     );
