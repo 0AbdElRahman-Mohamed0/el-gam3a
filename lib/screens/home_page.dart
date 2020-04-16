@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         key: drawerKey,
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
-          title: Text('My Schedual'),
+          title: Text('My Schedule'),
 //          leading: SideMenuAnimatedIcon(
 //            drawerKey: drawerKey,
 //          ),
