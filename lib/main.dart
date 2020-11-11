@@ -4,6 +4,7 @@ import 'package:elgam3a/screens/profile_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:elgam3a/screens/settings_screen.dart';
 import 'package:elgam3a/screens/splash_screen.dart';
+import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         HomeScreen.id: (context) => HomeScreen(),
       },
+//      theme: ThemeData.light(),
+//      home:
+//          ScheduleScreen(), //HomePage(), ////// el mafrood LoginPage() bs e7na bngrb
     );
   }
 }
