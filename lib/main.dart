@@ -55,9 +55,9 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         HomeScreen.id: (context) => HomeScreen(),
       },
-      theme: ThemeData.light(),
-      home:
-          ScheduleScreen(), //HomePage(), ////// el mafrood LoginPage() bs e7na bngrb
+//      theme: ThemeData.light(),
+//      home:
+//          ScheduleScreen(), //HomePage(), ////// el mafrood LoginPage() bs e7na bngrb
     );
   }
 }

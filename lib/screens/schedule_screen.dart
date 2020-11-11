@@ -1,3 +1,4 @@
+import 'package:elgam3a/widgets/faculties_dropdown_list.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'package:elgam3a/widgets/week_day_picker.dart';
@@ -57,20 +58,19 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               style: kWeekDaysTitleTextStyle,
             ),
 
-              //// with opacity 38%
-              backgroundColorSelected: kSelectedCalenderItemColor,
-              onSelected: (item) {
-                //// to check which day is selected
-                print(item.name);
-              },
-              alignment: Alignment.center,
-            ),
-            kSizedBoxForPagesStyle,
-            FacultiesDropDownList(listTitle: 'El-Shatbi'),
-            FacultiesDropDownList(listTitle: 'Moharem Bek'),
-            FacultiesDropDownList(listTitle: 'El-Anfoshi'),
-          ],
-        ),
+            //// with opacity 38%
+            backgroundColorSelected: kSelectedCalenderItemColor,
+            onSelected: (item) {
+              //// to check which day is selected
+              print(item.name);
+            },
+            alignment: Alignment.center,
+          ),
+          kSizedBoxForPagesStyle,
+          FacultiesDropDownList(listTitle: 'El-Shatbi'),
+          FacultiesDropDownList(listTitle: 'Moharem Bek'),
+          FacultiesDropDownList(listTitle: 'El-Anfoshi'),
+        ],
       ),
     );
   }
