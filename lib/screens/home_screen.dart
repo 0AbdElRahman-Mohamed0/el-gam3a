@@ -38,7 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
       key: drawerKey,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: Text('My Schedule'),
+        title: _selectedIndex == 0
+            ? Text('My Schedule')
+            : _selectedIndex == 1
+                ? Text('Courses')
+                : _selectedIndex == 2
+                    ? Text('Community')
+                    : Text('Profile'),
 //          leading: SideMenuAnimatedIcon(
 //            drawerKey: drawerKey,
 //          ),
