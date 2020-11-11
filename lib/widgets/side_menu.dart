@@ -1,6 +1,9 @@
+import 'package:elgam3a/screens/login_screen.dart';
+import 'package:elgam3a/screens/profile_screen.dart';
+import 'package:elgam3a/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
-import '../utilities/side_menu_items.dart';
+import 'side_menu_items.dart';
 
 class SideMenu extends StatelessWidget {
   SideMenu({@required this.userName});
@@ -12,8 +15,6 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Theme(
-//        child: Padding(
-//          padding: const EdgeInsets.only(top: 55.0),
         child: Drawer(
           child: ListView(
             children: <Widget>[
@@ -32,13 +33,17 @@ class SideMenu extends StatelessWidget {
                     SideMenuItems(
                       pageName: 'Profile',
                       pageIcon: Icons.person,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, ProfileScreen.id);
+                      },
                     ),
                     kSizedBoxInSideMenu,
                     SideMenuItems(
                       pageName: 'Settings',
                       pageIcon: Icons.settings,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, SettingsScreen.id);
+                      },
                     ),
                     kSizedBox,
                     RaisedButton(
@@ -49,7 +54,14 @@ class SideMenu extends StatelessWidget {
                       color: kSecondaryColor,
                       child: Text('Logout'),
                       textColor: kButtonTextColor,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(),
+                            ),
+                            (route) => false);
+                      },
                     ),
                   ],
                 ),
@@ -57,7 +69,6 @@ class SideMenu extends StatelessWidget {
             ],
           ),
         ),
-//        ),
         data: ThemeData.dark(),
       ),
     );

@@ -26,6 +26,8 @@ dependencies:
   animate_icons: ^0.0.4
   selection_picker: ^0.1.0
   kf_drawer: ^1.1.2
+  flrx_validator: ^0.4.0+2
+  flutter_svg: ^0.19.1
 
 dev_dependencies:
   flutter_test:
@@ -44,8 +46,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
+  assets:
+    - assets/svg/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
