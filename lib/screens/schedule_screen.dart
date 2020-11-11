@@ -64,6 +64,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               onSelected: (item) {
                 //// to check which day is selected
                 print(item.name);
+                //  TODO: change screen
               },
               alignment: Alignment.center,
             ),
