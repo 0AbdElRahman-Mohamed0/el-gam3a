@@ -122,7 +122,7 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                             ),
                           ),
                           Text(
-                            '(3 lectures)',
+                            '(2 lectures)',
                             style: TextStyle(
                               color: Color(0xFF155E9F).withOpacity(0.6),
                               fontSize: 12,
@@ -132,137 +132,105 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                         ],
                       ),
                     ),
+                    LectureTimeInSchedule(),
+                    LectureTimeInSchedule(),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5.0),
+                      padding: EdgeInsets.only(bottom: 12.0, top: 10.0),
                       child: Row(
                         children: [
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(right: 5.0),
-                              padding: EdgeInsets.only(
-                                  left: 8.0, top: 10.0, bottom: 6.0),
-                              decoration: BoxDecoration(
-                                color: kPrimaryColor.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(6.0),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Machine learning',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  Text(
-                                    'Dr. Reham - Dr. Nermin',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
+                          Text(
+                            'Section  ',
+                            style: TextStyle(
+                              color: Color(0xFF155E9F).withOpacity(0.9),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(right: 5.0),
-                              padding: EdgeInsets.only(
-                                  left: 8.0, top: 10.0, bottom: 6.0),
-                              decoration: BoxDecoration(
-                                color: kPrimaryColor.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(6.0),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Machine learning',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  Text(
-                                    'Dr. Reham - Dr. Nermin',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
+                          Text(
+                            '(2 sections)',
+                            style: TextStyle(
+                              color: Color(0xFF155E9F).withOpacity(0.6),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
                             ),
-                          ),
+                          )
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(right: 5.0),
-                              padding: EdgeInsets.only(
-                                  left: 8.0, top: 10.0, bottom: 6.0),
-                              decoration: BoxDecoration(
-                                color: kPrimaryColor.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(6.0),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Machine learning',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  Text(
-                                    'Dr. Reham - Dr. Nermin',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(right: 5.0),
-                              padding: EdgeInsets.only(
-                                  left: 8.0, top: 10.0, bottom: 6.0),
-                              decoration: BoxDecoration(
-                                color: kPrimaryColor.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(6.0),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Machine learning',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  Text(
-                                    'Dr. Reham - Dr. Nermin',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    LectureTimeInSchedule(),
+                    LectureTimeInSchedule(),
                   ],
                 ),
               )
             : SizedBox(),
       ],
+    );
+  }
+}
+
+class LectureTimeInSchedule extends StatelessWidget {
+  const LectureTimeInSchedule({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(right: 5.0),
+              padding: EdgeInsets.only(left: 8.0, top: 10.0, bottom: 6.0),
+              decoration: BoxDecoration(
+                color: kPrimaryColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(6.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Machine learning',
+                    style:
+                        TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Dr. Reham - Dr. Nermin',
+                    style:
+                        TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(right: 5.0),
+              padding: EdgeInsets.only(top: 10.0, bottom: 6.0),
+              decoration: BoxDecoration(
+                color: kPrimaryColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(6.0),
+              ),
+              child: Column(
+//                                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '3 pm - 5 pm',
+                    style:
+                        TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Hall (5) - Build (B)',
+                    style:
+                        TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

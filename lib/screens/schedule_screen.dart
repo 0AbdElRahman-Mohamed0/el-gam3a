@@ -47,30 +47,32 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 //           userName: 'Bedo',
 //         ),
       ///// Days buttons Picker widget
-      body: Column(
-        children: <Widget>[
-          WeekDayPicker(
-            items: Utilities.getDays(),
-            textColor: Color(0xFF003A5D),
-            showTitle: true,
-            title: Text(
-              "Week days",
-              style: kWeekDaysTitleTextStyle,
-            ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            WeekDayPicker(
+              items: Utilities.getDays(),
+              textColor: Color(0xFF003A5D),
+              showTitle: true,
+              title: Text(
+                "Week days",
+                style: kWeekDaysTitleTextStyle,
+              ),
 
-            //// with opacity 38%
-            backgroundColorSelected: kSelectedCalenderItemColor,
-            onSelected: (item) {
-              //// to check which day is selected
-              print(item.name);
-            },
-            alignment: Alignment.center,
-          ),
-          kSizedBoxForPagesStyle,
-          FacultiesDropDownList(listTitle: 'El-Shatbi'),
-          FacultiesDropDownList(listTitle: 'Moharem Bek'),
-          FacultiesDropDownList(listTitle: 'El-Anfoshi'),
-        ],
+              //// with opacity 38%
+              backgroundColorSelected: kSelectedCalenderItemColor,
+              onSelected: (item) {
+                //// to check which day is selected
+                print(item.name);
+              },
+              alignment: Alignment.center,
+            ),
+            kSizedBoxForPagesStyle,
+            FacultiesDropDownList(listTitle: 'El-Shatbi'),
+            FacultiesDropDownList(listTitle: 'Moharem Bek'),
+            FacultiesDropDownList(listTitle: 'El-Anfoshi'),
+          ],
+        ),
       ),
     );
   }
