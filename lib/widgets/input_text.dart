@@ -1,15 +1,18 @@
+import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 
 class InputText extends StatefulWidget {
   InputText({
     @required this.inputType,
-    @required this.onChanged,
+    @required this.onSaved,
     @required this.person,
+    this.validator,
   });
   final String inputType;
-  final Function onChanged;
+  final Function onSaved;
   final String person;
+  final Validator validator;
   @override
   _InputTextState createState() => _InputTextState();
 }
@@ -18,25 +21,28 @@ class _InputTextState extends State<InputText> {
   // Email or password
   String inputType;
   // Custom onChanged
-  Function onChanged;
+  Function onSaved;
   // Student or doctor
   String person;
   // To check
   bool _isHidden = true;
+  Validator validator;
 
   @override
   void initState() {
     super.initState();
     inputType = widget.inputType;
     person = widget.person;
-    onChanged = widget.onChanged;
+    onSaved = widget.onSaved;
+    validator = widget.validator;
   }
 
   @override
   Widget build(BuildContext context) {
     return Theme(
-      child: TextField(
-        onChanged: onChanged,
+      child: TextFormField(
+        onSaved: onSaved,
+        validator: validator,
         style: kTextFieldInputStyle,
         decoration: InputDecoration(
 //          focusedBorder: kSelectedTextFieldColor,
@@ -73,7 +79,9 @@ class _InputTextState extends State<InputText> {
           // The inbox hint what i can do here
           hintText: inputType == 'password'
               ? 'Password'
-              : person == 'student' ? 'University Number' : 'University Code',
+              : person == 'student'
+                  ? 'University Number'
+                  : 'University Code',
           //// If inputType is password write a hint password else check if
           //// Person is a student put hint university number else put hint university code
 
