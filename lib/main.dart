@@ -1,3 +1,4 @@
+import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'screens/login_page.dart';
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       theme: ThemeData.light(),
-      home: HomePage(), ////// el mafrood LoginPage() bs e7na bngrb
+      home:
+          ScheduleScreen(), //HomePage(), ////// el mafrood LoginPage() bs e7na bngrb
     );
   }
 }

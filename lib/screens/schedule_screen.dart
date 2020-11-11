@@ -1,3 +1,4 @@
+import 'package:elgam3a/widgets/faculties_dropdown_list.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'package:elgam3a/widgets/week_day_picker.dart';
@@ -5,9 +6,9 @@ import 'package:selection_picker/selection_item.dart';
 import '../utilities/side_menu_animated_icon.dart';
 import 'package:elgam3a/widgets/side_menu.dart';
 
-class HomePage extends StatefulWidget {
+class ScheduleScreen extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _ScheduleScreenState createState() => _ScheduleScreenState();
 }
 
 //// List of week days
@@ -27,7 +28,7 @@ class Utilities {
 //Gesuture Detector
 // expanded = false
 
-class _HomePageState extends State<HomePage> {
+class _ScheduleScreenState extends State<ScheduleScreen> {
   GlobalKey<ScaffoldState> drawerKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -66,6 +67,9 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.center,
             ),
             kSizedBoxForPagesStyle,
+            FacultiesDropDownList(listTitle: 'El-Shatbi'),
+            FacultiesDropDownList(listTitle: 'Moharem Bek'),
+            FacultiesDropDownList(listTitle: 'El-Anfoshi'),
           ],
         ),
       ),
