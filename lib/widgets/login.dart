@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'input_text.dart';
 
+// ignore: must_be_immutable
 class Login extends StatelessWidget {
   Login({@required this.accountType});
 

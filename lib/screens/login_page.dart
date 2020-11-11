@@ -1,8 +1,8 @@
 import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../services/login.dart';
-import '../services/login_app_bar.dart';
+import 'package:elgam3a/widgets/login.dart';
+import 'package:elgam3a/widgets/login_app_bar.dart';
 
 class LoginPage extends StatefulWidget {
   @override
