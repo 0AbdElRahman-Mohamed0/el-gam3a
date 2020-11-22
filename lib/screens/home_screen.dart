@@ -1,3 +1,4 @@
+import 'package:elgam3a/screens/courses_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
@@ -15,9 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   static List<Widget> _widgetOptions = <Widget>[
     ScheduleScreen(),
-    Text(
-      'Index 1: Home',
-    ),
+    CoursesScreen(),
     Text(
       'Index 2: Home',
     ),
@@ -67,20 +66,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         child: BottomNavigationBar(
-          backgroundColor: kPrimaryColor,
+          backgroundColor: kPrimaryColor, //Colors.white,
           selectedLabelStyle: TextStyle(
             fontSize: 10,
             fontWeight: FontWeight.w700,
           ),
           selectedIconTheme: IconThemeData(size: 24.0),
-          selectedItemColor: Colors.white,
+          selectedItemColor: Colors.white, //kSecondaryColor,
           unselectedLabelStyle: TextStyle(
             fontSize: 10,
             fontFamily: 'Lato',
             fontWeight: FontWeight.w700,
           ),
           unselectedIconTheme: IconThemeData(size: 24.0),
-          unselectedItemColor: Color(0x80FFFFFF),
+          unselectedItemColor: Color(0x80FFFFFF), //Colors.black45,
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
