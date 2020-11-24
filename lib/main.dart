@@ -1,3 +1,4 @@
+import 'package:elgam3a/screens/course_details_screen.dart';
 import 'package:elgam3a/screens/home_screen.dart';
 import 'package:elgam3a/screens/login_screen.dart';
 import 'package:elgam3a/screens/profile_screen.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
     ////
 
     return MaterialApp(
-      // home: HomeScreen(), ////// el mafrood LoginPage() bs e7na bngrb
+      // home: CourseDetailsScreen(),
 
       initialRoute: SplashScreen.id,
       routes: {
