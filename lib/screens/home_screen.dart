@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.w700,
           ),
           selectedIconTheme: IconThemeData(size: 24.0),
-          selectedItemColor: Colors.white, //kSecondaryColor,
+          selectedItemColor: Colors.white, //kSecondaryColor, //kPrimaryColor
           unselectedLabelStyle: TextStyle(
             fontSize: 10,
             fontFamily: 'Lato',
