@@ -1,14 +1,16 @@
+import 'package:elgam3a/notifier_providers/course_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SelectSectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final courseDetails = context.watch<CourseNotifierProvider>().course;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          'Cs 309 Section',
+          '${courseDetails.courseCode} Section',
           style: TextStyle(
             color: Color(0xFF2699FB),
             fontSize: 14,
@@ -18,14 +20,18 @@ class SelectSectionScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.only(bottom: 66.0, left: 40, right: 40),
+        padding: EdgeInsets.only(
+          bottom: 66.0,
+          left: 40,
+          right: 40,
+          top: MediaQuery.of(context).size.height / 4,
+        ),
         child: Stack(
           children: [
             Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Cs 309 Section',
+                  '${courseDetails.courseCode} Section',
                   style: TextStyle(
                     color: Color(0xFF2699FB),
                     fontSize: 20,
@@ -47,16 +53,15 @@ class SelectSectionScreen extends StatelessWidget {
                 SizedBox(
                   height: 28,
                 ),
-                SectionDrs(
-                  drName: 'Youstina Malak',
-                  description: 'teacher assistant, Cs',
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SectionDrs(
-                  drName: 'Sara Mohamed',
-                  description: 'teacher assistant, Sim',
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: courseDetails.courseAssistants.length,
+                      itemBuilder: (context, index) {
+                        return SectionDrs(
+                          drName: courseDetails.courseAssistants[index],
+                          description: 'teacher assistant, Cs',
+                        );
+                      }),
                 ),
               ],
             ),
@@ -99,38 +104,47 @@ class SectionDrs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CircleAvatar(
-          child: Icon(Icons.person),
-          radius: 20,
-        ),
-        SizedBox(
-          width: 16,
-        ),
-        Column(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              drName,
-              style: TextStyle(
-                color: Color(0xFF2699FB),
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
+            CircleAvatar(
+              child: Icon(Icons.person),
+              radius: 20,
             ),
             SizedBox(
-              height: 4,
+              width: 16,
             ),
-            Text(
-              description,
-              style: TextStyle(
-                color: Color(0xFF2699FB),
-                fontSize: 10,
-                fontWeight: FontWeight.normal,
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  drName,
+                  style: TextStyle(
+                    color: Color(0xFF2699FB),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  description,
+                  style: TextStyle(
+                    color: Color(0xFF2699FB),
+                    fontSize: 10,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ],
             ),
           ],
+        ),
+        SizedBox(
+          height: 20,
         ),
       ],
     );

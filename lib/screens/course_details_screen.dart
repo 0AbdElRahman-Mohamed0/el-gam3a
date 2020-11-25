@@ -1,3 +1,5 @@
+import 'package:elgam3a/models/course_model.dart';
+import 'package:elgam3a/notifier_providers/course_provider.dart';
 import 'package:elgam3a/screens/select_section_screen.dart';
 import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +8,12 @@ import 'package:flutter/rendering.dart';
 class CourseDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final courseDetails = context.watch<CourseNotifierProvider>().course;
     return Scaffold(
       backgroundColor: Color(0xFFF1F9FF),
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: Text('Cs 309'),
+        title: Text(courseDetails.courseCode),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -34,18 +37,22 @@ class CourseDetailsScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        courseDetails.required
+                            ? Column(
+                                children: [
+                                  Text(
+                                    'Required',
+                                    style: TextStyle(
+                                        color: kPrimaryColor.withOpacity(0.5),
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  SizedBox(height: 16.0),
+                                ],
+                              )
+                            : SizedBox(),
                         Text(
-                          'Required',
-                          style: TextStyle(
-                            color: Color(0xFF2699FB).withOpacity(0.5),
-                            fontSize: 12,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Text(
-                          'Data Science and Mining',
+                          courseDetails.courseName,
                           style: TextStyle(
                             color: Color(0xFF2699FB),
                             fontSize: 20,
@@ -56,7 +63,7 @@ class CourseDetailsScreen extends StatelessWidget {
                           height: 4,
                         ),
                         Text(
-                          'Cs 309',
+                          courseDetails.courseCode,
                           style: TextStyle(
                             color: Color(0xFF2699FB),
                             fontSize: 20,
@@ -80,7 +87,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'Dr. Ahmed Yonis',
+                                  'Dr ' + courseDetails.courseDoctor,
                                   style: TextStyle(
                                     color: Color(0xFF2699FB),
                                     fontSize: 14,
@@ -100,7 +107,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'El-Anfoshi',
+                                  courseDetails.courseLocation,
                                   style: TextStyle(
                                     color: Color(0xFF2699FB),
                                     fontSize: 14,
@@ -130,7 +137,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                   width: 4,
                                 ),
                                 Text(
-                                  'SunDay',
+                                  courseDetails.courseDay,
                                   style: TextStyle(
                                     color: Color(0xFF2699FB),
                                     fontSize: 14,
@@ -155,7 +162,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                   TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: '03:00',
+                                        text: courseDetails.courseTime,
                                         style: TextStyle(
                                           color: Color(0xFF2699FB),
                                           fontSize: 14,
@@ -188,7 +195,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                   width: 4,
                                 ),
                                 Text(
-                                  '5',
+                                  courseDetails.courseHall.toString(),
                                   style: TextStyle(
                                     color: Color(0xFF2699FB),
                                     fontSize: 14,
@@ -218,7 +225,12 @@ class CourseDetailsScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SelectSectionScreen(),
+                                builder: (context) => ChangeNotifierProvider<
+                                    CourseNotifierProvider>(
+                                  create: (_) =>
+                                      CourseNotifierProvider(courseDetails),
+                                  child: SelectSectionScreen(),
+                                ),
                               ),
                             );
                           },

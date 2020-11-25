@@ -1,3 +1,4 @@
+import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/screens/course_details_screen.dart';
 import 'package:elgam3a/screens/home_screen.dart';
 import 'package:elgam3a/screens/login_screen.dart';
@@ -44,22 +45,29 @@ class MyApp extends StatelessWidget {
 
     ////
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      // home: CourseDetailsScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CoursesProvider>(
+          create: (context) => CoursesProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        // home: CourseDetailsScreen(),
 
-      initialRoute: SplashScreen.id,
-      routes: {
-        ScheduleScreen.id: (context) => ScheduleScreen(),
-        SplashScreen.id: (context) => SplashScreen(),
-        SettingsScreen.id: (context) => SettingsScreen(),
-        ProfileScreen.id: (context) => ProfileScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        HomeScreen.id: (context) => HomeScreen(),
-      },
+        initialRoute: SplashScreen.id,
+        routes: {
+          ScheduleScreen.id: (context) => ScheduleScreen(),
+          SplashScreen.id: (context) => SplashScreen(),
+          SettingsScreen.id: (context) => SettingsScreen(),
+          ProfileScreen.id: (context) => ProfileScreen(),
+          LoginScreen.id: (context) => LoginScreen(),
+          HomeScreen.id: (context) => HomeScreen(),
+        },
 //      theme: ThemeData.light(),
 //      home:
 //          ScheduleScreen(), //HomePage(), ////// el mafrood LoginPage() bs e7na bngrb
+      ),
     );
   }
 }
