@@ -29,6 +29,7 @@ dependencies:
   flrx_validator: ^0.4.0+2
   flutter_svg: ^0.19.1
   provider: ^4.3.2+2
+  loading_indicator: ^1.2.0
 
 dev_dependencies:
   flutter_test:

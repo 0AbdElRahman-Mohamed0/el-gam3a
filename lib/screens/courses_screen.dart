@@ -1,5 +1,6 @@
 import 'package:elgam3a/screens/register_courses.dart';
 import 'package:elgam3a/utilities/constants.dart';
+import 'package:elgam3a/utilities/loading.dart';
 import 'package:flutter/material.dart';
 
 class CoursesScreen extends StatelessWidget {
@@ -23,9 +24,18 @@ class CoursesScreen extends StatelessWidget {
                 left: 50, right: 50, top: 15, bottom: 15),
             color: kSecondaryColor,
             textColor: kButtonTextColor,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => RegisterCourses()));
+            onPressed: () async {
+              LoadingScreen.show(context);
+              await Future.delayed(
+                Duration(seconds: 2),
+              );
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RegisterCourses(),
+                ),
+              );
             },
             child: Text('Register'),
           ),

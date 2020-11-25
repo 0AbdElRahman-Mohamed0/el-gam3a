@@ -1,4 +1,5 @@
 import 'package:elgam3a/screens/home_screen.dart';
+import 'package:elgam3a/utilities/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
@@ -21,12 +22,16 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
 
-  _login() {
+  _login() async {
     if (!_formKey.currentState.validate()) {
       setState(() => _autoValidate = true);
       return;
     }
     _formKey.currentState.save();
+    LoadingScreen.show(context);
+    await Future.delayed(
+      Duration(seconds: 2),
+    );
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
