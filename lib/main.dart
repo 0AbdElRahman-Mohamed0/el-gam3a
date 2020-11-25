@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
     ////
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       // home: CourseDetailsScreen(),
 
       initialRoute: SplashScreen.id,
