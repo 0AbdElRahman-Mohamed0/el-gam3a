@@ -331,15 +331,18 @@ class RegisterCourses extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 children: <Widget>[
                   RegisterCourseWidget(),
-                  Center(
-                    child: Text('Minor'),
-                  ),
-                  Center(
-                    child: Text('College'),
-                  ),
-                  Center(
-                    child: Text('University'),
-                  ),
+                  RegisterCourseWidget(),
+                  RegisterCourseWidget(),
+                  RegisterCourseWidget(),
+                  // Center(
+                  //   child: Text('Minor'),
+                  // ),
+                  // Center(
+                  //   child: Text('College'),
+                  // ),
+                  // Center(
+                  //   child: Text('University'),
+                  // ),
                 ],
               ),
             ),

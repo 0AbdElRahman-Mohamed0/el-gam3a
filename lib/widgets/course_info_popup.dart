@@ -22,8 +22,8 @@ class CourseInfoPopUp extends StatelessWidget {
       margin: EdgeInsets.only(
         left: 24,
         right: 24,
-        top: (MediaQuery.of(context).size.height * 130) / 667.0,
-        bottom: MediaQuery.of(context).size.height * 0.28,
+        top: MediaQuery.of(context).size.height * 0.24,
+        bottom: MediaQuery.of(context).size.height * 0.24,
       ),
       padding: EdgeInsets.only(top: 8.0, right: 16.0, left: 16.0),
       child: Column(
