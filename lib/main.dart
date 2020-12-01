@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        title: 'El-Gam3a',
         // home: CourseDetailsScreen(),
 
         initialRoute: SplashScreen.id,
