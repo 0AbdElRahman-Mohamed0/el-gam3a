@@ -6,13 +6,13 @@ class InputText extends StatefulWidget {
   InputText({
     @required this.inputType,
     @required this.onSaved,
-    @required this.person,
     this.validator,
+    this.maxLength,
   });
   final String inputType;
   final Function onSaved;
-  final String person;
   final Validator validator;
+  final int maxLength;
   @override
   _InputTextState createState() => _InputTextState();
 }
@@ -27,14 +27,15 @@ class _InputTextState extends State<InputText> {
   // To check
   bool _isHidden = true;
   Validator validator;
+  int maxLength;
 
   @override
   void initState() {
     super.initState();
     inputType = widget.inputType;
-    person = widget.person;
     onSaved = widget.onSaved;
     validator = widget.validator;
+    maxLength = widget.maxLength;
   }
 
   @override
@@ -44,12 +45,13 @@ class _InputTextState extends State<InputText> {
         onSaved: onSaved,
         validator: validator,
         style: kTextFieldInputStyle,
+        maxLength: maxLength,
         decoration: InputDecoration(
 //          focusedBorder: kSelectedTextFieldColor,
           isDense: true,
           filled: true,
           fillColor: Colors.white,
-
+          counterText: '',
           // Icon before text
           prefixIcon: inputType == 'password'
               ? Icon(
