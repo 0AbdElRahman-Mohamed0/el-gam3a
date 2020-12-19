@@ -59,9 +59,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   RaisedButton(
                     color: Theme.of(context).cardColor,
                     shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 0,
+                      ),
                       borderRadius: BorderRadius.circular(4),
                     ),
                     onPressed: () {},
+                    child: Text('Edit Data'),
                   ),
                 ],
               ),
