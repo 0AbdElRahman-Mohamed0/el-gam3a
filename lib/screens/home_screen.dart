@@ -17,9 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> _widgetOptions = <Widget>[
     ScheduleScreen(),
     CoursesScreen(),
-    Text(
-      'Index 2: Home',
-    ),
+    // Text(
+    //   'Index 2: Home',
+    // ),
     Text(
       'Index 3: Business',
     ),
@@ -41,9 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ? Text('My Schedule')
             : _selectedIndex == 1
                 ? Text('Courses')
-                : _selectedIndex == 2
-                    ? Text('Community')
-                    : Text('Profile'),
+                : Text('Profile'),
+        // _selectedIndex == 2
+        //     ? Text('Community')
+        //     :
 //          leading: SideMenuAnimatedIcon(
 //            drawerKey: drawerKey,
 //          ),
@@ -90,10 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.school),
               label: 'Courses',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
-              label: 'Community',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.chat),
+            //   label: 'Community',
+            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'Profile',
