@@ -11,28 +11,6 @@ import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
-final ThemeData lightTheme = ThemeData(
-  backgroundColor: Colors.white,
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: Color(0xFF155E9F),
-    selectedLabelStyle: TextStyle(
-      fontSize: 10,
-      // fontFamily: 'Lato',
-      fontWeight: FontWeight.w700,
-    ),
-    selectedIconTheme: IconThemeData(size: 24.0),
-    selectedItemColor: Colors.white,
-    unselectedLabelStyle: TextStyle(
-      fontSize: 10,
-      // fontFamily: 'Lato',
-      fontWeight: FontWeight.w700,
-    ),
-    unselectedIconTheme: IconThemeData(size: 24.0),
-    unselectedItemColor: Color(0x80FFFFFF),
-    type: BottomNavigationBarType.fixed,
-  ),
-);
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -54,20 +32,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'El-Gam3a',
-        // home: CourseDetailsScreen(),
+        home: SplashScreen(),
 
-        initialRoute: SplashScreen.id,
-        routes: {
-          ScheduleScreen.id: (context) => ScheduleScreen(),
-          SplashScreen.id: (context) => SplashScreen(),
-          SettingsScreen.id: (context) => SettingsScreen(),
-          ProfileScreen.id: (context) => ProfileScreen(),
-          LoginScreen.id: (context) => LoginScreen(),
-          HomeScreen.id: (context) => HomeScreen(),
-        },
 //      theme: ThemeData.light(),
-//      home:
-//          ScheduleScreen(), //HomePage(), ////// el mafrood LoginPage() bs e7na bngrb
       ),
     );
   }

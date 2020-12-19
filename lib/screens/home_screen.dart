@@ -3,6 +3,7 @@ import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'package:elgam3a/widgets/side_menu.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -49,9 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
 //            drawerKey: drawerKey,
 //          ),
       ),
-      drawer: SideMenu(
-        userName: 'Bedo',
-      ),
+      // drawer: SideMenu(
+      //   userName: 'Bedo',
+      // ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
