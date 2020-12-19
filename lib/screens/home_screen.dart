@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
+        centerTitle: true,
         title: _selectedIndex == 0
             ? Text('My Schedule')
             : _selectedIndex == 1
