@@ -51,7 +51,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: Theme.of(context).buttonColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Text('Student'),
+                    child: Text(
+                      'Student',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   SizedBox(
                     height: 20,
