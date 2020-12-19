@@ -5,6 +5,7 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.white,
     primaryColor: Color(0xFF425B53),
     buttonColor: Color(0xFFED9539),
+    errorColor: Color(0xFFFF5858),
     accentColor: Color(0xFFDD7215),
     cardColor: Colors.white,
     shadowColor: Color(0xFF000000).withOpacity(0.1),
