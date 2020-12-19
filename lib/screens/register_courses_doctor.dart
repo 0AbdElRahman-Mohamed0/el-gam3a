@@ -7,7 +7,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
@@ -76,7 +76,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      height: (MediaQuery.of(context).size.height * 150) / 667,
+                      height: (MediaQuery.of(context).size.height * 100) / 667,
                       margin: EdgeInsets.only(right: 8.0),
                       decoration: BoxDecoration(
                         color: kPrimaryColor.withOpacity(0.2),
@@ -99,7 +99,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
                               TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: '5',
+                                    text: '10',
                                     style: TextStyle(
                                         color: kPrimaryColor, //Colors.black,
                                         fontSize: 48.0,
@@ -123,7 +123,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      height: (MediaQuery.of(context).size.height * 150) / 667,
+                      height: (MediaQuery.of(context).size.height * 100) / 667,
                       margin: EdgeInsets.only(left: 8.0),
                       decoration: BoxDecoration(
                         color: kPrimaryColor.withOpacity(0.8),
@@ -143,23 +143,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Major',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                Text(
-                                  'Minor',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                Text(
-                                  'College',
+                                  'Department',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14.0,
@@ -184,14 +168,14 @@ class RegisterCoursesDoctor extends StatelessWidget {
                                   TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: '5',
+                                        text: '6',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.w700),
                                       ),
                                       TextSpan(
-                                        text: '/42',
+                                        text: '/10',
                                         style: TextStyle(
                                             color:
                                                 Colors.white.withOpacity(0.5),
@@ -205,56 +189,14 @@ class RegisterCoursesDoctor extends StatelessWidget {
                                   TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: '5',
+                                        text: '4',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.w700),
                                       ),
                                       TextSpan(
-                                        text: '/42',
-                                        style: TextStyle(
-                                            color:
-                                                Colors.white.withOpacity(0.5),
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: '5',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                      TextSpan(
-                                        text: '/42',
-                                        style: TextStyle(
-                                            color:
-                                                Colors.white.withOpacity(0.5),
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: '5',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                      TextSpan(
-                                        text: '/42',
+                                        text: '/10',
                                         style: TextStyle(
                                             color:
                                                 Colors.white.withOpacity(0.5),
@@ -304,17 +246,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
                 tabs: [
                   FittedBox(
                     child: Tab(
-                      text: "Major",
-                    ),
-                  ),
-                  FittedBox(
-                    child: Tab(
-                      text: "Minor",
-                    ),
-                  ),
-                  FittedBox(
-                    child: Tab(
-                      text: "College",
+                      text: "Department",
                     ),
                   ),
                   FittedBox(
@@ -329,8 +261,6 @@ class RegisterCoursesDoctor extends StatelessWidget {
               child: TabBarView(
                 physics: NeverScrollableScrollPhysics(),
                 children: <Widget>[
-                  RegisterCourseWidget(),
-                  RegisterCourseWidget(),
                   RegisterCourseWidget(),
                   RegisterCourseWidget(),
                   // Center(
