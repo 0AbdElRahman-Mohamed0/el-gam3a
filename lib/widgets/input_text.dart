@@ -46,6 +46,7 @@ class _InputTextState extends State<InputText> {
         style: kTextFieldInputStyle,
         decoration: InputDecoration(
 //          focusedBorder: kSelectedTextFieldColor,
+          isDense: true,
           filled: true,
           fillColor: Colors.white,
 
