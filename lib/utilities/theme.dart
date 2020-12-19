@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class AppTheme {
   final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
-    primaryColor: Color(0xFF102D26),
-    accentColor: Color(0xFFED9539),
-    buttonColor: Color(0xFFDD7215),
+    primaryColor: Color(0xFF425B53),
+    buttonColor: Color(0xFFED9539),
+    accentColor: Color(0xFFDD7215),
     cardColor: Colors.white,
     shadowColor: Color(0xFF000000).withOpacity(0.1),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -16,7 +16,7 @@ class AppTheme {
         fontWeight: FontWeight.w700,
       ),
       selectedIconTheme: IconThemeData(size: 24.0),
-      selectedItemColor: Colors.white,
+//      selectedItemColor: Colors.white,
       unselectedLabelStyle: TextStyle(
         fontSize: 10,
         // fontFamily: 'Lato',

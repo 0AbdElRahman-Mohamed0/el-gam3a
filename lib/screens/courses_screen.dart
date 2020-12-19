@@ -22,7 +22,7 @@ class CoursesScreen extends StatelessWidget {
               ),
               padding: kLoginButtonSize.copyWith(
                   left: 50, right: 50, top: 15, bottom: 15),
-              color: kSecondaryColor,
+              color: Theme.of(context).buttonColor,
               textColor: kButtonTextColor,
               onPressed: () async {
                 LoadingScreen.show(context);
