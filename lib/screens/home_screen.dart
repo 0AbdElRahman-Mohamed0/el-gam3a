@@ -198,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         // centerTitle: true,
         title: _controller.index == 0
             ? Text('My Schedule')
