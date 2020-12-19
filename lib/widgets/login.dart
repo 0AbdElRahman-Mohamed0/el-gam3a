@@ -6,12 +6,7 @@ import '../utilities/constants.dart';
 import 'input_text.dart';
 import 'package:flrx_validator/flrx_validator.dart';
 
-// ignore: must_be_immutable
 class Login extends StatefulWidget {
-  Login({@required this.accountType});
-
-  final String accountType;
-
   @override
   _LoginState createState() => _LoginState();
 }
@@ -51,11 +46,18 @@ class _LoginState extends State<Login> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Hello ${widget.accountType} have a nice day.',
-              style: kWelcomeTextStyle,
+//            Text(
+//              'Hello ${widget.accountType} have a nice day.',
+//              style: kWelcomeTextStyle,
+//            ),
+            Center(
+              child: Container(
+                height: 100.0,
+                width: 100.0,
+                color: kPrimaryColor,
+              ),
             ),
-            kSizedBox,
+            SizedBox(height: 36),
             InputText(
               validator: Validator(
                 rules: [
@@ -67,7 +69,7 @@ class _LoginState extends State<Login> {
                 ],
               ),
               inputType: 'email',
-              person: widget.accountType,
+              maxLength: 11,
               onSaved: (value) {
                 univCode = value;
               },
@@ -82,7 +84,6 @@ class _LoginState extends State<Login> {
                 ],
               ),
               inputType: 'password',
-              person: widget.accountType,
               onSaved: (value) {
                 password = value;
               },
