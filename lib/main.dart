@@ -1,11 +1,6 @@
 import 'package:elgam3a/providers/courses_provider.dart';
-import 'package:elgam3a/screens/course_details_screen.dart';
-import 'package:elgam3a/screens/home_screen.dart';
-import 'package:elgam3a/screens/login_screen.dart';
-import 'package:elgam3a/screens/profile_screen.dart';
-import 'package:elgam3a/screens/schedule_screen.dart';
-import 'package:elgam3a/screens/settings_screen.dart';
 import 'package:elgam3a/screens/splash_screen.dart';
+import 'package:elgam3a/utilities/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -33,8 +28,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'El-Gam3a',
         home: SplashScreen(),
-
-//      theme: ThemeData.light(),
+        theme: AppTheme().lightTheme,
       ),
     );
   }
