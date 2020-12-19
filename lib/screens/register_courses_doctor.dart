@@ -2,9 +2,8 @@ import 'package:elgam3a/widgets/register_course_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:elgam3a/utilities/constants.dart';
-import 'package:flutter_svg/svg.dart';
 
-class RegisterCourses extends StatelessWidget {
+class RegisterCoursesDoctor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -106,14 +105,14 @@ class RegisterCourses extends StatelessWidget {
                                         fontSize: 48.0,
                                         fontWeight: FontWeight.w700),
                                   ),
-                                  TextSpan(
-                                    text: '/18',
-                                    style: TextStyle(
-                                        color: kPrimaryColor.withOpacity(
-                                            0.5), //Colors.black.withOpacity(0.4),
-                                        fontSize: 24.0,
-                                        fontWeight: FontWeight.w700),
-                                  ),
+//                                  TextSpan(
+//                                    text: '/18',
+//                                    style: TextStyle(
+//                                        color: kPrimaryColor.withOpacity(
+//                                            0.5), //Colors.black.withOpacity(0.4),
+//                                        fontSize: 24.0,
+//                                        fontWeight: FontWeight.w700),
+//                                  ),
                                 ],
                               ),
                             ),

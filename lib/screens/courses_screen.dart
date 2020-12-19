@@ -1,7 +1,9 @@
-import 'package:elgam3a/screens/register_courses.dart';
+import 'package:elgam3a/screens/register_courses_doctor.dart';
+import 'package:elgam3a/screens/register_courses_student.dart';
 import 'package:elgam3a/utilities/constants.dart';
 import 'package:elgam3a/utilities/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class CoursesScreen extends StatelessWidget {
   @override
@@ -25,16 +27,16 @@ class CoursesScreen extends StatelessWidget {
               color: Theme.of(context).buttonColor,
               textColor: kButtonTextColor,
               onPressed: () async {
-                LoadingScreen.show(context);
-                await Future.delayed(
-                  Duration(seconds: 2),
-                );
-                Navigator.pop(context);
-                Navigator.push(
+//                LoadingScreen.show(context);
+//                await Future.delayed(
+//                  Duration(seconds: 2),
+//                );
+//                Navigator.pop(context);
+                pushNewScreen(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => RegisterCourses(),
-                  ),
+                  screen: RegisterCoursesDoctor(),
+                  withNavBar: false, // OPTIONAL VALUE. True by default.
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 );
               },
               child: Text('Register'),
