@@ -8,13 +8,11 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Center(
-          child: Text(
-            'Profile Page',
-            style: TextStyle(color: Colors.black),
-          ),
+    return Center(
+      child: Container(
+        child: Text(
+          'Profile Page',
+          style: TextStyle(color: Colors.black),
         ),
       ),
     );

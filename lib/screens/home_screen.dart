@@ -41,9 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ? Text('Courses')
                 : Text('Profile'),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: Container(
         height: 90.0,
         decoration: BoxDecoration(

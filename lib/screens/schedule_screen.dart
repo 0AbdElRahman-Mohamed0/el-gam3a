@@ -31,46 +31,31 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   String day;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-// //         key: drawerKey,
-// //         appBar: AppBar(
-// //           backgroundColor: kPrimaryColor,
-// //           title: Text('My Schedule'),
-// // //          leading: SideMenuAnimatedIcon(
-// // //            drawerKey: drawerKey,
-// // //          ),
-// //         ),
-//
-//         drawer: SideMenu(
-//           userName: 'Bedo',
-//         ),
-      ///// Days buttons Picker widget
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            WeekDayPicker(
-              items: Utilities.getDays(),
-              textColor: Color(0xFF003A5D),
-              showTitle: true,
-              title: Text(
-                "Week days",
-                style: kWeekDaysTitleTextStyle,
-              ),
-
-              //// with opacity 38%
-              backgroundColorSelected: kSelectedCalenderItemColor,
-              onSelected: (item) {
-                //// to check which day is selected
-                print(item.name);
-                day = item.name;
-                //  TODO: change screen
-              },
-              alignment: Alignment.center,
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          WeekDayPicker(
+            items: Utilities.getDays(),
+            textColor: Color(0xFF003A5D),
+            showTitle: true,
+            title: Text(
+              "Week days",
+              style: kWeekDaysTitleTextStyle,
             ),
-            kSizedBoxForPagesStyle,
-            FacultiesPart(day: day),
-          ],
-        ),
+
+            //// with opacity 38%
+            backgroundColorSelected: kSelectedCalenderItemColor,
+            onSelected: (item) {
+              //// to check which day is selected
+              print(item.name);
+              day = item.name;
+              //  TODO: change screen
+            },
+            alignment: Alignment.center,
+          ),
+          kSizedBoxForPagesStyle,
+          FacultiesPart(day: day),
+        ],
       ),
     );
   }
