@@ -48,10 +48,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).buttonColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Text('Student'),
+                    child: Text(
+                      'Student',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   SizedBox(
                     height: 20,
@@ -72,8 +75,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ],
           ),
+          SizedBox(
+            height: 24,
+          ),
         ],
       ),
     );
   }
 }
+
+// https://dribbble.com/shots/14153205-Online-Education-App
