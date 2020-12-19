@@ -5,6 +5,7 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.white,
     primaryColor: Color(0xFF425B53),
     buttonColor: Color(0xFFED9539),
+    errorColor: Color(0xFFFF5858),
     accentColor: Color(0xFFDD7215),
     focusColor: Color(0xFF6D8F8E),
     dividerColor: Color(0xFF9A9B9B),
