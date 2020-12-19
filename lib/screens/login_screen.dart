@@ -5,7 +5,6 @@ import 'package:elgam3a/widgets/login.dart';
 import 'package:elgam3a/widgets/login_app_bar.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String id = 'login_screen';
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }

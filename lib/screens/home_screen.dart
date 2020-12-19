@@ -5,7 +5,6 @@ import '../utilities/constants.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String id = 'home_screen';
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }

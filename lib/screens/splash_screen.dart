@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const String id = 'splash_screen';
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }

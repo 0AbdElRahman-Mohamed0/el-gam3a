@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
-  static const String id = 'settings_screen';
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }

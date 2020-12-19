@@ -5,7 +5,6 @@ import 'package:elgam3a/widgets/week_day_picker.dart';
 import 'package:selection_picker/selection_item.dart';
 
 class ScheduleScreen extends StatefulWidget {
-  static const String id = 'schedule_screen';
   @override
   _ScheduleScreenState createState() => _ScheduleScreenState();
 }
