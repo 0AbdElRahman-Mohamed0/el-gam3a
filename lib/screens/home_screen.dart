@@ -185,14 +185,14 @@ class _HomeScreenState extends State<HomeScreen> {
 //            color: Color(0xFFB3B4C8),
 //          ),
 //        ), //Icon(Icons.settings),
-        contentPadding: 0.0,
+//        contentPadding: 0.0,
         title: 'Profile',
 //        textStyle: Theme.of(context).textTheme.headline2.copyWith(
 //          fontSize: 13,
 //          fontWeight: FontWeight.w700,
 //        ),
-        activeColorAlternate: Theme.of(context).primaryColor,
-        activeColor: Theme.of(context).dividerColor.withOpacity(0.3),
+        activeColorAlternate: Theme.of(context).cardColor,
+        activeColor: Theme.of(context).primaryColor,
         inactiveColor: Theme.of(context).dividerColor,
       ),
     ];
