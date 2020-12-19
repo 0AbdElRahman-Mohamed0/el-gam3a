@@ -2,7 +2,6 @@ import 'package:elgam3a/screens/courses_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
-import 'package:elgam3a/widgets/side_menu.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +11,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  GlobalKey<ScaffoldState> drawerKey = GlobalKey();
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
@@ -35,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: drawerKey,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
         title: _selectedIndex == 0
@@ -43,16 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             : _selectedIndex == 1
                 ? Text('Courses')
                 : Text('Profile'),
-        // _selectedIndex == 2
-        //     ? Text('Community')
-        //     :
-//          leading: SideMenuAnimatedIcon(
-//            drawerKey: drawerKey,
-//          ),
       ),
-      // drawer: SideMenu(
-      //   userName: 'Bedo',
-      // ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -92,10 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.school),
               label: 'Courses',
             ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.chat),
-            //   label: 'Community',
-            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'Profile',
