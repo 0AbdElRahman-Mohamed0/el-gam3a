@@ -1,4 +1,5 @@
 import 'package:elgam3a/screens/courses_screen.dart';
+import 'package:elgam3a/screens/profile_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
@@ -15,12 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> _widgetOptions = <Widget>[
     ScheduleScreen(),
     CoursesScreen(),
-    // Text(
-    //   'Index 2: Home',
-    // ),
-    Text(
-      'Index 3: Business',
-    ),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
