@@ -1,4 +1,4 @@
-import 'package:elgam3a/widgets/register_course_widget.dart';
+import 'package:elgam3a/widgets/register_course_student_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:elgam3a/utilities/constants.dart';
@@ -330,10 +330,10 @@ class RegisterCoursesStudent extends StatelessWidget {
               child: TabBarView(
                 physics: NeverScrollableScrollPhysics(),
                 children: <Widget>[
-                  RegisterCourseWidget(),
-                  RegisterCourseWidget(),
-                  RegisterCourseWidget(),
-                  RegisterCourseWidget(),
+                  RegisterCourseStudentWidget(),
+                  RegisterCourseStudentWidget(),
+                  RegisterCourseStudentWidget(),
+                  RegisterCourseStudentWidget(),
                   // Center(
                   //   child: Text('Minor'),
                   // ),

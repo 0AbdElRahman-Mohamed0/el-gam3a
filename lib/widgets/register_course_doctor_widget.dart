@@ -5,12 +5,14 @@ import 'package:elgam3a/utilities/constants.dart';
 import 'package:elgam3a/widgets/course_info_popup.dart';
 import 'package:flutter/material.dart';
 
-class RegisterCourseWidget extends StatefulWidget {
+class RegisterCourseDoctorWidget extends StatefulWidget {
   @override
-  _RegisterCourseWidgetState createState() => _RegisterCourseWidgetState();
+  _RegisterCourseDoctorWidgetState createState() =>
+      _RegisterCourseDoctorWidgetState();
 }
 
-class _RegisterCourseWidgetState extends State<RegisterCourseWidget> {
+class _RegisterCourseDoctorWidgetState
+    extends State<RegisterCourseDoctorWidget> {
   _getCourses() {
     context.read<CoursesProvider>().getCourses();
   }
@@ -65,6 +67,7 @@ class CourseCard extends StatelessWidget {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text.rich(
                   TextSpan(
@@ -89,14 +92,14 @@ class CourseCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 8.0),
-                Text(
-                  'Dr ' + courseDetails.courseDoctor,
-                  style: TextStyle(
-                      color: kPrimaryColor.withOpacity(0.5),
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w700),
-                ),
+//                SizedBox(height: 8.0),
+//                Text(
+//                  'Dr ' + courseDetails.courseDoctor,
+//                  style: TextStyle(
+//                      color: kPrimaryColor.withOpacity(0.5),
+//                      fontSize: 12.0,
+//                      fontWeight: FontWeight.w700),
+//                ),
               ],
             ),
             courseDetails.required
