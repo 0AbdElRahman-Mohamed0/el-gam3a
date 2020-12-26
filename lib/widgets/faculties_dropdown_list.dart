@@ -67,11 +67,7 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
               children: [
                 Text(
                   listTitle,
-                  style: TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18,
-                  ),
+                  style: Theme.of(context).textTheme.headline1,
                 ),
                 IconButton(
                   icon: AnimateIcons(
@@ -117,20 +113,14 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                         children: [
                           Text(
                             'Lectures  ',
-                            style: TextStyle(
-                              color: Color(0xFF155E9F).withOpacity(0.9),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.headline4.copyWith(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                           ),
-                          Text(
-                            '(2 lectures)',
-                            style: TextStyle(
-                              color: Color(0xFF155E9F).withOpacity(0.6),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          )
+                          Text('(2 lectures)',
+                              style: Theme.of(context).textTheme.headline3)
                         ],
                       ),
                     ),
@@ -142,20 +132,14 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                         children: [
                           Text(
                             'Section  ',
-                            style: TextStyle(
-                              color: Color(0xFF155E9F).withOpacity(0.9),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.headline4.copyWith(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                           ),
-                          Text(
-                            '(2 sections)',
-                            style: TextStyle(
-                              color: Color(0xFF155E9F).withOpacity(0.6),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          )
+                          Text('(2 sections)',
+                              style: Theme.of(context).textTheme.headline3),
                         ],
                       ),
                     ),
@@ -171,10 +155,6 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
 }
 
 class LectureTimeInSchedule extends StatelessWidget {
-  const LectureTimeInSchedule({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -186,7 +166,7 @@ class LectureTimeInSchedule extends StatelessWidget {
               margin: EdgeInsets.only(right: 5.0),
               padding: EdgeInsets.only(left: 8.0, top: 10.0, bottom: 6.0),
               decoration: BoxDecoration(
-                color: kPrimaryColor.withOpacity(0.1),
+                color: Theme.of(context).shadowColor.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(6.0),
               ),
               child: Column(
@@ -194,13 +174,17 @@ class LectureTimeInSchedule extends StatelessWidget {
                 children: [
                   Text(
                     'Machine learning',
-                    style:
-                        TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.bodyText1.copyWith(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w700,
+                        ),
                   ),
                   Text(
                     'Dr. Reham - Dr. Nermin',
-                    style:
-                        TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        .copyWith(fontSize: 12.0, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -211,21 +195,24 @@ class LectureTimeInSchedule extends StatelessWidget {
               margin: EdgeInsets.only(right: 5.0),
               padding: EdgeInsets.only(top: 10.0, bottom: 6.0),
               decoration: BoxDecoration(
-                color: kPrimaryColor.withOpacity(0.1),
+                color: Theme.of(context).shadowColor.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(6.0),
               ),
               child: Column(
-//                                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     '3 pm - 5 pm',
-                    style:
-                        TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.bodyText1.copyWith(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w700,
+                        ),
                   ),
                   Text(
                     'Hall (5) - Build (B)',
-                    style:
-                        TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),
+                    style: Theme.of(context).textTheme.bodyText1.copyWith(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w400,
+                        ),
                   ),
                 ],
               ),

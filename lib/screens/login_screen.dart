@@ -56,7 +56,13 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100.0),
         child: LoginAppBar(
-          title: Text('El-Gam3a'),
+          title: Text(
+            'El-Gam3a',
+            style: Theme.of(context).textTheme.button.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.0,
+                ),
+          ),
         ),
       ),
       body: SingleChildScrollView(

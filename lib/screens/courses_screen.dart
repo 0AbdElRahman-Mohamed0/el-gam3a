@@ -14,7 +14,10 @@ class CoursesScreen extends StatelessWidget {
         children: [
           Text(
             'No Registered Courses',
-            style: kTextFieldInputStyle,
+            style: Theme.of(context).textTheme.bodyText1.copyWith(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w400,
+                ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 18.0),
@@ -24,8 +27,8 @@ class CoursesScreen extends StatelessWidget {
               ),
               padding: kLoginButtonSize.copyWith(
                   left: 50, right: 50, top: 15, bottom: 15),
-              color: Theme.of(context).buttonColor,
-              textColor: kButtonTextColor,
+              color: Theme.of(context).cardColor,
+//              textColor: kButtonTextColor,
               onPressed: () async {
 //                LoadingScreen.show(context);
 //                await Future.delayed(
@@ -39,7 +42,13 @@ class CoursesScreen extends StatelessWidget {
                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 );
               },
-              child: Text('Register'),
+              child: Text(
+                'Register',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
             ),
           ),
         ],

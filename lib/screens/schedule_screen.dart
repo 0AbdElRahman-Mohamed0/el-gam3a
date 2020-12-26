@@ -36,15 +36,16 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         children: <Widget>[
           WeekDayPicker(
             items: Utilities.getDays(),
-            textColor: Color(0xFF003A5D),
+            textColor: Color(0xff050737),
             showTitle: true,
             title: Text(
               "Week days",
-              style: kWeekDaysTitleTextStyle,
+              style: Theme.of(context).textTheme.headline1,
             ),
 
             //// with opacity 38%
-            backgroundColorSelected: kSelectedCalenderItemColor,
+            backgroundColorSelected:
+                Theme.of(context).shadowColor.withOpacity(0.5),
             onSelected: (item) {
               //// to check which day is selected
               print(item.name);
@@ -53,7 +54,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             },
             alignment: Alignment.center,
           ),
-          kSizedBoxForPagesStyle,
+          Divider(
+            color: Theme.of(context).dividerColor,
+          ),
           FacultiesPart(day: day),
         ],
       ),

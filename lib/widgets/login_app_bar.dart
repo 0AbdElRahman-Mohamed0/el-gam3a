@@ -8,7 +8,7 @@ class LoginAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: kPrimaryColor,
+      backgroundColor: Theme.of(context).appBarTheme.color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomRight: Radius.circular(150),
@@ -19,7 +19,6 @@ class LoginAppBar extends StatelessWidget {
         child: title,
       ),
       centerTitle: true,
-      textTheme: kTitleTextStyle,
     );
   }
 }
