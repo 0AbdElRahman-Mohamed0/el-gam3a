@@ -1,6 +1,6 @@
+import 'package:elgam3a/utilities/constants.dart';
 import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/material.dart';
-import '../utilities/constants.dart';
 
 class InputText extends StatefulWidget {
   InputText({
@@ -83,11 +83,7 @@ class _InputTextState extends State<InputText> {
           //// Else put visibility
 
           // The inbox hint what i can do here
-          hintText: inputType == 'password'
-              ? 'Password'
-              : person == 'student'
-                  ? 'University Number'
-                  : 'University Code',
+          labelText: inputType == 'password' ? 'Password' : 'University Number',
           //// If inputType is password write a hint password else check if
           //// Person is a student put hint university number else put hint university code
 

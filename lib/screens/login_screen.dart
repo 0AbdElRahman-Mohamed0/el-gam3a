@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/screens/home_screen.dart';
-import 'package:elgam3a/utilities/constants.dart';
 import 'package:elgam3a/utilities/loading.dart';
 import 'package:elgam3a/widgets/input_text.dart';
 import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:elgam3a/widgets/login_app_bar.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -18,7 +18,12 @@ class _LoginScreenState extends State<LoginScreen> {
   String univCode;
   String password;
   final _formKey = GlobalKey<FormState>();
+  final _formKeyReset = GlobalKey<FormState>();
   bool _autoValidate = false;
+
+  String univCodeReset;
+  bool _autoValidateReset = false;
+  bool _emailSent = false;
 
   _login() async {
     if (!_formKey.currentState.validate()) {
@@ -49,6 +54,75 @@ class _LoginScreenState extends State<LoginScreen> {
       print(e);
       print(s);
     }
+  }
+
+  _forgetPassword() async {
+    Alert(
+        context: context,
+        title: 'University Number',
+        content: Column(
+          children: <Widget>[
+            Form(
+              key: _formKeyReset,
+              autovalidateMode: _autoValidateReset
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
+              child: TextFormField(
+                maxLength: 11,
+                onSaved: (ID) {
+                  univCodeReset = ID;
+                },
+                keyboardType: TextInputType.emailAddress,
+                validator: Validator<String>(
+                  rules: [
+                    RequiredRule(
+                      validationMessage: 'University Number is required.',
+                    ),
+                    MinLengthRule(
+                      11,
+                      validationMessage: 'University Number Must be 11 number.',
+                    ),
+                  ],
+                ),
+                decoration: InputDecoration(
+                  labelText: 'ID',
+                  counterText: '',
+                ),
+              ),
+            ),
+          ],
+        ),
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            onPressed: () async {
+              if (!_formKeyReset.currentState.validate()) {
+                setState(() => _autoValidateReset = true);
+                return;
+              }
+              _formKeyReset.currentState.save();
+              try {
+                LoadingScreen.show(context);
+                final email = await context
+                    .read<AuthProvider>()
+                    .getEmailOfStudentByUnivID(univCodeReset);
+                await context.read<AuthProvider>().forgetPassword(email);
+                _emailSent = true;
+                setState(() {});
+                Navigator.pop(context);
+                Navigator.pop(context);
+              } catch (e, s) {
+                Navigator.pop(context);
+                print(e);
+                print(s);
+              }
+            },
+            child: Text(
+              "Reset Password",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
   }
 
   @override
@@ -125,8 +199,32 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.w500,
                       ),
                 ),
-                onPressed: () {},
+                onPressed: () => _forgetPassword(),
               ),
+              _emailSent
+                  ? Column(
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.check_circle_outline,
+                              color: Colors.green[300],
+                              size: 28,
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Expanded(
+                              child: Text(
+                                'Reset email sent, please check your mail.',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
               SizedBox(
                 height: 15.0,
               ),

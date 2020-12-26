@@ -24,6 +24,10 @@ class AuthProvider with ChangeNotifier {
     return auth.currentUser != null;
   }
 
+  Future<void> forgetPassword(String email) async {
+    await _api.forgetPassword(email);
+  }
+
   Future<String> logIn(String email, String password) async {
     await auth.signInWithEmailAndPassword(
       email: email,

@@ -31,22 +31,11 @@ class ApiProvider {
     }
   }
 
-//   Future<void> signup(UserModel user, String pass) async {
-//     await auth.createUserWithEmailAndPassword(
-//       email: user.email,
-//       password: pass,
-//     );
-//     await firestore
-//         .collection(UserData.USER_DATA_TABLE)
-//         .doc(FirebaseAuth.instance.currentUser.uid)
-//         .set(user.toMap());
-//   }
-//
-//   //////////////FORGET PASSWORD//////////////////////////////////////
-//
-//   Future<void> forgetPassword(String email) async {
-//     await auth.sendPasswordResetEmail(email: email);
-//   }
+  //////////////FORGET PASSWORD//////////////////////////////////////
+
+  Future<void> forgetPassword(String email) async {
+    await auth.sendPasswordResetEmail(email: email);
+  }
 //
 //   ///////////////////GET Farmer BY ID///////////////////////////
 //
