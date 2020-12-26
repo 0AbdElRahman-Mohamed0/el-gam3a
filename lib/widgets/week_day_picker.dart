@@ -35,6 +35,7 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
 //      margin: EdgeInsets.all(16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,

@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
+                      color: Theme.of(context).scaffoldBackgroundColor,
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: [
                         BoxShadow(
@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).buttonColor,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -67,12 +67,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         height: 20,
                       ),
                       RaisedButton(
-                        color: Theme.of(context).cardColor,
+                        color: Theme.of(context).buttonColor,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: Theme.of(context).primaryColor,
-                            width: 0,
-                          ),
+                          side: BorderSide.none,
+//                          BorderSide(
+//                            color: Theme.of(context).primaryColor,
+//                            width: 0,
+//                          ),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         onPressed: () {},
@@ -165,21 +166,20 @@ class UserData extends StatelessWidget {
             children: [
               Text(
                 '$dataTitle : ',
-                style: TextStyle(
-                  fontFamily: 'SF Mono',
-                  fontSize: 14,
-                  color: const Color(0x80055261),
-                ),
+                style: Theme.of(context).textTheme.headline4.copyWith(
+                      fontFamily: 'SF Mono',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
               ),
               Expanded(
                 child: Text(
                   '$dataValue',
-                  style: TextStyle(
-                    fontFamily: 'SF Pro Display',
-                    fontSize: 14,
-                    color: Color(0xff055261),
-                    fontWeight: FontWeight.w300,
-                  ),
+                  style: Theme.of(context).textTheme.headline1.copyWith(
+                        fontFamily: 'SF Pro Display',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                      ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

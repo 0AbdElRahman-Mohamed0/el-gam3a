@@ -121,8 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
 //          fontSize: 13,
 //          fontWeight: FontWeight.w700,
 //        ),
-        activeColorAlternate: Theme.of(context).cardColor,
-        activeColor: Theme.of(context).primaryColor,
+        activeColorAlternate: Theme.of(context).primaryColor,
+        activeColor: Theme.of(context).primaryColor.withOpacity(0.3),
         inactiveColor: Theme.of(context).dividerColor,
       ),
       PersistentBottomNavBarItem(
@@ -156,8 +156,8 @@ class _HomeScreenState extends State<HomeScreen> {
 //          fontSize: 13,
 //          fontWeight: FontWeight.w700,
 //        ),
-        activeColorAlternate: Theme.of(context).cardColor,
-        activeColor: Theme.of(context).buttonColor,
+        activeColorAlternate: Theme.of(context).primaryColor,
+        activeColor: Theme.of(context).primaryColor.withOpacity(0.3),
         inactiveColor: Theme.of(context).dividerColor,
       ),
       PersistentBottomNavBarItem(
@@ -191,14 +191,14 @@ class _HomeScreenState extends State<HomeScreen> {
 //          fontSize: 13,
 //          fontWeight: FontWeight.w700,
 //        ),
-        activeColorAlternate: Theme.of(context).cardColor,
-        activeColor: Theme.of(context).focusColor,
+        activeColorAlternate: Theme.of(context).primaryColor,
+        activeColor: Theme.of(context).primaryColor.withOpacity(0.3),
         inactiveColor: Theme.of(context).dividerColor,
       ),
     ];
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+//        backgroundColor: Theme.of(context).primaryColor,
         // centerTitle: true,
         title: _controller.index == 0
             ? Text('My Schedule')
@@ -214,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
         navBarHeight: 84.0,
         padding: NavBarPadding.only(top: 13.0, bottom: 27.0),
         confineInSafeArea: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         handleAndroidBackButtonPress: true,
         resizeToAvoidBottomInset:
             true, // This needs to be true if you want to move up the screen when keyboard appears.

@@ -218,7 +218,7 @@ class _LoginState extends State<Login> {
               child: Container(
                 height: 100.0,
                 width: 100.0,
-                color: kPrimaryColor,
+                color: Theme.of(context).primaryColor,
               ),
             ),
             SizedBox(height: 36),
@@ -256,8 +256,14 @@ class _LoginState extends State<Login> {
             kSizedBox,
             ////
             FlatButton(
-              child: Text('Forgot your password ?'),
-              textColor: kPrimaryColor,
+              child: Text(
+                'Forgot your password ?',
+                style: Theme.of(context).textTheme.headline1.copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+              ),
+//              textColor: kPrimaryColor,
               onPressed: () {},
             ),
             // Space
@@ -269,7 +275,7 @@ class _LoginState extends State<Login> {
                   borderRadius: BorderRadius.circular(18.0),
                 ),
                 padding: kLoginButtonSize,
-                color: kSecondaryColor,
+                color: Theme.of(context).cardColor,
                 child: Text('Login'),
                 textColor: kButtonTextColor,
                 onPressed: () => _login(),

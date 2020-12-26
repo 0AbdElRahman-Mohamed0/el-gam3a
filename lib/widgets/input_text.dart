@@ -44,13 +44,16 @@ class _InputTextState extends State<InputText> {
       child: TextFormField(
         onSaved: onSaved,
         validator: validator,
-        style: kTextFieldInputStyle,
+        style: Theme.of(context).textTheme.bodyText1.copyWith(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w400,
+            ),
         maxLength: maxLength,
         decoration: InputDecoration(
 //          focusedBorder: kSelectedTextFieldColor,
           isDense: true,
           filled: true,
-          fillColor: Colors.white,
+          fillColor: Theme.of(context).scaffoldBackgroundColor,
           counterText: '',
           // Icon before text
           prefixIcon: inputType == 'password'
@@ -104,13 +107,13 @@ class _InputTextState extends State<InputText> {
         //// If inputType is email make keyboard only numbers else do nothing
 
         // Change cursor color of tet field
-        cursorColor: kPrimaryColor,
+        cursorColor: Theme.of(context).primaryColor,
         ////
       ),
 
       // To change color of input text border and icons when pressed
       data: Theme.of(context).copyWith(
-        primaryColor: kPrimaryColor,
+        primaryColor: Theme.of(context).primaryColor,
       ),
       //// To use this property we make it into Theme widget
     );
