@@ -91,7 +91,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
     _formKey.currentState.save();
     if (_name == user.name && _phoneNumber == user.phoneNumber) {
-      print('canceled');
       edit = false;
       setState(() {});
       return;
