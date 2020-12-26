@@ -31,8 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final email = await context
           .read<AuthProvider>()
           .getEmailOfStudentByUnivID(univCode);
-      print('after fetch $email');
-      await context.read<AuthProvider>().logInStudent(email, password);
+      await context.read<AuthProvider>().logIn(email, password);
       Navigator.pop(context);
       Navigator.pushAndRemoveUntil(
           context,
