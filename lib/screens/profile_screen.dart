@@ -74,8 +74,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             borderRadius: BorderRadius.circular(10.0),
                             child: Image.network(
                               '$_uploadedFileURL',
-                              width: 80,
-                              height: 102,
+                              height: 112,
+                              width: 112,
                               fit: BoxFit.fill,
                             ),
                           ),

@@ -191,7 +191,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             setState(() {});
                           },
                           child: Container(
-                            // padding: EdgeInsets.all(5),
+                            height: 112,
+                            width: 112,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
                               color: const Color(0xffffffff),
