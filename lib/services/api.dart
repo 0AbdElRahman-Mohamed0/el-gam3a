@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:elgam3a/models/user_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,12 +13,12 @@ class ApiProvider {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
 //////////////////////////////////Auth////////////////////
-//   Future<UserModel> loginWithEmail(String email, String password) async {
-//     await auth.signInWithEmailAndPassword(
-//       email: email,
-//       password: password,
-//     );
-//   }
+  Future<UserModel> loginWithEmail(String email, String password) async {
+    await auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
 
 //   Future<void> signup(UserModel user, String pass) async {
 //     await auth.createUserWithEmailAndPassword(

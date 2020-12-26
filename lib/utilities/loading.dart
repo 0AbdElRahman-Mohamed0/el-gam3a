@@ -20,7 +20,7 @@ class LoadingWidget extends StatelessWidget {
         height: size,
         child: LoadingIndicator(
           indicatorType: indicator,
-          color: kPrimaryColor,
+          color: Theme.of(context).primaryColor,
         ),
       ),
     );
