@@ -2,7 +2,6 @@ import 'package:elgam3a/screens/courses_screen.dart';
 import 'package:elgam3a/screens/profile_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:flutter/material.dart';
-import '../utilities/constants.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomeScreen extends StatefulWidget {

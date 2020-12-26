@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/screens/home_screen.dart';
 import 'package:elgam3a/utilities/constants.dart';
@@ -25,14 +26,29 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
     _formKey.currentState.save();
-    LoadingScreen.show(context);
-    await context.read<AuthProvider>().logIn(univCode, password);
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeScreen(),
-        ),
-        (route) => false);
+    try {
+      LoadingScreen.show(context);
+      final email = await context
+          .read<AuthProvider>()
+          .getEmailOfStudentByUnivID(univCode);
+      print('after fetch $email');
+      await context.read<AuthProvider>().logInStudent(email, password);
+      Navigator.pop(context);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+          (route) => false);
+    } on FirebaseException catch (e, s) {
+      Navigator.pop(context);
+      print(e);
+      print(s);
+    } catch (e, s) {
+      Navigator.pop(context);
+      print(e);
+      print(s);
+    }
   }
 
   @override
