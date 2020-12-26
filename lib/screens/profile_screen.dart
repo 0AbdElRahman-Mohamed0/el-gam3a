@@ -25,8 +25,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _autoValidate = false;
 
   bool edit = false;
+  bool _emailSent = false;
   String _uploadedFileURL;
   String _imagePath;
+  String _name;
+  String _phoneNumber;
   File _image;
 
   Future<void> pickImage() async {
@@ -87,8 +90,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return;
     }
     _formKey.currentState.save();
+    if (_name == user.name && _phoneNumber == user.phoneNumber) {
+      print('canceled');
+      edit = false;
+      setState(() {});
+      return;
+    }
     try {
-      LoadingScreen.show(context);
+      // LoadingScreen.show(context);
 
       // //pick a new image
       // if (_image != null) {
@@ -113,22 +122,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
       //   setState(() {});
       // }
       user = user.copyWith(
-        name: user.name,
-        phoneNumber: user.phoneNumber,
+        name: _name,
+        phoneNumber: _phoneNumber,
         imageUrl: _uploadedFileURL,
         imagePath: _imagePath,
       );
-      print(user.name);
       edit = false;
       await context.read<AuthProvider>().updateUserData(user);
-      Navigator.pop(context);
+      // Navigator.pop(context);
     } catch (e, s) {
       print('crash');
-      Navigator.pop(context);
+      // Navigator.pop(context);
       Alert(context: context, title: 'something went wrong! please try again')
           .show();
       print('error $e');
       print('trace $s');
+    }
+  }
+
+  _changePassword() async {
+    try {
+      final user = context.read<AuthProvider>().userModel;
+      await context.read<AuthProvider>().forgetPassword(user.email);
+      _emailSent = true;
+      setState(() {});
+    } catch (e, s) {
+      print(e);
+      print(s);
     }
   }
 
@@ -330,7 +350,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       labelName: 'Name',
                       initialValue: '${user.name}',
                       onSaved: (name) {
-                        user.name = name ?? user.name;
+                        _name = name ?? user.name;
                       },
                       validator: Validator(
                         rules: [
@@ -344,7 +364,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       labelName: 'Phone Number',
                       initialValue: '${user.phoneNumber}',
                       onSaved: (phoneNumber) {
-                        user.phoneNumber = phoneNumber ?? user.phoneNumber;
+                        _phoneNumber = phoneNumber ?? user.phoneNumber;
                       },
                       validator: Validator(
                         rules: [
@@ -356,6 +376,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                     ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    _emailSent
+                        ? Row(
+                            children: [
+                              Icon(
+                                Icons.check_circle_outline,
+                                color: Colors.green[300],
+                                size: 28,
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'Reset email sent, please check your mail.',
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                              ),
+                            ],
+                          )
+                        : FlatButton(
+                            onPressed: () => _changePassword(),
+                            child: Text('Change password'),
+                          ),
                   ],
                 ),
               ),

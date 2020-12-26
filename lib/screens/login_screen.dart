@@ -204,25 +204,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () => _forgetPassword(),
               ),
               _emailSent
-                  ? Column(
+                  ? Row(
                       children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check_circle_outline,
-                              color: Colors.green[300],
-                              size: 28,
-                            ),
-                            SizedBox(
-                              width: 4,
-                            ),
-                            Expanded(
-                              child: Text(
-                                'Reset email sent, please check your mail.',
-                                style: Theme.of(context).textTheme.bodyText1,
-                              ),
-                            ),
-                          ],
+                        Icon(
+                          Icons.check_circle_outline,
+                          color: Colors.green[300],
+                          size: 28,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Expanded(
+                          child: Text(
+                            'Reset email sent, please check your mail.',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                         ),
                       ],
                     )
