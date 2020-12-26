@@ -45,25 +45,6 @@ class AuthProvider with ChangeNotifier {
     return email;
   }
 
-  Future<String> getType() async {
-    if (uid != null) {
-      final response =
-          await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
-      if (response != null) {
-        userModel = UserModel.fromMap(response.data());
-        final String type = userModel.type;
-        notifyListeners();
-        return type;
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
-  }
-
-  /////////////////// Get user data //////////////////////////////
-
   Future<String> getUserData() async {
     final response =
         await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
@@ -72,32 +53,13 @@ class AuthProvider with ChangeNotifier {
     return userModel.type;
   }
 
-  ////////////////////////////////////////////////////////////////////
-
-  //////////// Update User Data //////////////////////////////////////
+  // update user data
   Future<void> updateUserData(UserModel userUpdates) async {
     await firestore
         .collection(UserData.USER_DATA_TABLE)
         .doc(uid)
         .update(userUpdates.toMap());
     userModel = userUpdates;
-    await user.updateEmail(userUpdates.email);
-    notifyListeners();
-  }
-///////////////////////////////////////////////////////////////////
-
-  Future<void> setType(String type) async {
-//    userModel = UserModel(type: type);
-//    notifyListeners();
-
-    print('user: $user');
-    print('uid::$uid');
-    await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).update({
-      UserData.TYPE: type,
-      UserData.ID: uid,
-    });
-    userModel.type = type;
-    userModel.userID = uid;
     notifyListeners();
   }
 
@@ -110,14 +72,8 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Future<void> forgetPassword(String email) async {
-  //   await _api.forgetPassword(email);
-  //   notifyListeners();
-  // }
-
-  /////// Delete fireStore image ////////
-  // Future<void> deleteImage(String imagePath) async {
-  //   await _api.deleteFireBaseStorageImage(imagePath);
-  // }
-
+  ///// Delete fireStore image ////////
+  Future<void> deleteImage(String imagePath) async {
+    await _api.deleteFireBaseStorageImage(imagePath);
+  }
 }

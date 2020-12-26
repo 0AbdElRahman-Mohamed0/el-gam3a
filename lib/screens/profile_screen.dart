@@ -1,5 +1,8 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:elgam3a/models/user_model.dart';
+import 'package:elgam3a/utilities/loading.dart';
+import 'package:flrx_validator/flrx_validator.dart';
 import 'package:path/path.dart' as Path;
 
 import 'package:elgam3a/providers/auth_provider.dart';
@@ -18,24 +21,13 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final _formKey = GlobalKey<FormState>();
+  bool _autoValidate = false;
+
   bool edit = false;
   String _uploadedFileURL;
   String _imagePath;
   File _image;
-
-  @override
-  void initState() {
-    super.initState();
-    bool edit = false;
-    Future.wait([context.read<AuthProvider>().getUserData()]);
-    UserModel user = context.read<AuthProvider>().userModel;
-    user?.imageUrl?.isNotEmpty ?? false
-        ? _uploadedFileURL = user.imageUrl
-        : _uploadedFileURL = '';
-    user?.imagePath?.isNotEmpty ?? false
-        ? _imagePath = user.imagePath
-        : _imagePath = '';
-  }
 
   Future<void> pickImage() async {
     final pFile = await ImagePicker().getImage(source: ImageSource.gallery);
@@ -85,6 +77,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       print(e);
       print(s);
+    }
+  }
+
+  Future<void> _update() async {
+    UserModel user = context.read<AuthProvider>().userModel;
+    if (!_formKey.currentState.validate()) {
+      setState(() => _autoValidate = true);
+      return;
+    }
+    _formKey.currentState.save();
+    try {
+      LoadingScreen.show(context);
+
+      // //pick a new image
+      // if (_image != null) {
+      //   //if he picked image before and change it
+      //   if (user.imagePath?.isNotEmpty ?? false) {
+      //     print('image path before $_imagePath');
+      //     await context.read<AuthProvider>().deleteImage(_imagePath);
+      //     print('image path after $_imagePath');
+      //
+      //     _imagePath = '';
+      //   }
+      //   await uploadFile(context);
+      // }
+      // when he delete the image and not want to add a new one
+      // if (_uploadedFileURL.isEmpty || _uploadedFileURL == null) {
+      //   if (_imagePath.isNotEmpty) {
+      //     await context.read<AuthProvider>().deleteImage(_imagePath);
+      //   }
+      //
+      //   _imagePath = '';
+      //   user = user.copyWith(imagePath: '', imageUrl: '');
+      //   setState(() {});
+      // }
+      user = user.copyWith(
+        name: user.name,
+        phoneNumber: user.phoneNumber,
+        imageUrl: _uploadedFileURL,
+        imagePath: _imagePath,
+      );
+      print(user.name);
+      edit = false;
+      await context.read<AuthProvider>().updateUserData(user);
+      Navigator.pop(context);
+    } catch (e, s) {
+      print('crash');
+      Navigator.pop(context);
+      Alert(context: context, title: 'something went wrong! please try again')
+          .show();
+      print('error $e');
+      print('trace $s');
     }
   }
 
@@ -170,10 +214,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: Theme.of(context).buttonColor,
                                 shape: RoundedRectangleBorder(
                                   side: BorderSide.none,
-//                          BorderSide(
-//                            color: Theme.of(context).primaryColor,
-//                            width: 0,
-//                          ),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 onPressed: () {
@@ -213,11 +253,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             : SizedBox(),
                         UserData(
                           dataTitle: 'GPA',
-                          dataValue: '${user.gpa}',
+                          dataValue: '${user.gpa} / 4.0',
                         ),
                         UserData(
                           dataTitle: 'Hours',
-                          dataValue: '${user.completedHours}',
+                          dataValue: '${user.completedHours} / 132',
                         ),
                       ],
                     ),
@@ -278,18 +318,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: 34,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextDataField(
-                    labelName: 'Name',
-                    initialValue: '${user.name}',
-                  ),
-                  TextDataField(
-                    labelName: 'Phone Number',
-                    initialValue: '${user.phoneNumber}',
-                  ),
-                ],
+              Form(
+                key: _formKey,
+                autovalidateMode: _autoValidate
+                    ? AutovalidateMode.always
+                    : AutovalidateMode.disabled,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextDataField(
+                      labelName: 'Name',
+                      initialValue: '${user.name}',
+                      onSaved: (name) {
+                        user.name = name ?? user.name;
+                      },
+                      validator: Validator(
+                        rules: [
+                          RequiredRule(validationMessage: 'Name is required.'),
+                        ],
+                      ),
+                    ),
+                    TextDataField(
+                      maxLength: 11,
+                      keyboardType: TextInputType.number,
+                      labelName: 'Phone Number',
+                      initialValue: '${user.phoneNumber}',
+                      onSaved: (phoneNumber) {
+                        user.phoneNumber = phoneNumber ?? user.phoneNumber;
+                      },
+                      validator: Validator(
+                        rules: [
+                          RequiredRule(
+                              validationMessage: 'Phone number is required.'),
+                          MinLengthRule(11,
+                              validationMessage:
+                                  'Phone number must have 11 number.'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -307,7 +375,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    onPressed: () {},
+                    onPressed: () => _update(),
                     child: Text(
                       'Update',
                       style: TextStyle(color: Colors.white),

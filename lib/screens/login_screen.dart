@@ -19,9 +19,9 @@ class _LoginScreenState extends State<LoginScreen> {
   String univCode;
   String password;
   final _formKey = GlobalKey<FormState>();
-  final _formKeyReset = GlobalKey<FormState>();
   bool _autoValidate = false;
 
+  final _formKeyReset = GlobalKey<FormState>();
   String univCodeReset;
   bool _autoValidateReset = false;
   bool _emailSent = false;
