@@ -24,18 +24,14 @@ class AuthProvider with ChangeNotifier {
     return auth.currentUser != null;
   }
 
-  Future<String> logInStudent(String email, String password) async {
-    print('logIn start');
+  Future<String> logIn(String email, String password) async {
     await auth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
-    print('logIn done');
     final response =
-        await firestore.collection(UserData.STUDENT_DATA_TABLE).doc(uid).get();
-    print('userModel start');
+        await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
     userModel = UserModel.fromMap(response.data());
-    print('userModel done');
     notifyListeners();
     return userModel.type;
   }

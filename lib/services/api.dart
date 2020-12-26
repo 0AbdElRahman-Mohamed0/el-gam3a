@@ -17,7 +17,7 @@ class ApiProvider {
   // Get Email
   Future getEmailOfStudentByUnivID(String univID) async {
     final _response = await firestore
-        .collection(UserData.STUDENT_DATA_TABLE)
+        .collection(UserData.USER_DATA_TABLE)
         .where(UserData.UNIV_ID, isEqualTo: univID)
         .get();
     String email;
