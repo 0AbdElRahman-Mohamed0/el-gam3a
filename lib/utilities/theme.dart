@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
-    backgroundColor: Color(0xFFF7F7F9),
+    backgroundColor: Color(0xFFF2F2F2),
     primaryColor: Color(0xff3A3B61),
     cardColor: Color(0xFFef7a85), //ef7a85 //f28db1 //b768a2
     dividerColor: Color(0xFFB0B1C6),

@@ -13,7 +13,6 @@ class ApiProvider {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-//////////////////////////////////Auth////////////////////
   // Get Email
   Future getEmailOfStudentByUnivID(String univID) async {
     final _response = await firestore
@@ -31,8 +30,7 @@ class ApiProvider {
     }
   }
 
-  //////////////FORGET PASSWORD//////////////////////////////////////
-
+// forget password
   Future<void> forgetPassword(String email) async {
     await auth.sendPasswordResetEmail(email: email);
   }

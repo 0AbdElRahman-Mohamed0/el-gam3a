@@ -64,14 +64,12 @@ class AuthProvider with ChangeNotifier {
 
   /////////////////// Get user data //////////////////////////////
 
-  UserModel userData;
-
-  Future<UserModel> getUserData() async {
+  Future<String> getUserData() async {
     final response =
         await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
-    userData = UserModel.fromMap(response.data());
+    userModel = UserModel.fromMap(response.data());
     notifyListeners();
-    return userData;
+    return userModel.type;
   }
 
   ////////////////////////////////////////////////////////////////////
