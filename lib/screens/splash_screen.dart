@@ -1,3 +1,5 @@
+import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'login_screen.dart';
@@ -11,12 +13,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    _isSignIn();
+  }
+
+  _isSignIn() async {
+    await Future.delayed(Duration(seconds: 1));
+
+    final signIn = context.read<AuthProvider>().isSignedIn();
+
+    if (signIn) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => LoginScreen()),
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
       );
-    });
+      return;
+    }
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    );
   }
 
   @override

@@ -72,5 +72,50 @@ class AppTheme {
         color: Color(0xffB0B1C6),
       ),
     ),
+    textTheme: TextTheme(
+      // title
+      headline6: TextStyle(
+        fontFamily: 'Calibri',
+        fontSize: 26,
+        fontWeight: FontWeight.w700,
+        color: Color(0xFF425B53),
+      ),
+      ////
+
+      headline1: TextStyle(
+        fontFamily: 'Calibri',
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: Color(0xFF425B53),
+      ),
+
+      headline2: TextStyle(
+        fontFamily: 'Calibri',
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: Color(0xFF707070),
+      ),
+
+      headline3: TextStyle(
+        fontFamily: 'Calibri',
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: Color(0xFFF9F9F9),
+      ),
+
+      headline4: TextStyle(
+        fontFamily: 'Calibri',
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: Color(0xFFF9F9F9),
+      ),
+
+      headline5: TextStyle(
+        fontFamily: 'Calibri',
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: Color(0xFF707070),
+      ),
+    ),
   );
 }
