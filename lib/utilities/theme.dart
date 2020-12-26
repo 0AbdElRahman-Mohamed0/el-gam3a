@@ -24,24 +24,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       color: Color(0xFF64668E),
     ),
-//    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-//      backgroundColor: Color(0xFF155E9F),
-//      selectedLabelStyle: TextStyle(
-//        fontSize: 10,
-//        // fontFamily: 'Lato',
-//        fontWeight: FontWeight.w700,
-//      ),
-//      selectedIconTheme: IconThemeData(size: 24.0),
-////      selectedItemColor: Colors.white,
-//      unselectedLabelStyle: TextStyle(
-//        fontSize: 10,
-//        // fontFamily: 'Lato',
-//        fontWeight: FontWeight.w700,
-//      ),
-//      unselectedIconTheme: IconThemeData(size: 24.0),
-//      unselectedItemColor: Color(0x80FFFFFF),
-//      type: BottomNavigationBarType.fixed,
-//    ),
+
     textTheme: TextTheme(
       headline1: TextStyle(
         fontSize: 18.0,
@@ -72,50 +55,50 @@ class AppTheme {
         color: Color(0xffB0B1C6),
       ),
     ),
-    textTheme: TextTheme(
-      // title
-      headline6: TextStyle(
-        fontFamily: 'Calibri',
-        fontSize: 26,
-        fontWeight: FontWeight.w700,
-        color: Color(0xFF425B53),
-      ),
-      ////
-
-      headline1: TextStyle(
-        fontFamily: 'Calibri',
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: Color(0xFF425B53),
-      ),
-
-      headline2: TextStyle(
-        fontFamily: 'Calibri',
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: Color(0xFF707070),
-      ),
-
-      headline3: TextStyle(
-        fontFamily: 'Calibri',
-        fontSize: 20,
-        fontWeight: FontWeight.w700,
-        color: Color(0xFFF9F9F9),
-      ),
-
-      headline4: TextStyle(
-        fontFamily: 'Calibri',
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: Color(0xFFF9F9F9),
-      ),
-
-      headline5: TextStyle(
-        fontFamily: 'Calibri',
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-        color: Color(0xFF707070),
-      ),
-    ),
+//    textTheme: TextTheme(
+//      // title
+//      headline6: TextStyle(
+//        fontFamily: 'Calibri',
+//        fontSize: 26,
+//        fontWeight: FontWeight.w700,
+//        color: Color(0xFF425B53),
+//      ),
+//      ////
+//
+//      headline1: TextStyle(
+//        fontFamily: 'Calibri',
+//        fontSize: 16,
+//        fontWeight: FontWeight.w400,
+//        color: Color(0xFF425B53),
+//      ),
+//
+//      headline2: TextStyle(
+//        fontFamily: 'Calibri',
+//        fontSize: 16,
+//        fontWeight: FontWeight.w400,
+//        color: Color(0xFF707070),
+//      ),
+//
+//      headline3: TextStyle(
+//        fontFamily: 'Calibri',
+//        fontSize: 20,
+//        fontWeight: FontWeight.w700,
+//        color: Color(0xFFF9F9F9),
+//      ),
+//
+//      headline4: TextStyle(
+//        fontFamily: 'Calibri',
+//        fontSize: 16,
+//        fontWeight: FontWeight.w400,
+//        color: Color(0xFFF9F9F9),
+//      ),
+//
+//      headline5: TextStyle(
+//        fontFamily: 'Calibri',
+//        fontSize: 16,
+//        fontWeight: FontWeight.w500,
+//        color: Color(0xFF707070),
+//      ),
+//    ),
   );
 }
