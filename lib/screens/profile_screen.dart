@@ -28,6 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<AuthProvider>().userModel;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Column(
@@ -59,44 +60,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   SizedBox(
                     width: 14,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Bedo',
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${user.name}',
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        child: Text(
-                          'Student',
-                          style: TextStyle(color: Colors.white),
+                        SizedBox(
+                          height: 8,
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      RaisedButton(
-                        color: Theme.of(context).buttonColor,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide.none,
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            '${user.type}',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        RaisedButton(
+                          color: Theme.of(context).buttonColor,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide.none,
 //                          BorderSide(
 //                            color: Theme.of(context).primaryColor,
 //                            width: 0,
 //                          ),
-                          borderRadius: BorderRadius.circular(4),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          onPressed: () {},
+                          child: Text('Edit Data'),
                         ),
-                        onPressed: () {},
-                        child: Text('Edit Data'),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -108,27 +112,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   UserData(
                     dataTitle: 'ID',
-                    dataValue: '20171454952',
+                    dataValue: '${user.univID}',
                   ),
                   UserData(
                     dataTitle: 'Email',
-                    dataValue: 'sci.bedomohamed2018@alexu.edu.eg',
+                    dataValue: '${user.email}',
                   ),
                   UserData(
                     dataTitle: 'Phone Number',
-                    dataValue: '01234567890',
+                    dataValue: '${user.phoneNumber}',
                   ),
-                  UserData(
-                    dataTitle: 'Department',
-                    dataValue: 'Computer Science / Statistics',
-                  ),
+                  user.department == null
+                      ? UserData(
+                          dataTitle: 'Department',
+                          dataValue: '${user.department} / ${user.minor}',
+                        )
+                      : SizedBox(),
                   UserData(
                     dataTitle: 'GPA',
-                    dataValue: '3.32',
+                    dataValue: '${user.gpa}',
                   ),
                   UserData(
                     dataTitle: 'Hours',
-                    dataValue: '17',
+                    dataValue: '${user.completedHours}',
                   ),
                 ],
               ),
