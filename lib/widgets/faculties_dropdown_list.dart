@@ -82,6 +82,8 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                     clockwise: false,
                     color: Color(0xFF707070).withOpacity(0.54),
                     size: 25.0,
+                    startTooltip: '',
+                    endTooltip: '',
                     onEndIconPress: () {
                       setState(() {
                         showList = false;
