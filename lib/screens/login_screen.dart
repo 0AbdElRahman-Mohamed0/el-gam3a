@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(
                   height: 100.0,
                   width: 100.0,
-                  color: kPrimaryColor,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
               SizedBox(height: 36),
@@ -118,8 +118,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 15.0,
               ),
               FlatButton(
-                child: Text('Forgot your password ?'),
-                textColor: kPrimaryColor,
+                child: Text(
+                  'Forgot your password ?',
+                  style: Theme.of(context).textTheme.headline1.copyWith(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
                 onPressed: () {},
               ),
               SizedBox(
@@ -132,12 +137,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
                   ),
-                  color: Theme.of(context).buttonColor,
+                  color: Theme.of(context).cardColor,
                   child: Text(
                     'Login',
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.button,
                   ),
-                  textColor: kButtonTextColor,
+//                  textColor: kButtonTextColor,
                   onPressed: () => _login(),
                 ),
               ),
