@@ -1,3 +1,4 @@
+import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/screens/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,22 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  _logout() {
+    context.read<AuthProvider>().logOut();
+    pushNewScreen(
+      context,
+      screen: LoginScreen(),
+      withNavBar: false,
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
+    Navigator.pushAndRemoveUntil(
+        context,
+        CupertinoPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+        (route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -125,20 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
               ),
-              onPressed: () {
-                pushNewScreen(
-                  context,
-                  screen: LoginScreen(),
-                  withNavBar: false,
-                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                );
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => LoginScreen(),
-                    ),
-                    (route) => false);
-              },
+              onPressed: () => _logout(),
               child: Text(
                 'Logout',
                 style: TextStyle(color: Colors.white),

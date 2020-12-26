@@ -84,19 +84,6 @@ class AuthProvider with ChangeNotifier {
   }
 ///////////////////////////////////////////////////////////////////
 
-  // Future<void> signup(UserModel user, String pass) async {
-  //   await _api.signup(user, pass);
-  //   userModel = UserModel(
-  //     companyName: user.companyName,
-  //     email: user.email,
-  //     name: user.name,
-  //     address: user.address,
-  //     number: user.number,
-  //     imageUrl: '',
-  //   );
-  //   notifyListeners();
-  // }
-
   Future<void> setType(String type) async {
 //    userModel = UserModel(type: type);
 //    notifyListeners();
@@ -116,7 +103,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> logOut() async {
     await auth.signOut();
-//    userModel = UserModel();
+    userModel = null;
 
     notifyListeners();
   }
