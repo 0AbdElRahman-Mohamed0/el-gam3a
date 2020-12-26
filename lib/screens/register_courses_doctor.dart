@@ -11,11 +11,13 @@ class RegisterCoursesDoctor extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: kPrimaryColor,
           centerTitle: true,
           title: Text(
             'Register Your Courses',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+            style: Theme.of(context)
+                .textTheme
+                .button
+                .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
           ),
         ),
         body: Column(
@@ -26,7 +28,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: kSecondaryColor,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Padding(
@@ -39,18 +41,27 @@ class RegisterCoursesDoctor extends StatelessWidget {
                               children: [
                                 TextSpan(
                                   text: 'CS 205',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w700),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(
+                                          fontSize: 12.0,
+                                          fontWeight: FontWeight.w700),
                                 ),
                                 TextSpan(text: ' '),
                                 TextSpan(
                                   text: '2hr',
-                                  style: TextStyle(
-                                      color: Colors.white.withOpacity(0.5),
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w700),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .button
+                                              .color
+                                              .withOpacity(0.5),
+                                          fontSize: 12.0,
+                                          fontWeight: FontWeight.w700),
                                 ),
                                 TextSpan(text: ' '),
                               ],
@@ -60,7 +71,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
                             child: Icon(
                               Icons.clear,
                               size: 16.0,
-                              color: Colors.white,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                             ),
                             onTap: () {},
                           )
@@ -80,7 +91,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
                       height: (MediaQuery.of(context).size.height * 100) / 667,
                       margin: EdgeInsets.only(right: 8.0),
                       decoration: BoxDecoration(
-                        color: kPrimaryColor.withOpacity(0.2),
+                        color: Theme.of(context).dividerColor.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
@@ -90,10 +101,13 @@ class RegisterCoursesDoctor extends StatelessWidget {
                           children: [
                             Text(
                               'hours Registered',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                color: kPrimaryColor,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  .copyWith(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                             ),
                             SizedBox(height: 8.0),
                             Text.rich(
@@ -101,10 +115,12 @@ class RegisterCoursesDoctor extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text: '10',
-                                    style: TextStyle(
-                                        color: kPrimaryColor, //Colors.black,
-                                        fontSize: 48.0,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        .copyWith(
+                                            fontSize: 48.0,
+                                            fontWeight: FontWeight.w700),
                                   ),
 //                                  TextSpan(
 //                                    text: '/18',
@@ -127,7 +143,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
                       height: (MediaQuery.of(context).size.height * 100) / 667,
                       margin: EdgeInsets.only(left: 8.0),
                       decoration: BoxDecoration(
-                        color: kPrimaryColor.withOpacity(0.8),
+                        color: Theme.of(context).primaryColor.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
@@ -145,19 +161,23 @@ class RegisterCoursesDoctor extends StatelessWidget {
                               children: [
                                 Text(
                                   'Department',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                                 Text(
                                   'University',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                               ],
                             ),
@@ -170,18 +190,26 @@ class RegisterCoursesDoctor extends StatelessWidget {
                                     children: [
                                       TextSpan(
                                         text: '6',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                       TextSpan(
                                         text: '/10',
-                                        style: TextStyle(
-                                            color:
-                                                Colors.white.withOpacity(0.5),
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .button
+                                                    .color
+                                                    .withOpacity(0.5),
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                     ],
                                   ),
@@ -220,7 +248,7 @@ class RegisterCoursesDoctor extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
-                color: kPrimaryColor.withOpacity(0.2),
+                color: Theme.of(context).dividerColor.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: TabBar(
@@ -229,21 +257,23 @@ class RegisterCoursesDoctor extends StatelessWidget {
                   vertical: 4.0,
                 ),
                 indicator: BoxDecoration(
-                  color: kPrimaryColor,
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(8.0),
                   ),
                 ),
-                labelColor: Color(0xFFFFFFFF),
-                unselectedLabelColor: kPrimaryColor.withOpacity(0.5),
-                labelStyle: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
-                unselectedLabelStyle: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
+                labelColor: Theme.of(context).scaffoldBackgroundColor,
+                unselectedLabelColor:
+                    Theme.of(context).primaryColor.withOpacity(0.5),
+                labelStyle: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                unselectedLabelStyle:
+                    Theme.of(context).textTheme.headline5.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
                 tabs: [
                   FittedBox(
                     child: Tab(

@@ -57,7 +57,8 @@ class CourseCard extends StatelessWidget {
       child: Container(
         height: (MediaQuery.of(context).size.height * 53.0) / 667.0,
         decoration: BoxDecoration(
-          color: kPrimaryColor.withOpacity(0.2),
+          color: Theme.of(context).dividerColor.withOpacity(
+              0.3), //Theme.of(context).shadowColor.withOpacity(0.2),
           borderRadius: BorderRadius.circular(6.0),
         ),
         margin: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 10.0),
@@ -74,20 +75,16 @@ class CourseCard extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: courseDetails.courseCode,
-                        style: TextStyle(
-                            color: kPrimaryColor,
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w700),
+                        style: Theme.of(context).textTheme.headline1.copyWith(
+                            fontSize: 14.0, fontWeight: FontWeight.w700),
                       ),
                       TextSpan(
                         text: '  ',
                       ),
                       TextSpan(
                         text: courseDetails.courseName,
-                        style: TextStyle(
-                            color: kPrimaryColor,
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w700),
+                        style: Theme.of(context).textTheme.headline1.copyWith(
+                            fontSize: 12.0, fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
@@ -107,10 +104,8 @@ class CourseCard extends StatelessWidget {
                     children: [
                       Text(
                         'Required',
-                        style: TextStyle(
-                            color: kPrimaryColor.withOpacity(0.5),
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w400),
+                        style: Theme.of(context).textTheme.headline5.copyWith(
+                            fontSize: 12.0, fontWeight: FontWeight.w400),
                       ),
                       // SizedBox(width: 4.0),
                       IconButton(
@@ -128,7 +123,7 @@ class CourseCard extends StatelessWidget {
                         },
                         icon: Icon(
                           Icons.info,
-                          color: kPrimaryColor,
+                          color: Theme.of(context).primaryColor,
                           size: 20.0,
                         ),
                       ),
@@ -148,7 +143,7 @@ class CourseCard extends StatelessWidget {
                     },
                     icon: Icon(
                       Icons.info,
-                      color: kPrimaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 20.0,
                     ),
                   ),

@@ -45,6 +45,9 @@ class AppTheme {
         color: Color(0xff64668E),
 //        fontFamily: 'Bahij TheSansArabic',
       ),
+      headline5: TextStyle(
+        color: Color(0xff3A3B61).withOpacity(0.5),
+      ),
       bodyText1: TextStyle(
         color: Color(0xff050737),
       ),

@@ -9,7 +9,7 @@ class CourseInfoPopUp extends StatelessWidget {
     final courseDetails = context.watch<CourseNotifierProvider>().course;
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
