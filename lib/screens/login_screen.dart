@@ -7,6 +7,7 @@ import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:elgam3a/widgets/login_app_bar.dart';
+import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -68,11 +69,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ? AutovalidateMode.always
                   : AutovalidateMode.disabled,
               child: TextFormField(
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 maxLength: 11,
                 onSaved: (ID) {
                   univCodeReset = ID;
                 },
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.number,
                 validator: Validator<String>(
                   rules: [
                     RequiredRule(
