@@ -91,7 +91,7 @@ class RegisterCoursesStudent extends StatelessWidget {
                       height: (MediaQuery.of(context).size.height * 150) / 667,
                       margin: EdgeInsets.only(right: 8.0),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).shadowColor.withOpacity(0.2),
+                        color: Theme.of(context).dividerColor.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
@@ -115,18 +115,22 @@ class RegisterCoursesStudent extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text: '5',
-                                    style: TextStyle(
-                                        color: kPrimaryColor, //Colors.black,
-                                        fontSize: 48.0,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        .copyWith(
+                                            //Colors.black,
+                                            fontSize: 48.0,
+                                            fontWeight: FontWeight.w700),
                                   ),
                                   TextSpan(
                                     text: '/18',
-                                    style: TextStyle(
-                                        color: kPrimaryColor.withOpacity(
-                                            0.5), //Colors.black.withOpacity(0.4),
-                                        fontSize: 24.0,
-                                        fontWeight: FontWeight.w700),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline5
+                                        .copyWith(
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.w700),
                                   ),
                                 ],
                               ),
@@ -141,7 +145,7 @@ class RegisterCoursesStudent extends StatelessWidget {
                       height: (MediaQuery.of(context).size.height * 150) / 667,
                       margin: EdgeInsets.only(left: 8.0),
                       decoration: BoxDecoration(
-                        color: kPrimaryColor.withOpacity(0.8),
+                        color: Theme.of(context).primaryColor.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
@@ -159,35 +163,43 @@ class RegisterCoursesStudent extends StatelessWidget {
                               children: [
                                 Text(
                                   'Major',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                                 Text(
                                   'Minor',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                                 Text(
                                   'College',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                                 Text(
                                   'University',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                               ],
                             ),
@@ -200,18 +212,26 @@ class RegisterCoursesStudent extends StatelessWidget {
                                     children: [
                                       TextSpan(
                                         text: '5',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                       TextSpan(
                                         text: '/42',
-                                        style: TextStyle(
-                                            color:
-                                                Colors.white.withOpacity(0.5),
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .button
+                                                    .color
+                                                    .withOpacity(0.5),
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                     ],
                                   ),
@@ -221,18 +241,26 @@ class RegisterCoursesStudent extends StatelessWidget {
                                     children: [
                                       TextSpan(
                                         text: '5',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                       TextSpan(
                                         text: '/42',
-                                        style: TextStyle(
-                                            color:
-                                                Colors.white.withOpacity(0.5),
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .button
+                                                    .color
+                                                    .withOpacity(0.5),
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                     ],
                                   ),
@@ -242,18 +270,26 @@ class RegisterCoursesStudent extends StatelessWidget {
                                     children: [
                                       TextSpan(
                                         text: '5',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                       TextSpan(
                                         text: '/42',
-                                        style: TextStyle(
-                                            color:
-                                                Colors.white.withOpacity(0.5),
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .button
+                                                    .color
+                                                    .withOpacity(0.5),
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                     ],
                                   ),
@@ -263,18 +299,26 @@ class RegisterCoursesStudent extends StatelessWidget {
                                     children: [
                                       TextSpan(
                                         text: '5',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                       TextSpan(
                                         text: '/42',
-                                        style: TextStyle(
-                                            color:
-                                                Colors.white.withOpacity(0.5),
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w700),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .button
+                                            .copyWith(
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .button
+                                                    .color
+                                                    .withOpacity(0.5),
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                     ],
                                   ),
@@ -292,7 +336,7 @@ class RegisterCoursesStudent extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
-                color: kPrimaryColor.withOpacity(0.2),
+                color: Theme.of(context).dividerColor.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: TabBar(
@@ -301,21 +345,23 @@ class RegisterCoursesStudent extends StatelessWidget {
                   vertical: 4.0,
                 ),
                 indicator: BoxDecoration(
-                  color: kPrimaryColor,
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(8.0),
                   ),
                 ),
-                labelColor: Color(0xFFFFFFFF),
-                unselectedLabelColor: kPrimaryColor.withOpacity(0.5),
-                labelStyle: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
-                unselectedLabelStyle: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
+                labelColor: Theme.of(context).scaffoldBackgroundColor,
+                unselectedLabelColor:
+                    Theme.of(context).primaryColor.withOpacity(0.5),
+                labelStyle: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                unselectedLabelStyle:
+                    Theme.of(context).textTheme.headline5.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
                 tabs: [
                   FittedBox(
                     child: Tab(

@@ -37,7 +37,7 @@ class CoursesScreen extends StatelessWidget {
 //                Navigator.pop(context);
                 pushNewScreen(
                   context,
-                  screen: RegisterCoursesDoctor(),
+                  screen: RegisterCoursesStudent(),
                   withNavBar: false, // OPTIONAL VALUE. True by default.
                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 );

@@ -13,7 +13,7 @@ class CourseInfoPopUp extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
-            color: Color(0xFF2699FB).withOpacity(0.1),
+            color: Color(0xFF000000).withOpacity(0.1),
             offset: Offset(0, 30),
             blurRadius: 30,
           ),
@@ -35,6 +35,7 @@ class CourseInfoPopUp extends StatelessWidget {
               GestureDetector(
                 child: SvgPicture.asset(
                   'assets/svg/close.svg',
+                  color: Theme.of(context).primaryColor,
                   width: 24,
                   height: 24,
                 ),
@@ -49,10 +50,8 @@ class CourseInfoPopUp extends StatelessWidget {
                   children: [
                     Text(
                       'Required',
-                      style: TextStyle(
-                          color: kPrimaryColor.withOpacity(0.5),
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w400),
+                      style: Theme.of(context).textTheme.headline5.copyWith(
+                          fontSize: 12.0, fontWeight: FontWeight.w400),
                     ),
                     SizedBox(height: 16.0),
                   ],
@@ -60,42 +59,40 @@ class CourseInfoPopUp extends StatelessWidget {
               : SizedBox(),
           Text(
             courseDetails.courseName,
-            style: TextStyle(
-                color: kPrimaryColor,
-                fontSize: 20.0,
-                fontWeight: FontWeight.w400),
+            style: Theme.of(context)
+                .textTheme
+                .headline4
+                .copyWith(fontSize: 20.0, fontWeight: FontWeight.w400),
           ),
           Text(
             courseDetails.courseCode,
-            style: TextStyle(
-                color: kPrimaryColor,
-                fontSize: 20.0,
-                fontWeight: FontWeight.w700),
+            style: Theme.of(context)
+                .textTheme
+                .headline1
+                .copyWith(fontSize: 20.0, fontWeight: FontWeight.w700),
           ),
           SizedBox(height: 16.0),
           Text(
             'Dr ${courseDetails.courseDoctor}',
-            style: TextStyle(
-                color: kPrimaryColor,
-                fontSize: 14.0,
-                fontWeight: FontWeight.w400),
+            style: Theme.of(context)
+                .textTheme
+                .headline4
+                .copyWith(fontSize: 14.0, fontWeight: FontWeight.w400),
           ),
           SizedBox(height: 24.0),
           Text(
             'Location',
-            style: TextStyle(
-              color: kPrimaryColor.withOpacity(0.5),
-              fontSize: 12.0,
-              fontWeight: FontWeight.w400,
-            ),
+            style: Theme.of(context).textTheme.headline5.copyWith(
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.w400,
+                ),
           ),
           Text(
             courseDetails.courseLocation,
-            style: TextStyle(
-              color: kPrimaryColor,
-              fontSize: 14.0,
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(context).textTheme.headline1.copyWith(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w700,
+                ),
           ),
           SizedBox(
             height: 16,
@@ -107,22 +104,20 @@ class CourseInfoPopUp extends StatelessWidget {
                 children: [
                   Text(
                     'Day',
-                    style: TextStyle(
-                      color: kPrimaryColor.withOpacity(0.5),
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w400,
+                        ),
                   ),
                   SizedBox(
                     width: 4,
                   ),
                   Text(
                     courseDetails.courseDay,
-                    style: TextStyle(
-                      color: kPrimaryColor,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: Theme.of(context).textTheme.headline1.copyWith(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w700,
+                        ),
                   ),
                 ],
               ),
@@ -130,11 +125,10 @@ class CourseInfoPopUp extends StatelessWidget {
                 children: [
                   Text(
                     'Time',
-                    style: TextStyle(
-                      color: kPrimaryColor.withOpacity(0.5),
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w400,
+                        ),
                   ),
                   SizedBox(
                     width: 4,
@@ -144,19 +138,17 @@ class CourseInfoPopUp extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: courseDetails.courseTime,
-                          style: TextStyle(
-                            color: kPrimaryColor,
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: Theme.of(context).textTheme.headline1.copyWith(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                         TextSpan(
                           text: 'pm',
-                          style: TextStyle(
-                            color: kPrimaryColor.withOpacity(0.5),
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: Theme.of(context).textTheme.headline5.copyWith(
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w400,
+                              ),
                         ),
                       ],
                     ),
@@ -167,22 +159,20 @@ class CourseInfoPopUp extends StatelessWidget {
                 children: [
                   Text(
                     'Hall',
-                    style: TextStyle(
-                      color: kPrimaryColor.withOpacity(0.5),
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w400,
+                        ),
                   ),
                   SizedBox(
                     width: 4,
                   ),
                   Text(
                     courseDetails.courseHall.toString(),
-                    style: TextStyle(
-                      color: kPrimaryColor,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: Theme.of(context).textTheme.headline1.copyWith(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w700,
+                        ),
                   ),
                 ],
               ),
@@ -193,11 +183,10 @@ class CourseInfoPopUp extends StatelessWidget {
           ),
           Text(
             'Prerequisite',
-            style: TextStyle(
-              color: kPrimaryColor.withOpacity(0.5),
-              fontSize: 12.0,
-              fontWeight: FontWeight.w400,
-            ),
+            style: Theme.of(context).textTheme.headline5.copyWith(
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.w400,
+                ),
           ),
           SizedBox(
             height: 16.0,
@@ -215,19 +204,17 @@ class CourseInfoPopUp extends StatelessWidget {
                   children: [
                     Text(
                       'Machine Learning',
-                      style: TextStyle(
-                        color: kPrimaryColor,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: Theme.of(context).textTheme.headline1.copyWith(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                     Text(
                       'Cs 250',
-                      style: TextStyle(
-                        color: kPrimaryColor.withOpacity(0.5),
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w400,
-                      ),
+                      style: Theme.of(context).textTheme.headline5.copyWith(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w400,
+                          ),
                     ),
                   ],
                 ),
@@ -236,19 +223,17 @@ class CourseInfoPopUp extends StatelessWidget {
                   children: [
                     Text(
                       'Algorithms',
-                      style: TextStyle(
-                        color: kPrimaryColor,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: Theme.of(context).textTheme.headline1.copyWith(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                     Text(
                       'Cs 301',
-                      style: TextStyle(
-                        color: kPrimaryColor.withOpacity(0.5),
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w400,
-                      ),
+                      style: Theme.of(context).textTheme.headline5.copyWith(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w400,
+                          ),
                     ),
                   ],
                 ),
@@ -257,19 +242,17 @@ class CourseInfoPopUp extends StatelessWidget {
                   children: [
                     Text(
                       'AI',
-                      style: TextStyle(
-                        color: kPrimaryColor,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: Theme.of(context).textTheme.headline1.copyWith(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                     Text(
                       'Cs 305',
-                      style: TextStyle(
-                        color: kPrimaryColor.withOpacity(0.5),
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w400,
-                      ),
+                      style: Theme.of(context).textTheme.headline5.copyWith(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w400,
+                          ),
                     ),
                   ],
                 ),
