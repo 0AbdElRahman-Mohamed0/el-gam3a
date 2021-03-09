@@ -12,8 +12,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   animate_icons: ^1.0.0
   selection_picker: ^0.1.0
-  kf_drawer: ^1.1.2
-  rflutter_alert: ^1.1.0
   flrx_validator: ^0.4.0+2
   image_picker: ^0.6.7+14
   font_awesome_flutter: ^8.10.0

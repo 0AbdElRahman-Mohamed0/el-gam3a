@@ -1,6 +1,7 @@
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
+import 'package:elgam3a/providers/password_reset_provider.dart';
 import 'package:elgam3a/screens/splash_screen.dart';
 import 'package:elgam3a/utilities/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<DepartmentsProvider>(
           create: (context) => DepartmentsProvider(),
+        ),
+        ChangeNotifierProvider<PasswordResetProvider>(
+          create: (context) => PasswordResetProvider(),
         ),
       ],
       child: MaterialApp(

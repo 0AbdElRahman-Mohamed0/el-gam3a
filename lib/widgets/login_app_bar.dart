@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../utilities/constants.dart';
 
 class LoginAppBar extends StatelessWidget {
   const LoginAppBar({@required this.title});

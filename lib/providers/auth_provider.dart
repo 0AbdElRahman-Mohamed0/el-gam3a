@@ -72,7 +72,6 @@ class AuthProvider with ChangeNotifier {
   Future<void> logOut() async {
     await auth.signOut();
     user = null;
-
     notifyListeners();
   }
 
