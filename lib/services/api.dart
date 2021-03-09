@@ -19,6 +19,7 @@ class ApiProvider {
         .get();
     if (_response.docs.isNotEmpty) {
       final email = _response.docs.first.data()['email'];
+      print('emaiiiiiiil $email');
       return email;
     } else {
       print('api Error@getEmailOfStudentByUnivID');

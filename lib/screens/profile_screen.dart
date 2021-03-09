@@ -19,7 +19,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     Future.wait([context.read<AuthProvider>().getUserData()]);
     UserModel user = context.read<AuthProvider>().user;
-    user.imageUrl?.isNotEmpty ?? false
+    user?.imageUrl != null ?? false
         ? _uploadedFileURL = user.imageUrl
         : _uploadedFileURL = '';
   }
@@ -56,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Row(
                     children: [
                       if ((_uploadedFileURL?.isNotEmpty ?? false) ||
-                          (user.imageUrl?.isNotEmpty ?? false)) ...{
+                          (user?.imageUrl != null ?? false)) ...{
                         Container(
                           // padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(

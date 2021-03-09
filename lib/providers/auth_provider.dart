@@ -28,27 +28,33 @@ class AuthProvider with ChangeNotifier {
     await _api.forgetPassword(email);
   }
 
-  Future<void> logIn(String email, String password) async {
-    await auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    final response =
-        await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
-    user = UserModel.fromMap(response.data());
-    notifyListeners();
-  }
-
   Future<String> getEmailOfStudentByUnivID(String univID) async {
     return await _api.getEmailOfStudentByUnivID(univID);
   }
 
-  Future<String> getUserData() async {
-    final response =
+  Future<void> logIn(String email, String password) async {
+    await auth.signInWithEmailAndPassword(email: email, password: password);
+    final _response =
         await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
-    user = UserModel.fromMap(response.data());
-    notifyListeners();
-    return user.type;
+    if (_response.data().isNotEmpty) {
+      user = UserModel.fromMap(_response.data());
+      notifyListeners();
+    } else {
+      print('api Error@logIn');
+      throw 'error';
+    }
+  }
+
+  Future<void> getUserData() async {
+    final _response =
+        await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
+    if (_response.data().isNotEmpty) {
+      user = UserModel.fromMap(_response.data());
+      notifyListeners();
+    } else {
+      print('api Error@logIn');
+      throw 'error';
+    }
   }
 
   // update user data

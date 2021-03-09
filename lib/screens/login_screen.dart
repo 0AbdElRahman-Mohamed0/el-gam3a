@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final email = await context
           .read<AuthProvider>()
           .getEmailOfStudentByUnivID(univCode);
-      // final type = await context.read<AuthProvider>().logIn(email, password);
+      await context.read<AuthProvider>().logIn(email, password);
       //TODO: use type to go to screens
       Navigator.pop(context);
       Navigator.pushAndRemoveUntil(

@@ -2,6 +2,7 @@ import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final signIn = context.read<AuthProvider>().isSignedIn();
 
     if (signIn) {
-      final type = context.read<AuthProvider>().getUserData();
+      await context.read<AuthProvider>().getUserData();
       //TODO: use type to go to screens
       Navigator.pushReplacement(
         context,
