@@ -1,13 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elgam3a/notifier_providers/course_provider.dart';
 import 'package:elgam3a/notifier_providers/department_provider.dart';
 import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/screens/course_details_screen.dart';
-import 'package:elgam3a/utilities/constants.dart';
 import 'package:elgam3a/utilities/loading.dart';
 import 'package:elgam3a/widgets/course_info_popup.dart';
 import 'package:flutter/material.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class RegisterCourseStudentWidget extends StatefulWidget {
   @override
