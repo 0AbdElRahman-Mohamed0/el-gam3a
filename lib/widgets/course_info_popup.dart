@@ -6,7 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CourseInfoPopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final courseDetails = context.watch<CourseNotifierProvider>().course;
+    final provider = context.watch<CourseNotifierProvider>();
+    final courseDetails = provider.course;
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
@@ -88,7 +89,7 @@ class CourseInfoPopUp extends StatelessWidget {
                 ),
           ),
           Text(
-            courseDetails.courseLocation,
+            "${courseDetails?.courseLocation}",
             style: Theme.of(context).textTheme.headline1.copyWith(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w700,
@@ -113,7 +114,7 @@ class CourseInfoPopUp extends StatelessWidget {
                     width: 4,
                   ),
                   Text(
-                    courseDetails.courseDay,
+                    '${courseDetails?.courseDay}',
                     style: Theme.of(context).textTheme.headline1.copyWith(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w700,

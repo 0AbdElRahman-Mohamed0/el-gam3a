@@ -1,6 +1,8 @@
+import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/screens/courses_screen.dart';
 import 'package:elgam3a/screens/profile_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 

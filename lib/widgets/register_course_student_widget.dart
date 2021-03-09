@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elgam3a/notifier_providers/course_provider.dart';
+import 'package:elgam3a/notifier_providers/department_provider.dart';
 import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/screens/course_details_screen.dart';
 import 'package:elgam3a/utilities/constants.dart';
+import 'package:elgam3a/utilities/loading.dart';
 import 'package:elgam3a/widgets/course_info_popup.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class RegisterCourseStudentWidget extends StatefulWidget {
   @override
@@ -13,29 +17,31 @@ class RegisterCourseStudentWidget extends StatefulWidget {
 
 class _RegisterCourseStudentWidgetState
     extends State<RegisterCourseStudentWidget> {
-  _getCourses() {
-    context.read<CoursesProvider>().getCourses();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getCourses();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final courses = context.watch<CoursesProvider>().courses;
+    final department = context.watch<DepartmentNotifierProvider>().department;
     return Scaffold(
-      body: ListView.builder(
-        itemCount: courses.length,
-        itemBuilder: (context, index) {
-          return ChangeNotifierProvider<CourseNotifierProvider>(
-            create: (context) => CourseNotifierProvider(courses[index]),
-            child: CourseCard(),
-          );
-        },
-      ),
+      body: department == null
+          ? LoadingWidget()
+          : department.courses.isEmpty
+              ? Center(
+                  child: Text(
+                  'No Courses Yet',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1
+                      .copyWith(fontSize: 14.0, fontWeight: FontWeight.w700),
+                ))
+              : ListView.builder(
+                  itemCount: department.courses.length,
+                  itemBuilder: (context, index) {
+                    return ChangeNotifierProvider<CourseNotifierProvider>(
+                      create: (context) =>
+                          CourseNotifierProvider(department.courses[index]),
+                      child: CourseCard(),
+                    );
+                  },
+                ),
     );
   }
 }
@@ -43,7 +49,8 @@ class _RegisterCourseStudentWidgetState
 class CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final courseDetails = context.watch<CourseNotifierProvider>().course;
+    final provider = context.watch<CourseNotifierProvider>();
+    final courseDetails = provider.course;
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -55,7 +62,7 @@ class CourseCard extends StatelessWidget {
         ),
       ),
       child: Container(
-        height: (MediaQuery.of(context).size.height * 53.0) / 667.0,
+//        height: (MediaQuery.of(context).size.height * 53.0) / 667.0,
         decoration: BoxDecoration(
           color: Theme.of(context).dividerColor.withOpacity(0.3),
           borderRadius: BorderRadius.circular(6.0),
@@ -89,7 +96,7 @@ class CourseCard extends StatelessWidget {
                 ),
                 SizedBox(height: 8.0),
                 Text(
-                  'Dr ' + courseDetails.courseDoctor,
+                  'Dr ${courseDetails?.courseDoctor}',
                   style: Theme.of(context)
                       .textTheme
                       .headline5
@@ -112,9 +119,9 @@ class CourseCard extends StatelessWidget {
                             barrierColor: Colors.black.withOpacity(0.6),
                             context: context,
                             builder: (BuildContext context) =>
-                                ChangeNotifierProvider<CourseNotifierProvider>(
-                              create: (_) =>
-                                  CourseNotifierProvider(courseDetails),
+                                ChangeNotifierProvider<
+                                    CourseNotifierProvider>.value(
+                              value: provider,
                               child: CourseInfoPopUp(),
                             ),
                           );

@@ -1,12 +1,41 @@
+import 'package:elgam3a/notifier_providers/department_provider.dart';
+import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/courses_provider.dart';
+import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/widgets/register_course_student_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter_svg/svg.dart';
 
-class RegisterCoursesStudent extends StatelessWidget {
+class RegisterCoursesStudent extends StatefulWidget {
+  @override
+  _RegisterCoursesStudentState createState() => _RegisterCoursesStudentState();
+}
+
+class _RegisterCoursesStudentState extends State<RegisterCoursesStudent> {
+  _initData() {
+    final user = context.read<AuthProvider>().user;
+    context
+        .read<DepartmentsProvider>()
+        .getCoursesDataByMajorDepartmentName(user.department);
+    context
+        .read<DepartmentsProvider>()
+        .getCoursesDataByMinorDepartmentName(user.minor);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initData();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final majorDepartment =
+        context.watch<DepartmentsProvider>().majorDepartment;
+    final minorDepartment =
+        context.watch<DepartmentsProvider>().minorDepartment;
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -390,8 +419,16 @@ class RegisterCoursesStudent extends StatelessWidget {
               child: TabBarView(
                 physics: NeverScrollableScrollPhysics(),
                 children: <Widget>[
-                  RegisterCourseStudentWidget(),
-                  RegisterCourseStudentWidget(),
+                  ChangeNotifierProvider<DepartmentNotifierProvider>(
+                    create: (context) =>
+                        DepartmentNotifierProvider(majorDepartment),
+                    child: RegisterCourseStudentWidget(),
+                  ),
+                  ChangeNotifierProvider<DepartmentNotifierProvider>(
+                    create: (context) =>
+                        DepartmentNotifierProvider(minorDepartment),
+                    child: RegisterCourseStudentWidget(),
+                  ),
                   RegisterCourseStudentWidget(),
                   RegisterCourseStudentWidget(),
                   // Center(

@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elgam3a/models/course_model.dart';
+import 'package:elgam3a/models/department_model.dart';
 import 'package:elgam3a/services/vars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class ApiProvider {
   ApiProvider._();
+
   static final ApiProvider instance = ApiProvider._();
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -37,5 +40,25 @@ class ApiProvider {
   Future<void> deleteFireBaseStorageImage(String filePath) async {
     await FirebaseStorage.instance.ref().child(filePath).delete().whenComplete(
         () => print('Successfully deleted $filePath storage item'));
+  }
+
+  Future<DepartmentModel> getCoursesDataByDepartmentName(
+      String departmentName) async {
+    final _response = await firestore
+        .collection(DepartmentData.DEPARTMENT_DATA_TABLE)
+//        .where(DepartmentData.NAME, isEqualTo: departmentName)
+        .get()
+        .then((QuerySnapshot value) => value.docs.firstWhere(
+            (element) => element[DepartmentData.NAME] == departmentName));
+
+    DepartmentModel department;
+    if (_response.exists) {
+      department = DepartmentModel.fromMap(_response.data());
+      return department;
+    } else {
+      print('api Error@getCoursesDataByDepartmentName');
+      // Err
+      throw department;
+    }
   }
 }
