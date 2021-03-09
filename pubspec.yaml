@@ -47,9 +47,9 @@ flutter:
   fonts:
     - family: Calibri
       fonts:
-        - asset: assets/fonts/Calibri/Calibri-Light.ttf
+        - asset: assets/fonts/Calibri/calibri-Light.ttf
           weight: 300
         - asset: assets/fonts/Calibri/Calibri-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Calibri/Calibri-Bold.ttf
+        - asset: assets/fonts/Calibri/calibri-Bold.ttf
           weight: 700

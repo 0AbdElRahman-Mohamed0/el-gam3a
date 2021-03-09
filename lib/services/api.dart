@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elgam3a/services/vars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:elgam3a/models/user_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiProvider {
   ApiProvider._();
@@ -19,14 +17,13 @@ class ApiProvider {
         .collection(UserData.USER_DATA_TABLE)
         .where(UserData.UNIV_ID, isEqualTo: univID)
         .get();
-    String email;
     if (_response.docs.isNotEmpty) {
-      email = _response.docs.first.data()['email'];
+      final email = _response.docs.first.data()['email'];
       return email;
     } else {
       print('api Error@getEmailOfStudentByUnivID');
       // Err
-      return email;
+      throw _response.docs;
     }
   }
 

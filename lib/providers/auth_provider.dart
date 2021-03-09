@@ -16,9 +16,9 @@ class AuthProvider with ChangeNotifier {
 
   String get uid => auth.currentUser?.uid;
 
-  User get user => auth.currentUser;
+  User get currentUser => auth.currentUser;
 
-  UserModel userModel;
+  UserModel user;
 
   isSignedIn() {
     return auth.currentUser != null;
@@ -28,29 +28,27 @@ class AuthProvider with ChangeNotifier {
     await _api.forgetPassword(email);
   }
 
-  Future<String> logIn(String email, String password) async {
+  Future<void> logIn(String email, String password) async {
     await auth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
     final response =
         await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
-    userModel = UserModel.fromMap(response.data());
+    user = UserModel.fromMap(response.data());
     notifyListeners();
-    return userModel.type;
   }
 
   Future<String> getEmailOfStudentByUnivID(String univID) async {
-    final email = await _api.getEmailOfStudentByUnivID(univID);
-    return email;
+    return await _api.getEmailOfStudentByUnivID(univID);
   }
 
   Future<String> getUserData() async {
     final response =
         await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
-    userModel = UserModel.fromMap(response.data());
+    user = UserModel.fromMap(response.data());
     notifyListeners();
-    return userModel.type;
+    return user.type;
   }
 
   // update user data
@@ -59,7 +57,7 @@ class AuthProvider with ChangeNotifier {
         .collection(UserData.USER_DATA_TABLE)
         .doc(uid)
         .update(userUpdates.toMap());
-    userModel = userUpdates;
+    user = userUpdates;
     notifyListeners();
   }
 
@@ -67,7 +65,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> logOut() async {
     await auth.signOut();
-    userModel = null;
+    user = null;
 
     notifyListeners();
   }

@@ -3,10 +3,10 @@ import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/screens/home_screen.dart';
 import 'package:elgam3a/utilities/loading.dart';
 import 'package:elgam3a/widgets/input_text.dart';
+import 'package:elgam3a/widgets/login_app_bar.dart';
 import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:elgam3a/widgets/login_app_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final email = await context
           .read<AuthProvider>()
           .getEmailOfStudentByUnivID(univCode);
-      final type = await context.read<AuthProvider>().logIn(email, password);
+      // final type = await context.read<AuthProvider>().logIn(email, password);
       //TODO: use type to go to screens
       Navigator.pop(context);
       Navigator.pushAndRemoveUntil(

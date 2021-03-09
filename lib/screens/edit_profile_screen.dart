@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:elgam3a/utilities/loading.dart';
-import 'package:path/path.dart' as Path;
 import 'package:elgam3a/models/user_model.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/utilities/loading.dart';
 import 'package:elgam3a/widgets/text_data_field.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as Path;
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void initState() {
     super.initState();
     Future.wait([context.read<AuthProvider>().getUserData()]);
-    UserModel user = context.read<AuthProvider>().userModel;
+    UserModel user = context.read<AuthProvider>().user;
     user.imageUrl?.isNotEmpty ?? false
         ? _uploadedFileURL = user.imageUrl
         : _uploadedFileURL = '';
@@ -93,7 +93,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   Future<void> _update() async {
-    UserModel user = context.read<AuthProvider>().userModel;
+    UserModel user = context.read<AuthProvider>().user;
     if (!_formKey.currentState.validate()) {
       setState(() => _autoValidate = true);
       return;
@@ -150,7 +150,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   _changePassword() async {
     try {
-      final user = context.read<AuthProvider>().userModel;
+      final user = context.read<AuthProvider>().user;
       await context.read<AuthProvider>().forgetPassword(user.email);
       _emailSent = true;
       setState(() {});
@@ -162,7 +162,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<AuthProvider>().userModel;
+    final user = context.watch<AuthProvider>().user;
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit your data'),

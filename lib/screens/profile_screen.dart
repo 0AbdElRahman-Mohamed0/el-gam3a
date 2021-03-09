@@ -1,7 +1,7 @@
 import 'package:elgam3a/models/user_model.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
-import 'package:elgam3a/screens/login_screen.dart';
 import 'package:elgam3a/screens/edit_profile_screen.dart';
+import 'package:elgam3a/screens/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -18,7 +18,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     Future.wait([context.read<AuthProvider>().getUserData()]);
-    UserModel user = context.read<AuthProvider>().userModel;
+    UserModel user = context.read<AuthProvider>().user;
     user.imageUrl?.isNotEmpty ?? false
         ? _uploadedFileURL = user.imageUrl
         : _uploadedFileURL = '';
@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<AuthProvider>().userModel;
+    final user = context.watch<AuthProvider>().user;
     return LayoutBuilder(
       builder: (context, constraints) {
         return Padding(
