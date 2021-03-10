@@ -5,6 +5,7 @@ import 'package:elgam3a/providers/password_reset_provider.dart';
 import 'package:elgam3a/screens/edit_profile_screen.dart';
 import 'package:elgam3a/screens/login_screen.dart';
 import 'package:elgam3a/utilities/loading.dart';
+import 'package:elgam3a/widgets/show_picture_pop_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -61,36 +62,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       if ((_uploadedFileURL?.isNotEmpty ?? false) ||
                           (user?.imageUrl != null ?? false)) ...{
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: const Color(0xffffffff),
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color(0x1a000000),
-                                offset: Offset(0, 3),
-                                blurRadius: 4,
-                              ),
-                            ],
+                        InkWell(
+                          onTap: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                ShowPicturePopUp(_uploadedFileURL),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: CachedNetworkImage(
-                              imageUrl: '$_uploadedFileURL',
-                              height: 112,
-                              width: 112,
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              color: const Color(0xffffffff),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0x1a000000),
+                                  offset: Offset(0, 3),
+                                  blurRadius: 4,
+                                ),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: CachedNetworkImage(
+                                imageUrl: '$_uploadedFileURL',
+                                height: 112,
+                                width: 112,
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
+                                placeholder: (context, url) => LoadingWidget(),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
                               ),
-                              placeholder: (context, url) => LoadingWidget(),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
                             ),
                           ),
                         ),
