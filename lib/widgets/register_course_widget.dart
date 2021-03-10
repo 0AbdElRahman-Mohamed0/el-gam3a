@@ -1,13 +1,13 @@
-import 'package:elgam3a/notifier_providers/course_provider.dart';
-import 'package:elgam3a/notifier_providers/department_provider.dart';
+import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/providers/courses_provider.dart';
+import 'package:elgam3a/providers/department_provider.dart';
 import 'package:elgam3a/widgets/course_card.dart';
 import 'package:flutter/material.dart';
 
 class RegisterCourseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final department = context.watch<DepartmentNotifierProvider>().department;
+    final department = context.watch<DepartmentProvider>().department;
     return Scaffold(
       body: department.courses.isEmpty
           ? Center(
@@ -21,9 +21,9 @@ class RegisterCourseWidget extends StatelessWidget {
           : ListView.builder(
               itemCount: department.courses.length,
               itemBuilder: (context, index) {
-                return ChangeNotifierProvider<CourseNotifierProvider>(
+                return ChangeNotifierProvider<CourseProvider>(
                   create: (context) =>
-                      CourseNotifierProvider(department.courses[index]),
+                      CourseProvider(department.courses[index]),
                   child: CourseCard(),
                 );
               },

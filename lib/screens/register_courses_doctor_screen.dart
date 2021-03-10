@@ -1,5 +1,5 @@
-import 'package:elgam3a/notifier_providers/department_provider.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/department_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/widgets/register_course_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -343,9 +343,9 @@ class _RegisterCoursesDoctorScreenState
                     child: TabBarView(
                       physics: NeverScrollableScrollPhysics(),
                       children: <Widget>[
-                        ChangeNotifierProvider<DepartmentNotifierProvider>(
+                        ChangeNotifierProvider<DepartmentProvider>(
                           create: (context) =>
-                              DepartmentNotifierProvider(majorDepartment),
+                              DepartmentProvider(majorDepartment),
                           child: RegisterCourseWidget(),
                         ),
                         RegisterCourseWidget(),

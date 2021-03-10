@@ -1,6 +1,6 @@
-import 'package:elgam3a/notifier_providers/department_provider.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/courses_provider.dart';
+import 'package:elgam3a/providers/department_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/widgets/register_course_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,8 +45,9 @@ class _RegisterCoursesStudentScreenState
         context.watch<DepartmentsProvider>().majorDepartment;
     final minorDepartment =
         context.watch<DepartmentsProvider>().minorDepartment;
+    final user = context.watch<AuthProvider>().user;
     return DefaultTabController(
-      length: 4,
+      length: user.department == null ? 2 : 4,
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -215,26 +216,29 @@ class _RegisterCoursesStudentScreenState
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        'Major',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .button
-                                            .copyWith(
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                      ),
-                                      Text(
-                                        'Minor',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .button
-                                            .copyWith(
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                      ),
+                                      if (user.department == null &&
+                                          user.minor == null) ...{
+                                        Text(
+                                          'Major',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .button
+                                              .copyWith(
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                        ),
+                                        Text(
+                                          'Minor',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .button
+                                              .copyWith(
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                        ),
+                                      },
                                       Text(
                                         'College',
                                         style: Theme.of(context)
@@ -427,8 +431,10 @@ class _RegisterCoursesStudentScreenState
                                 fontWeight: FontWeight.w700,
                               ),
                       tabs: [
-                        FittedBox(child: Tab(text: "Major")),
-                        FittedBox(child: Tab(text: "Minor")),
+                        if (user.department == null && user.minor == null) ...{
+                          FittedBox(child: Tab(text: "Major")),
+                          FittedBox(child: Tab(text: "Minor")),
+                        },
                         FittedBox(child: Tab(text: "College")),
                         FittedBox(child: Tab(text: "University")),
                       ],
@@ -438,16 +444,18 @@ class _RegisterCoursesStudentScreenState
                     child: TabBarView(
                       physics: NeverScrollableScrollPhysics(),
                       children: <Widget>[
-                        ChangeNotifierProvider<DepartmentNotifierProvider>(
-                          create: (context) =>
-                              DepartmentNotifierProvider(majorDepartment),
-                          child: RegisterCourseWidget(),
-                        ),
-                        ChangeNotifierProvider<DepartmentNotifierProvider>(
-                          create: (context) =>
-                              DepartmentNotifierProvider(minorDepartment),
-                          child: RegisterCourseWidget(),
-                        ),
+                        if (user.department == null && user.minor == null) ...{
+                          ChangeNotifierProvider<DepartmentProvider>(
+                            create: (context) =>
+                                DepartmentProvider(majorDepartment),
+                            child: RegisterCourseWidget(),
+                          ),
+                          ChangeNotifierProvider<DepartmentProvider>(
+                            create: (context) =>
+                                DepartmentProvider(minorDepartment),
+                            child: RegisterCourseWidget(),
+                          ),
+                        },
                         RegisterCourseWidget(),
                         RegisterCourseWidget(),
                       ],

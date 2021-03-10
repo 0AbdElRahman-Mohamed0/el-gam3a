@@ -1,4 +1,4 @@
-import 'package:elgam3a/notifier_providers/course_provider.dart';
+import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/screens/course_details_screen.dart';
 import 'package:elgam3a/widgets/course_info_popup.dart';
@@ -8,14 +8,14 @@ class CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.watch<AuthProvider>().user;
-    final provider = context.watch<CourseNotifierProvider>();
+    final provider = context.watch<CourseProvider>();
     final courseDetails = provider.course;
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ChangeNotifierProvider<CourseNotifierProvider>(
-            create: (_) => CourseNotifierProvider(courseDetails),
+          builder: (context) => ChangeNotifierProvider<CourseProvider>(
+            create: (_) => CourseProvider(courseDetails),
             child: CourseDetailsScreen(),
           ),
         ),
@@ -81,7 +81,7 @@ class CourseCard extends StatelessWidget {
                       barrierColor: Colors.black.withOpacity(0.6),
                       context: context,
                       builder: (BuildContext context) =>
-                          ChangeNotifierProvider<CourseNotifierProvider>.value(
+                          ChangeNotifierProvider<CourseProvider>.value(
                         value: provider,
                         child: CourseInfoPopUp(),
                       ),

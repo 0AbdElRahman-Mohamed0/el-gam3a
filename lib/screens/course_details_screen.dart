@@ -1,4 +1,4 @@
-import 'package:elgam3a/notifier_providers/course_provider.dart';
+import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/screens/select_section_screen.dart';
 import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 class CourseDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final courseDetails = context.watch<CourseNotifierProvider>().course;
+    final courseDetails = context.watch<CourseProvider>().course;
     return Scaffold(
       backgroundColor: Color(0xFFF1F9FF),
       appBar: AppBar(
@@ -224,10 +224,9 @@ class CourseDetailsScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ChangeNotifierProvider<
-                                    CourseNotifierProvider>(
-                                  create: (_) =>
-                                      CourseNotifierProvider(courseDetails),
+                                builder: (context) =>
+                                    ChangeNotifierProvider<CourseProvider>(
+                                  create: (_) => CourseProvider(courseDetails),
                                   child: SelectSectionScreen(),
                                 ),
                               ),

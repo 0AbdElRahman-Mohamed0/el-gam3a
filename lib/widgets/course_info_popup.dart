@@ -1,11 +1,11 @@
-import 'package:elgam3a/notifier_providers/course_provider.dart';
+import 'package:elgam3a/providers/course_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CourseInfoPopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<CourseNotifierProvider>();
+    final provider = context.watch<CourseProvider>();
     final courseDetails = provider.course;
     return Container(
       decoration: BoxDecoration(

@@ -1,11 +1,11 @@
-import 'package:elgam3a/notifier_providers/course_provider.dart';
+import 'package:elgam3a/providers/course_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SelectSectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final courseDetails = context.watch<CourseNotifierProvider>().course;
+    final courseDetails = context.watch<CourseProvider>().course;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
