@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elgam3a/models/user_model.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/screens/edit_profile_screen.dart';
 import 'package:elgam3a/screens/login_screen.dart';
+import 'package:elgam3a/utilities/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -58,7 +60,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       if ((_uploadedFileURL?.isNotEmpty ?? false) ||
                           (user?.imageUrl != null ?? false)) ...{
                         Container(
-                          // padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             color: const Color(0xffffffff),
@@ -71,12 +72,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ],
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.network(
-                              '$_uploadedFileURL',
+                            borderRadius: BorderRadius.circular(50),
+                            child: CachedNetworkImage(
+                              imageUrl: '$_uploadedFileURL',
                               height: 112,
                               width: 112,
-                              fit: BoxFit.fill,
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              placeholder: (context, url) => LoadingWidget(),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
                           ),
                         ),
