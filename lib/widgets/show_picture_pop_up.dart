@@ -26,20 +26,22 @@ class ShowPicturePopUp extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: CachedNetworkImage(
-              imageUrl: '$image',
-              height: 400,
-              width: 300,
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
+            child: InteractiveViewer(
+              child: CachedNetworkImage(
+                imageUrl: '$image',
+                height: 400,
+                width: 300,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
+                placeholder: (context, url) => LoadingWidget(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
-              placeholder: (context, url) => LoadingWidget(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
         ),
