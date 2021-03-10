@@ -8,6 +8,8 @@ class DepartmentsProvider with ChangeNotifier {
   final ApiProvider _api = ApiProvider.instance;
   DepartmentModel majorDepartment;
   DepartmentModel minorDepartment;
+  DepartmentModel university;
+  DepartmentModel college;
 
   Future<void> getCoursesDataByMajorDepartmentName(
       String departmentName) async {
@@ -20,6 +22,14 @@ class DepartmentsProvider with ChangeNotifier {
       String departmentName) async {
     minorDepartment = null;
     minorDepartment = await _api.getCoursesDataByDepartmentName(departmentName);
+    notifyListeners();
+  }
+
+  Future<void> getCoursesDataGeneral() async {
+    university = null;
+    university = await _api.getCoursesDataByDepartmentName('University');
+    college = null;
+    college = await _api.getCoursesDataByDepartmentName('College');
     notifyListeners();
   }
 }

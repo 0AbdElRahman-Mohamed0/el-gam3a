@@ -34,6 +34,7 @@ class _RegisterCoursesStudentScreenState
       context
           .read<DepartmentsProvider>()
           .getCoursesDataByMinorDepartmentName(user.minor),
+      context.read<DepartmentsProvider>().getCoursesDataGeneral(),
     });
     _isLoading = false;
     setState(() {});
@@ -45,9 +46,11 @@ class _RegisterCoursesStudentScreenState
         context.watch<DepartmentsProvider>().majorDepartment;
     final minorDepartment =
         context.watch<DepartmentsProvider>().minorDepartment;
+    final college = context.watch<DepartmentsProvider>().college;
+    final university = context.watch<DepartmentsProvider>().university;
     final user = context.watch<AuthProvider>().user;
     return DefaultTabController(
-      length: user.department == null ? 2 : 4,
+      length: user.department != null ? 4 : 2,
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -431,7 +434,7 @@ class _RegisterCoursesStudentScreenState
                                 fontWeight: FontWeight.w700,
                               ),
                       tabs: [
-                        if (user.department == null && user.minor == null) ...{
+                        if (user.department != null && user.minor != null) ...{
                           FittedBox(child: Tab(text: "Major")),
                           FittedBox(child: Tab(text: "Minor")),
                         },
@@ -444,7 +447,7 @@ class _RegisterCoursesStudentScreenState
                     child: TabBarView(
                       physics: NeverScrollableScrollPhysics(),
                       children: <Widget>[
-                        if (user.department == null && user.minor == null) ...{
+                        if (user.department != null && user.minor != null) ...{
                           ChangeNotifierProvider<DepartmentProvider>(
                             create: (context) =>
                                 DepartmentProvider(majorDepartment),
@@ -456,8 +459,14 @@ class _RegisterCoursesStudentScreenState
                             child: RegisterCourseWidget(),
                           ),
                         },
-                        RegisterCourseWidget(),
-                        RegisterCourseWidget(),
+                        ChangeNotifierProvider<DepartmentProvider>(
+                          create: (context) => DepartmentProvider(college),
+                          child: RegisterCourseWidget(),
+                        ),
+                        ChangeNotifierProvider<DepartmentProvider>(
+                          create: (context) => DepartmentProvider(university),
+                          child: RegisterCourseWidget(),
+                        ),
                       ],
                     ),
                   ),

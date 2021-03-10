@@ -26,9 +26,12 @@ class _RegisterCoursesDoctorScreenState
     _isLoading = true;
     setState(() {});
     final user = context.read<AuthProvider>().user;
-    await context
-        .read<DepartmentsProvider>()
-        .getCoursesDataByMajorDepartmentName(user.department);
+    await Future.wait({
+      context
+          .read<DepartmentsProvider>()
+          .getCoursesDataByMajorDepartmentName(user.department),
+      context.read<DepartmentsProvider>().getCoursesDataGeneral(),
+    });
     _isLoading = false;
     setState(() {});
   }
@@ -37,6 +40,7 @@ class _RegisterCoursesDoctorScreenState
   Widget build(BuildContext context) {
     final majorDepartment =
         context.watch<DepartmentsProvider>().majorDepartment;
+    final university = context.watch<DepartmentsProvider>().university;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -348,7 +352,10 @@ class _RegisterCoursesDoctorScreenState
                               DepartmentProvider(majorDepartment),
                           child: RegisterCourseWidget(),
                         ),
-                        RegisterCourseWidget(),
+                        ChangeNotifierProvider<DepartmentProvider>(
+                          create: (context) => DepartmentProvider(university),
+                          child: RegisterCourseWidget(),
+                        ),
                       ],
                     ),
                   ),

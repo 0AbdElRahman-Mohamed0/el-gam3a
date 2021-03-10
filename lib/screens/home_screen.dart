@@ -49,17 +49,17 @@ class _HomeScreenState extends State<HomeScreen> {
             SalomonBottomBarItem(
               icon: Icon(Icons.schedule),
               title: Text("Schedule"),
-              selectedColor: Colors.purple,
+              selectedColor: Theme.of(context).primaryColor,
             ),
             SalomonBottomBarItem(
               icon: Icon(Icons.school),
               title: Text("Courses"),
-              selectedColor: Colors.pink,
+              selectedColor: Theme.of(context).primaryColor,
             ),
             SalomonBottomBarItem(
               icon: Icon(Icons.person),
               title: Text("Profile"),
-              selectedColor: Colors.teal,
+              selectedColor: Theme.of(context).primaryColor,
             ),
           ],
         ),
