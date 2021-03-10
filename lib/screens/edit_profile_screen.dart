@@ -4,6 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elgam3a/models/user_model.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/utilities/loading.dart';
+import 'package:elgam3a/widgets/error_pop_up.dart';
+import 'package:elgam3a/widgets/pick_photo_pop_up.dart';
 import 'package:elgam3a/widgets/text_data_field.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flrx_validator/flrx_validator.dart';
@@ -11,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -42,16 +43,52 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         : _imagePath = '';
   }
 
-  Future<void> pickImage() async {
-    final pFile = await ImagePicker().getImage(source: ImageSource.gallery);
-    if (pFile != null) _image = File(pFile.path);
-    if (mounted) setState(() {});
+  _chooseImageSource() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => PickPhotoPopUp(
+        pickPhotoOnPressed: () async {
+          Navigator.pop(context);
+          await _pickImage();
+        },
+        takePhotoOnPressed: () async {
+          Navigator.pop(context);
+          await _takeImage();
+        },
+      ),
+    );
   }
 
-  Future<void> takeImage() async {
-    final pFile = await ImagePicker().getImage(source: ImageSource.camera);
-    if (pFile != null) _image = File(pFile.path);
-    if (mounted) setState(() {});
+  Future<void> _pickImage() async {
+    try {
+      final pFile = await ImagePicker().getImage(source: ImageSource.gallery);
+      if (pFile != null) {
+        _image = (File(pFile.path));
+        if (mounted) setState(() {});
+      }
+    } catch (e) {
+      Navigator.pop(context);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            ErrorPopUp(message: 'Something Went Wrong! please try again'),
+      );
+    }
+  }
+
+  Future<void> _takeImage() async {
+    try {
+      final pFile = await ImagePicker().getImage(source: ImageSource.camera);
+      if (pFile != null) _image = (File(pFile.path));
+      if (mounted) setState(() {});
+    } catch (e) {
+      Navigator.pop(context);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            ErrorPopUp(message: 'Something Went Wrong! please try again'),
+      );
+    }
   }
 
   void removeImage() {
@@ -76,18 +113,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     } on FirebaseException catch (e, s) {
       print(e.code);
       print(s);
-
-      Alert(
+      showDialog(
         context: context,
-        title: 'Couldn\'t Upload your file',
-        desc: e.message,
-      ).show();
+        builder: (BuildContext context) => ErrorPopUp(
+            title: 'Couldn\'t Upload your file', message: '${e.message}'),
+      );
     } catch (e, s) {
-      Alert(
+      showDialog(
         context: context,
-        title: 'Couldn\'t Upload your file, Please try again.',
-      ).show();
-
+        builder: (BuildContext context) =>
+            ErrorPopUp(message: 'Something Went Wrong! please try again'),
+      );
       print(e);
       print(s);
     }
@@ -142,8 +178,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     } catch (e, s) {
       print('crash');
       Navigator.pop(context);
-      Alert(context: context, title: 'something went wrong! please try again')
-          .show();
+      showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            ErrorPopUp(message: 'Something Went Wrong! please try again'),
+      );
       print('error $e');
       print('trace $s');
     }
@@ -241,51 +280,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       // no image detected
                       else ...{
                         GestureDetector(
-                          onTap: () async {
-                            Alert(
-                              context: context,
-                              title: "Choose how to put photo",
-                              buttons: [
-                                DialogButton(
-                                  color: Color(0xff055261),
-                                  width: 120,
-                                  child: Text(
-                                    'Camera',
-                                    style: TextStyle(
-                                      fontFamily: 'SF Pro Display',
-                                      fontSize: 16,
-                                      color: const Color(0xffb9cc66),
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                    await takeImage();
-                                  },
-                                ),
-                                DialogButton(
-                                  color: Color(0xff055261),
-                                  width: 120,
-                                  child: Text(
-                                    'Gallery',
-                                    style: TextStyle(
-                                      fontFamily: 'SF Pro Display',
-                                      fontSize: 16,
-                                      color: const Color(0xffb9cc66),
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                    await pickImage();
-                                  },
-                                ),
-                              ],
-                            ).show();
-                            setState(() {});
-                          },
+                          onTap: _chooseImageSource,
                           child: Container(
                             height: 112,
                             width: 112,
