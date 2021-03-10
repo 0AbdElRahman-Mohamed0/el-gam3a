@@ -219,8 +219,8 @@ class _RegisterCoursesStudentScreenState
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      if (user.department == null &&
-                                          user.minor == null) ...{
+                                      if (user.department != null &&
+                                          user.minor != null) ...{
                                         Text(
                                           'Major',
                                           style: Theme.of(context)
