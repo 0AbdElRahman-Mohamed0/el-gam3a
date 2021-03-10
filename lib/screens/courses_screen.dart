@@ -2,7 +2,6 @@ import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/screens/register_courses_doctor_screen.dart';
 import 'package:elgam3a/screens/register_courses_student_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class CoursesScreen extends StatelessWidget {
   @override
@@ -29,13 +28,13 @@ class CoursesScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 50, vertical: 18),
             color: Theme.of(context).cardColor,
             onPressed: () async {
-              pushNewScreen(
+              Navigator.push(
                 context,
-                screen: user.type.toLowerCase() == 'student'
-                    ? RegisterCoursesStudentScreen()
-                    : RegisterCoursesDoctorScreen(),
-                withNavBar: false, // OPTIONAL VALUE. True by default.
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                MaterialPageRoute(
+                  builder: (context) => user.type.toLowerCase() == 'student'
+                      ? RegisterCoursesStudentScreen()
+                      : RegisterCoursesDoctorScreen(),
+                ),
               );
             },
             child: Text(

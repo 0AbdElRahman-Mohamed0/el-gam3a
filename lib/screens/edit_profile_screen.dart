@@ -130,49 +130,43 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   Future<void> _update() async {
-    UserModel user = context.read<AuthProvider>().user;
+    final provider = context.read<AuthProvider>();
     if (!_formKey.currentState.validate()) {
       setState(() => _autoValidate = true);
       return;
     }
     _formKey.currentState.save();
-    if (_name == user.name &&
-        _phoneNumber == user.phoneNumber &&
+    if (_name == provider.user.name &&
+        _phoneNumber == provider.user.phoneNumber &&
         _image == null) {
       Navigator.pop(context);
       return;
     }
     try {
       LoadingScreen.show(context);
-      //pick a new image
       if (_image != null) {
-        //if he picked image before and change it
-        if (user.imagePath?.isNotEmpty ?? false) {
-          print('image path before $_imagePath');
+        if (provider.user.imagePath?.isNotEmpty ?? false) {
           await context.read<AuthProvider>().deleteImage(_imagePath);
-          print('image path after $_imagePath');
-
           _imagePath = '';
         }
         await uploadFile(context);
       }
-
       if (_uploadedFileURL.isEmpty || _uploadedFileURL == null) {
         if (_imagePath.isNotEmpty) {
           await context.read<AuthProvider>().deleteImage(_imagePath);
         }
 
         _imagePath = '';
-        user = user.copyWith(imagePath: '', imageUrl: '');
+        provider.user = provider.user.copyWith(imagePath: '', imageUrl: '');
         setState(() {});
       }
-      user = user.copyWith(
+      provider.user = provider.user.copyWith(
         name: _name,
         phoneNumber: _phoneNumber,
         imageUrl: _uploadedFileURL,
         imagePath: _imagePath,
       );
-      await context.read<AuthProvider>().updateUserData(user);
+      await context.read<AuthProvider>().updateUserData(provider.user);
       Navigator.pop(context);
       Navigator.pop(context);
     } catch (e, s) {

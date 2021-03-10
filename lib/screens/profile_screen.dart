@@ -8,7 +8,6 @@ import 'package:elgam3a/utilities/loading.dart';
 import 'package:elgam3a/widgets/show_picture_pop_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -30,12 +29,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   _logout() {
     context.read<AuthProvider>().logOut();
-    pushNewScreen(
-      context,
-      screen: LoginScreen(),
-      withNavBar: false,
-      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-    );
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
@@ -60,13 +53,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   Row(
                     children: [
-                      if ((_uploadedFileURL?.isNotEmpty ?? false) ||
-                          (user?.imageUrl?.isNotEmpty ?? false)) ...{
+                      if (user?.imageUrl?.isNotEmpty ?? false) ...{
                         InkWell(
                           onTap: () => showDialog(
                             context: context,
                             builder: (BuildContext context) =>
-                                ShowPicturePopUp(_uploadedFileURL),
+                                ShowPicturePopUp(user.imageUrl),
                           ),
                           child: Container(
                             decoration: BoxDecoration(
@@ -83,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: CachedNetworkImage(
-                                imageUrl: '$_uploadedFileURL',
+                                imageUrl: '${user.imageUrl}',
                                 height: 112,
                                 width: 112,
                                 imageBuilder: (context, imageProvider) =>
@@ -165,13 +157,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 side: BorderSide.none,
                                 borderRadius: BorderRadius.circular(4),
                               ),
-                              onPressed: () => pushNewScreen(
+                              onPressed: () => Navigator.push(
                                 context,
-                                screen: EditProfileScreen(),
-                                withNavBar:
-                                    false, // OPTIONAL VALUE. True by default.
-                                pageTransitionAnimation:
-                                    PageTransitionAnimation.cupertino,
+                                MaterialPageRoute(
+                                  builder: (context) => EditProfileScreen(),
+                                ),
                               ),
                               child: Text('Edit Data'),
                             ),
