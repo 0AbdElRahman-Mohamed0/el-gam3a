@@ -1,6 +1,7 @@
 import 'package:elgam3a/screens/courses_screen.dart';
 import 'package:elgam3a/screens/profile_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
+import 'package:elgam3a/widgets/leave_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -21,6 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
       CoursesScreen(),
       ProfileScreen(),
     ];
+  }
+
+  _youWantLeave() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => LeavePopUp(),
+    );
   }
 
   @override
@@ -195,54 +203,57 @@ class _HomeScreenState extends State<HomeScreen> {
         inactiveColor: Theme.of(context).dividerColor,
       ),
     ];
-    return Scaffold(
-      appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () => _youWantLeave(),
+      child: Scaffold(
+        appBar: AppBar(
 //        backgroundColor: Theme.of(context).primaryColor,
-        // centerTitle: true,
-        title: _controller.index == 0
-            ? Text('My Schedule')
-            : _controller.index == 1
-                ? Text('Courses')
-                : Text('Profile'),
-      ),
-      body: PersistentTabView(
-        context,
-        controller: _controller,
-        screens: _buildScreens(),
-        items: _items,
-        navBarHeight: 84.0,
-        padding: NavBarPadding.only(top: 13.0, bottom: 27.0),
-        confineInSafeArea: true,
-        backgroundColor: Theme.of(context).backgroundColor,
-        handleAndroidBackButtonPress: true,
-        resizeToAvoidBottomInset:
-            true, // This needs to be true if you want to move up the screen when keyboard appears.
-        stateManagement: true,
-        onItemSelected: (value) {
-          print('aaaaaaaaa $value');
-          setState(() {});
-        },
-        hideNavigationBarWhenKeyboardShows:
-            true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument.
-        decoration: NavBarDecoration(
+          // centerTitle: true,
+          title: _controller.index == 0
+              ? Text('My Schedule')
+              : _controller.index == 1
+                  ? Text('Courses')
+                  : Text('Profile'),
+        ),
+        body: PersistentTabView(
+          context,
+          controller: _controller,
+          screens: _buildScreens(),
+          items: _items,
+          navBarHeight: 84.0,
+          padding: NavBarPadding.only(top: 13.0, bottom: 27.0),
+          confineInSafeArea: true,
+          backgroundColor: Theme.of(context).backgroundColor,
+          handleAndroidBackButtonPress: true,
+          resizeToAvoidBottomInset:
+              true, // This needs to be true if you want to move up the screen when keyboard appears.
+          stateManagement: true,
+          onItemSelected: (value) {
+            print('aaaaaaaaa $value');
+            setState(() {});
+          },
+          hideNavigationBarWhenKeyboardShows:
+              true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument.
+          decoration: NavBarDecoration(
 //        borderRadius: BorderRadius.circular(22.0),
-          colorBehindNavBar: Colors.white,
+            colorBehindNavBar: Colors.white,
+          ),
+          popAllScreensOnTapOfSelectedTab: true,
+          popActionScreens: PopActionScreensType.all,
+          itemAnimationProperties: ItemAnimationProperties(
+            // Navigation Bar's items animation properties.
+            duration: Duration(milliseconds: 200),
+            curve: Curves.ease,
+          ),
+          screenTransitionAnimation: ScreenTransitionAnimation(
+            // Screen transition animation on change of selected tab.
+            animateTabTransition: true,
+            curve: Curves.ease,
+            duration: Duration(milliseconds: 200),
+          ),
+          navBarStyle: NavBarStyle
+              .style10, // Choose the nav bar style with this property.
         ),
-        popAllScreensOnTapOfSelectedTab: true,
-        popActionScreens: PopActionScreensType.all,
-        itemAnimationProperties: ItemAnimationProperties(
-          // Navigation Bar's items animation properties.
-          duration: Duration(milliseconds: 200),
-          curve: Curves.ease,
-        ),
-        screenTransitionAnimation: ScreenTransitionAnimation(
-          // Screen transition animation on change of selected tab.
-          animateTabTransition: true,
-          curve: Curves.ease,
-          duration: Duration(milliseconds: 200),
-        ),
-        navBarStyle:
-            NavBarStyle.style10, // Choose the nav bar style with this property.
       ),
     );
   }

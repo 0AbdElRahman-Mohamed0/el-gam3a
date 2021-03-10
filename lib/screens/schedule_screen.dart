@@ -1,7 +1,6 @@
 import 'package:elgam3a/widgets/faculties_part.dart';
-import 'package:flutter/material.dart';
-import '../utilities/constants.dart';
 import 'package:elgam3a/widgets/week_day_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:selection_picker/selection_item.dart';
 
 class ScheduleScreen extends StatefulWidget {
