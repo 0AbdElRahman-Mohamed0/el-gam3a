@@ -18,8 +18,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _isSignIn() async {
-    await Future.delayed(Duration(seconds: 1));
-
     final signIn = context.read<AuthProvider>().isSignedIn();
 
     if (signIn) {
