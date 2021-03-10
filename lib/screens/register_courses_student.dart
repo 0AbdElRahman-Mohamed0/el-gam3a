@@ -5,8 +5,6 @@ import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/widgets/register_course_student_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:elgam3a/utilities/constants.dart';
-import 'package:flutter_svg/svg.dart';
 
 class RegisterCoursesStudent extends StatefulWidget {
   @override

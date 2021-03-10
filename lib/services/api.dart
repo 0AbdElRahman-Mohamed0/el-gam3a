@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elgam3a/models/course_model.dart';
 import 'package:elgam3a/models/department_model.dart';
 import 'package:elgam3a/services/vars.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -1,7 +1,5 @@
-import 'package:elgam3a/screens/register_courses_doctor.dart';
 import 'package:elgam3a/screens/register_courses_student.dart';
 import 'package:elgam3a/utilities/constants.dart';
-import 'package:elgam3a/utilities/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 

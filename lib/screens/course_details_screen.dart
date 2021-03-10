@@ -1,4 +1,3 @@
-import 'package:elgam3a/models/course_model.dart';
 import 'package:elgam3a/notifier_providers/course_provider.dart';
 import 'package:elgam3a/screens/select_section_screen.dart';
 import 'package:elgam3a/utilities/constants.dart';
