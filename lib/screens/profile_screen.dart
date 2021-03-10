@@ -72,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ],
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
+                            borderRadius: BorderRadius.circular(8),
                             child: CachedNetworkImage(
                               imageUrl: '$_uploadedFileURL',
                               height: 112,
@@ -82,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: imageProvider,
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),

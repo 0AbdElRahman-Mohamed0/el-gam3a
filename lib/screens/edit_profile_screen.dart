@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elgam3a/models/user_model.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/utilities/loading.dart';
@@ -207,12 +208,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             child: Stack(
                               children: [
                                 ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  child: Image.network(
-                                    '$_uploadedFileURL',
-                                    width: 80,
-                                    height: 102,
-                                    fit: BoxFit.fill,
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: CachedNetworkImage(
+                                    imageUrl: '$_uploadedFileURL',
+                                    height: 112,
+                                    width: 112,
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    placeholder: (context, url) =>
+                                        LoadingWidget(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
                                   ),
                                 ),
                                 FaIcon(
@@ -314,12 +327,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           child: Stack(
                             children: [
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(10.0),
+                                borderRadius: BorderRadius.circular(8),
                                 child: Image.file(
                                   _image,
-                                  fit: BoxFit.fill,
-                                  width: 80,
-                                  height: 102,
+                                  fit: BoxFit.cover,
+                                  height: 112,
+                                  width: 112,
                                 ),
                               ),
                               FaIcon(
@@ -400,7 +413,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ],
                             )
                           : FlatButton(
-                              onPressed: () => _changePassword(),
+                              onPressed: _changePassword,
                               child: Text('Change password'),
                             ),
                     ],
