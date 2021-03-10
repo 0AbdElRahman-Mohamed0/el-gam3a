@@ -24,7 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (signIn) {
       await context.read<AuthProvider>().getUserData();
-      //TODO: use type to go to screens
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
