@@ -2,7 +2,7 @@ import 'package:elgam3a/notifier_providers/department_provider.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
-import 'package:elgam3a/widgets/register_course_student_widget.dart';
+import 'package:elgam3a/widgets/register_course_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -424,15 +424,15 @@ class _RegisterCoursesStudentScreenState
                   ChangeNotifierProvider<DepartmentNotifierProvider>(
                     create: (context) =>
                         DepartmentNotifierProvider(majorDepartment),
-                    child: RegisterCourseStudentWidget(),
+                    child: RegisterCourseWidget(),
                   ),
                   ChangeNotifierProvider<DepartmentNotifierProvider>(
                     create: (context) =>
                         DepartmentNotifierProvider(minorDepartment),
-                    child: RegisterCourseStudentWidget(),
+                    child: RegisterCourseWidget(),
                   ),
-                  RegisterCourseStudentWidget(),
-                  RegisterCourseStudentWidget(),
+                  RegisterCourseWidget(),
+                  RegisterCourseWidget(),
                 ],
               ),
             ),

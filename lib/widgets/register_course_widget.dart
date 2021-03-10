@@ -5,7 +5,7 @@ import 'package:elgam3a/utilities/loading.dart';
 import 'package:elgam3a/widgets/course_card.dart';
 import 'package:flutter/material.dart';
 
-class RegisterCourseDoctorWidget extends StatelessWidget {
+class RegisterCourseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final department = context.watch<DepartmentNotifierProvider>().department;

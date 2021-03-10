@@ -1,7 +1,7 @@
 import 'package:elgam3a/notifier_providers/department_provider.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
-import 'package:elgam3a/widgets/register_course_doctor_widget.dart';
+import 'package:elgam3a/widgets/register_course_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -318,9 +318,9 @@ class _RegisterCoursesDoctorScreenState
                   ChangeNotifierProvider<DepartmentNotifierProvider>(
                     create: (context) =>
                         DepartmentNotifierProvider(majorDepartment),
-                    child: RegisterCourseDoctorWidget(),
+                    child: RegisterCourseWidget(),
                   ),
-                  RegisterCourseDoctorWidget(),
+                  RegisterCourseWidget(),
                 ],
               ),
             ),
