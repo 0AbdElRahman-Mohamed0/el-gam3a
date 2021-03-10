@@ -3,7 +3,7 @@ import 'package:elgam3a/screens/profile_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:elgam3a/widgets/leave_pop_up.dart';
 import 'package:flutter/material.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -38,30 +38,45 @@ class _HomeScreenState extends State<HomeScreen> {
                   : Text('Profile'),
         ),
         body: _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: SalomonBottomBar(
-          currentIndex: _selectedIndex,
-          onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          items: [
-            SalomonBottomBarItem(
-              icon: Icon(Icons.schedule),
-              title: Text("Schedule"),
-              selectedColor: Theme.of(context).primaryColor,
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
+          ]),
+          child: SafeArea(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+              child: GNav(
+                  tabBorderRadius: 10,
+                  gap: 8,
+                  color: Theme.of(context).dividerColor,
+                  activeColor: Theme.of(context).primaryColor,
+                  iconSize: 24,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  duration: Duration(milliseconds: 300),
+                  tabBackgroundColor: Theme.of(context).dividerColor,
+                  tabs: [
+                    GButton(
+                      icon: Icons.schedule,
+                      text: "Schedule",
+                    ),
+                    GButton(
+                      icon: Icons.school,
+                      text: 'Courses',
+                    ),
+                    GButton(
+                      icon: Icons.person,
+                      text: 'Profile',
+                    ),
+                  ],
+                  selectedIndex: _selectedIndex,
+                  onTabChange: (index) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  }),
             ),
-            SalomonBottomBarItem(
-              icon: Icon(Icons.school),
-              title: Text("Courses"),
-              selectedColor: Theme.of(context).primaryColor,
-            ),
-            SalomonBottomBarItem(
-              icon: Icon(Icons.person),
-              title: Text("Profile"),
-              selectedColor: Theme.of(context).primaryColor,
-            ),
-          ],
+          ),
         ),
       ),
     );
