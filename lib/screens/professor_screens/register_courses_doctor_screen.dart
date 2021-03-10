@@ -6,7 +6,7 @@ import 'package:elgam3a/widgets/register_course_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../providers/auth_provider.dart';
+import '../../providers/departments_provider.dart';
 import '../../utilities/loading.dart';
 
 class RegisterCoursesDoctorScreen extends StatefulWidget {
@@ -38,6 +38,11 @@ class _RegisterCoursesDoctorScreenState
     setState(() {});
   }
 
+  _updateCourse() async{
+    final user = context.read<AuthProvider>().user;
+    await context.read<DepartmentsProvider>().updateCourse(user);
+  }
+
   @override
   Widget build(BuildContext context) {
     final majorDepartment =
@@ -56,6 +61,27 @@ class _RegisterCoursesDoctorScreenState
                 .button
                 .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
           ),
+          actions: [
+            if (user.courses?.isNotEmpty ?? false) ...{
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () => _updateCourse(),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    child: Text('Register'),
+                  ),
+                ),
+              ),
+            },
+          ],
         ),
         body: _isLoading
             ? Center(

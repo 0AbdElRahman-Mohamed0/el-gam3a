@@ -11,7 +11,7 @@ class CourseModel {
     this.courseTime,
     this.courseHall,
     this.courseHours,
-    this.required,
+    this.isRequired,
     this.show,
   });
 
@@ -20,11 +20,13 @@ class CourseModel {
   String courseCode;
   String courseDoctor;
   List<String> courseAssistants = [];
+  List<String> students = [];
   String courseLocation;
   String courseDay;
   String courseTime;
+  String courseDepartment;
   int courseHall;
-  bool required;
+  bool isRequired;
   bool show;
 
   CourseModel.fromMap(Map<String, dynamic> m) {
@@ -38,7 +40,26 @@ class CourseModel {
     courseDay = m[CourseData.DAY];
     courseTime = m[CourseData.TIME];
     courseHall = m[CourseData.HALL];
-    required = m[CourseData.REQUIRED];
+    isRequired = m[CourseData.REQUIRED];
+    courseDepartment = m[CourseData.DEPARTMENT];
     show = m[CourseData.SHOW];
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      CourseData.NAME: courseName,
+      CourseData.CODE: courseCode,
+      CourseData.DOCTOR: courseDoctor,
+      CourseData.CREDIT_HOURS: courseHours,
+      CourseData.ASSISTANTS: courseAssistants ?? [],
+      CourseData.STUDENTS: students ?? [],
+      CourseData.LOCATION: courseLocation,
+      CourseData.DAY: courseDay,
+      CourseData.TIME: courseTime,
+      CourseData.HALL: courseHall,
+      CourseData.DEPARTMENT: courseDepartment,
+      CourseData.REQUIRED: isRequired,
+      CourseData.SHOW: show,
+    };
   }
 }

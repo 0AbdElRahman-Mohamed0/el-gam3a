@@ -73,7 +73,7 @@ class CourseCard extends StatelessWidget {
             Row(
               children: [
                 if (user.type.toLowerCase() == 'student') ...{
-                  if (course.required) ...{
+                  if (course.isRequired) ...{
                     Text(
                       'Required',
                       style: Theme.of(context).textTheme.headline5.copyWith(

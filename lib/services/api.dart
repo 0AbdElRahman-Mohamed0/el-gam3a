@@ -4,6 +4,9 @@ import 'package:elgam3a/services/vars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../models/course_model.dart';
+import 'vars.dart';
+
 class ApiProvider {
   ApiProvider._();
 
@@ -44,7 +47,7 @@ class ApiProvider {
   Future<DepartmentModel> getCoursesDataByDepartmentName(
       String departmentName) async {
     final _response = await firestore
-        .collection(DepartmentData.DEPARTMENT_DATA_TABLE)
+        .collection(DepartmentData.DEPARTMENT_TABLE)
 //        .where(DepartmentData.NAME, isEqualTo: departmentName)
         .get()
         .then((QuerySnapshot value) => value.docs.firstWhere(
@@ -59,5 +62,15 @@ class ApiProvider {
       // Err
       throw department;
     }
+  }
+
+  Future<void> updateCourse(
+      List<CourseModel> courses, String departmentID) async {
+    await firestore
+        .collection(DepartmentData.DEPARTMENT_TABLE)
+        .doc(departmentID)
+        .update({
+      DepartmentData.COURSES: courses.map((course) => course.toMap()).toList(),
+    });
   }
 }

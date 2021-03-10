@@ -35,7 +35,7 @@ class CourseDetailsScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        courseDetails.required
+                        courseDetails.isRequired
                             ? Column(
                                 children: [
                                   Text(

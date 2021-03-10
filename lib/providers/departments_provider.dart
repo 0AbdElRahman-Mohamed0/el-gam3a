@@ -2,6 +2,10 @@ import 'package:elgam3a/models/department_model.dart';
 import 'package:elgam3a/services/api.dart';
 import 'package:flutter/material.dart';
 
+import '../models/course_model.dart';
+import '../models/department_model.dart';
+import '../models/user_model.dart';
+
 export 'package:provider/provider.dart';
 
 class DepartmentsProvider with ChangeNotifier {
@@ -30,6 +34,78 @@ class DepartmentsProvider with ChangeNotifier {
     university = await _api.getCoursesDataByDepartmentName('University');
     college = null;
     college = await _api.getCoursesDataByDepartmentName('College');
+    notifyListeners();
+  }
+
+  Future<void> updateCourse(UserModel user) async {
+    for (CourseModel course in user.courses) {
+      if (majorDepartment != null) {
+        if (majorDepartment.courses
+                .where((element) => element.courseCode == course.courseCode)
+                ?.isNotEmpty ??
+            false) {
+          final tmp = majorDepartment.courses
+              .firstWhere((element) => element.courseCode == course.courseCode);
+          if (user.type.toLowerCase() == 'professor') {
+            tmp.courseDoctor = '${user.name}';
+          } else {
+            tmp.students.add(user.name);
+          }
+          await updateEachCourse(tmp, majorDepartment);
+        }
+      }
+
+      if (minorDepartment != null) {
+        if (minorDepartment.courses
+                .where((element) => element.courseCode == course.courseCode)
+                ?.isNotEmpty ??
+            false) {
+          final tmp = minorDepartment.courses
+              .firstWhere((element) => element.courseCode == course.courseCode);
+          if (user.type.toLowerCase() == 'professor') {
+            tmp.courseDoctor = '${user.name}';
+          } else {
+            tmp.students.add(user.name);
+          }
+          await updateEachCourse(tmp, minorDepartment);
+        }
+      }
+
+      if (college.courses
+          .where((element) => element.courseCode == course.courseCode)
+          .isNotEmpty) {
+        final tmp = college.courses
+            .firstWhere((element) => element.courseCode == course.courseCode);
+        if (user.type.toLowerCase() == 'professor') {
+          tmp.courseDoctor = '${user.name}';
+        } else {
+          tmp.students.add(user.name);
+        }
+        await updateEachCourse(tmp, college);
+      }
+
+      if (university.courses
+              .where((element) => element.courseCode == course.courseCode)
+              ?.isNotEmpty ??
+          false) {
+        final tmp = university.courses
+            .firstWhere((element) => element.courseCode == course.courseCode);
+        if (user.type.toLowerCase() == 'professor') {
+          tmp.courseDoctor = '${user.name}';
+        } else {
+          tmp.students.add(user.name);
+        }
+        await updateEachCourse(tmp, university);
+      }
+    }
+    notifyListeners();
+  }
+
+  Future<void> updateEachCourse(
+      CourseModel course, DepartmentModel department) async {
+    department.courses.removeWhere((e) => e.courseCode == course.courseCode);
+    department.courses.add(course);
+    await _api.updateCourse(department.courses, department.departmentID);
     notifyListeners();
   }
 }

@@ -45,7 +45,7 @@ class CourseInfoPopUp extends StatelessWidget {
               ),
             ],
           ),
-          courseDetails.required
+          courseDetails.isRequired
               ? Column(
                   children: [
                     Text(

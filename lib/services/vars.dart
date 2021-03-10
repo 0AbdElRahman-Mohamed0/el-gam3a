@@ -18,7 +18,7 @@ abstract class UserData {
 }
 
 abstract class DepartmentData {
-  static const String DEPARTMENT_DATA_TABLE = "departments_data";
+  static const String DEPARTMENT_TABLE = "departments_data";
   static const String COURSES = "courses";
   static const String ID = "id";
   static const String NAME = "name";
@@ -26,6 +26,7 @@ abstract class DepartmentData {
 
 abstract class CourseData {
   static const String ASSISTANTS = "assistants";
+  static const String STUDENTS = "students";
   static const String CODE = "code";
   static const String CREDIT_HOURS = "credit_hours";
   static const String DAY = "day";
