@@ -61,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Row(
                     children: [
                       if ((_uploadedFileURL?.isNotEmpty ?? false) ||
-                          (user?.imageUrl != null ?? false)) ...{
+                          (user?.imageUrl?.isNotEmpty ?? false)) ...{
                         InkWell(
                           onTap: () => showDialog(
                             context: context,
@@ -108,8 +108,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Container(
                           height: 112,
                           width: 112,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 5),
                           decoration: BoxDecoration(
                             color: Theme.of(context).scaffoldBackgroundColor,
                             borderRadius: BorderRadius.circular(8),
@@ -121,7 +119,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ],
                           ),
-                          child: Image.asset('assets/images/student.png'),
+                          child: user.type.toLowerCase() == 'student'
+                              ? Image.asset(
+                                  'assets/images/student.png',
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.asset(
+                                  'assets/images/doctor.png',
+                                  fit: BoxFit.cover,
+                                ),
                         ),
                       },
                       SizedBox(
@@ -132,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${user.name}',
+                              '${user?.name ?? ''}',
                               overflow: TextOverflow.ellipsis,
                             ),
                             SizedBox(
@@ -192,20 +198,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         dataTitle: 'Phone Number',
                         dataValue: '${user.phoneNumber}',
                       ),
-                      user.department != null && user.minor != null
-                          ? UserData(
-                              dataTitle: 'Department',
-                              dataValue: '${user.department} / ${user.minor}',
-                            )
-                          : SizedBox(),
-                      UserData(
-                        dataTitle: 'GPA',
-                        dataValue: '${user.gpa} / 4.0',
-                      ),
-                      UserData(
-                        dataTitle: 'Hours',
-                        dataValue: '${user.completedHours} / 132',
-                      ),
+                      if (user.type.toLowerCase() == 'student') ...{
+                        user.department != null && user.minor != null
+                            ? UserData(
+                                dataTitle: 'Department',
+                                dataValue: '${user.department} / ${user.minor}',
+                              )
+                            : SizedBox(),
+                      } else ...{
+                        UserData(
+                          dataTitle: 'Department',
+                          dataValue: '${user.department}',
+                        )
+                      },
+                      if (user.type.toLowerCase() == 'student') ...{
+                        UserData(
+                          dataTitle: 'GPA',
+                          dataValue: '${user.gpa} / 4.0',
+                        ),
+                        UserData(
+                          dataTitle: 'Hours',
+                          dataValue: '${user.completedHours} / 132',
+                        ),
+                      },
                     ],
                   ),
                 ],

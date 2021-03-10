@@ -284,8 +284,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           child: Container(
                             height: 112,
                             width: 112,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 5),
                             decoration: BoxDecoration(
                               color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius: BorderRadius.circular(8),
@@ -297,7 +295,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ),
                               ],
                             ),
-                            child: Image.asset('assets/images/student.png'),
+                            child: user.type.toLowerCase() == 'student'
+                                ? Image.asset(
+                                    'assets/images/student.png',
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    'assets/images/doctor.png',
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
                         ),
                       },
