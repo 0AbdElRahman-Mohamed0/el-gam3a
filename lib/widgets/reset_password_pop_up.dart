@@ -28,7 +28,7 @@ class _ResetPasswordPopUpState extends State<ResetPasswordPopUp> {
           .read<AuthProvider>()
           .getEmailOfStudentByUnivID(univCodeReset);
       await context.read<AuthProvider>().forgetPassword(email);
-      context.read<PasswordResetProvider>().updateEmailSent();
+      context.read<PasswordResetProvider>().updateEmailSent(true);
       Navigator.pop(context);
       Navigator.pop(context);
     } catch (e, s) {

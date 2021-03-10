@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elgam3a/models/user_model.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/password_reset_provider.dart';
 import 'package:elgam3a/screens/edit_profile_screen.dart';
 import 'package:elgam3a/screens/login_screen.dart';
 import 'package:elgam3a/utilities/loading.dart';
@@ -40,6 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           builder: (context) => LoginScreen(),
         ),
         (route) => false);
+    context.read<PasswordResetProvider>().updateEmailSent(false);
   }
 
   @override
@@ -208,7 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  onPressed: () => _logout(),
+                  onPressed: _logout,
                   child: Text(
                     'Logout',
                     style: TextStyle(color: Colors.white),
