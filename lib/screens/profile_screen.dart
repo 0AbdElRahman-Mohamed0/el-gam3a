@@ -170,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         dataTitle: 'Phone Number',
                         dataValue: '${user.phoneNumber}',
                       ),
-                      user.department == null
+                      user.department != null && user.minor != null
                           ? UserData(
                               dataTitle: 'Department',
                               dataValue: '${user.department} / ${user.minor}',
