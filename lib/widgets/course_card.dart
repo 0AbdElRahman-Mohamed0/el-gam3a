@@ -1,5 +1,5 @@
-import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/screens/course_details_screen.dart';
 import 'package:elgam3a/widgets/course_info_popup.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +9,13 @@ class CourseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = context.watch<AuthProvider>().user;
     final provider = context.watch<CourseProvider>();
-    final courseDetails = provider.course;
+    final course = provider.course;
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ChangeNotifierProvider<CourseProvider>(
-            create: (_) => CourseProvider(courseDetails),
+          builder: (context) => ChangeNotifierProvider<CourseProvider>.value(
+            value: provider,
             child: CourseDetailsScreen(),
           ),
         ),
@@ -37,7 +37,7 @@ class CourseCard extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: courseDetails.courseCode,
+                        text: course.courseCode,
                         style: Theme.of(context).textTheme.headline1.copyWith(
                             fontSize: 14.0, fontWeight: FontWeight.w700),
                       ),
@@ -45,7 +45,7 @@ class CourseCard extends StatelessWidget {
                         text: '  ',
                       ),
                       TextSpan(
-                        text: courseDetails.courseName,
+                        text: course.courseName,
                         style: Theme.of(context).textTheme.headline1.copyWith(
                             fontSize: 12.0, fontWeight: FontWeight.w700),
                       ),
@@ -55,7 +55,7 @@ class CourseCard extends StatelessWidget {
                 SizedBox(height: 8.0),
                 if (user.type.toLowerCase() == 'student') ...{
                   Text(
-                    'Dr ${courseDetails?.courseDoctor}',
+                    'Dr ${course?.courseDoctor}',
                     style: Theme.of(context)
                         .textTheme
                         .headline5
@@ -67,7 +67,7 @@ class CourseCard extends StatelessWidget {
             Row(
               children: [
                 if (user.type.toLowerCase() == 'student') ...{
-                  if (courseDetails.required) ...{
+                  if (course.required) ...{
                     Text(
                       'Required',
                       style: Theme.of(context).textTheme.headline5.copyWith(

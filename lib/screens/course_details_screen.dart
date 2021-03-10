@@ -86,7 +86,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'Dr ' + courseDetails.courseDoctor,
+                                  'Dr ${courseDetails.courseDoctor}',
                                   style: TextStyle(
                                     color: Color(0xFF2699FB),
                                     fontSize: 14,
@@ -106,7 +106,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  courseDetails.courseLocation,
+                                  '${courseDetails.courseLocation}',
                                   style: TextStyle(
                                     color: Color(0xFF2699FB),
                                     fontSize: 14,
@@ -136,7 +136,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                   width: 4,
                                 ),
                                 Text(
-                                  courseDetails.courseDay,
+                                  '${courseDetails.courseDay}',
                                   style: TextStyle(
                                     color: Color(0xFF2699FB),
                                     fontSize: 14,
