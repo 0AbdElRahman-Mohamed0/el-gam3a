@@ -5,7 +5,7 @@ import 'package:elgam3a/widgets/register_course_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../utilities/loading.dart';
+import '../../utilities/loading.dart';
 
 class RegisterCoursesDoctorScreen extends StatefulWidget {
   @override

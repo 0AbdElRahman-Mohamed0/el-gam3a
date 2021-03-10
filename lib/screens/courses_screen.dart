@@ -1,6 +1,6 @@
 import 'package:elgam3a/providers/auth_provider.dart';
-import 'package:elgam3a/screens/register_courses_doctor_screen.dart';
-import 'package:elgam3a/screens/register_courses_student_screen.dart';
+import 'package:elgam3a/screens/professor_screens/register_courses_doctor_screen.dart';
+import 'package:elgam3a/screens/student_screens/register_courses_student_screen.dart';
 import 'package:flutter/material.dart';
 
 class CoursesScreen extends StatelessWidget {
