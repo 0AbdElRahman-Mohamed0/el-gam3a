@@ -1,10 +1,35 @@
+import 'package:elgam3a/notifier_providers/department_provider.dart';
+import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/widgets/register_course_doctor_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class RegisterCoursesDoctor extends StatelessWidget {
+class RegisterCoursesDoctorScreen extends StatefulWidget {
+  @override
+  _RegisterCoursesDoctorScreenState createState() =>
+      _RegisterCoursesDoctorScreenState();
+}
+
+class _RegisterCoursesDoctorScreenState
+    extends State<RegisterCoursesDoctorScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _initData();
+  }
+
+  _initData() async {
+    final user = context.read<AuthProvider>().user;
+    await context
+        .read<DepartmentsProvider>()
+        .getCoursesDataByMajorDepartmentName(user.department);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final majorDepartment =
+        context.watch<DepartmentsProvider>().majorDepartment;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -290,17 +315,12 @@ class RegisterCoursesDoctor extends StatelessWidget {
               child: TabBarView(
                 physics: NeverScrollableScrollPhysics(),
                 children: <Widget>[
+                  ChangeNotifierProvider<DepartmentNotifierProvider>(
+                    create: (context) =>
+                        DepartmentNotifierProvider(majorDepartment),
+                    child: RegisterCourseDoctorWidget(),
+                  ),
                   RegisterCourseDoctorWidget(),
-                  RegisterCourseDoctorWidget(),
-                  // Center(
-                  //   child: Text('Minor'),
-                  // ),
-                  // Center(
-                  //   child: Text('College'),
-                  // ),
-                  // Center(
-                  //   child: Text('University'),
-                  // ),
                 ],
               ),
             ),

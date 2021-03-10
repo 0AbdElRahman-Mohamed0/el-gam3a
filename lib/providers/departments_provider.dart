@@ -2,6 +2,8 @@ import 'package:elgam3a/models/department_model.dart';
 import 'package:elgam3a/services/api.dart';
 import 'package:flutter/material.dart';
 
+export 'package:provider/provider.dart';
+
 class DepartmentsProvider with ChangeNotifier {
   final ApiProvider _api = ApiProvider.instance;
   DepartmentModel majorDepartment;

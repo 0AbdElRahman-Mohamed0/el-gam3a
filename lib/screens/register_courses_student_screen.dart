@@ -6,26 +6,30 @@ import 'package:elgam3a/widgets/register_course_student_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class RegisterCoursesStudent extends StatefulWidget {
+class RegisterCoursesStudentScreen extends StatefulWidget {
   @override
-  _RegisterCoursesStudentState createState() => _RegisterCoursesStudentState();
+  _RegisterCoursesStudentScreenState createState() =>
+      _RegisterCoursesStudentScreenState();
 }
 
-class _RegisterCoursesStudentState extends State<RegisterCoursesStudent> {
-  _initData() {
-    final user = context.read<AuthProvider>().user;
-    context
-        .read<DepartmentsProvider>()
-        .getCoursesDataByMajorDepartmentName(user.department);
-    context
-        .read<DepartmentsProvider>()
-        .getCoursesDataByMinorDepartmentName(user.minor);
-  }
-
+class _RegisterCoursesStudentScreenState
+    extends State<RegisterCoursesStudentScreen> {
   @override
   void initState() {
     super.initState();
     _initData();
+  }
+
+  _initData() async {
+    final user = context.read<AuthProvider>().user;
+    await Future.wait({
+      context
+          .read<DepartmentsProvider>()
+          .getCoursesDataByMajorDepartmentName(user.department),
+      context
+          .read<DepartmentsProvider>()
+          .getCoursesDataByMinorDepartmentName(user.minor),
+    });
   }
 
   @override
@@ -429,15 +433,6 @@ class _RegisterCoursesStudentState extends State<RegisterCoursesStudent> {
                   ),
                   RegisterCourseStudentWidget(),
                   RegisterCourseStudentWidget(),
-                  // Center(
-                  //   child: Text('Minor'),
-                  // ),
-                  // Center(
-                  //   child: Text('College'),
-                  // ),
-                  // Center(
-                  //   child: Text('University'),
-                  // ),
                 ],
               ),
             ),
