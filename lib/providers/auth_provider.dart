@@ -5,6 +5,8 @@ import 'package:elgam3a/services/vars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../models/course_model.dart';
+
 export 'package:provider/provider.dart';
 
 class AuthProvider with ChangeNotifier {
@@ -78,5 +80,27 @@ class AuthProvider with ChangeNotifier {
   ///// Delete fireStore image ////////
   Future<void> deleteImage(String imagePath) async {
     await _api.deleteFireBaseStorageImage(imagePath);
+  }
+
+  addCourse(CourseModel course) {
+    if (user.courses.contains(course)) {
+      return;
+    }
+    user.courses.add(course);
+    user.registeredHours =
+        (num.parse(user.registeredHours) + course.courseHours).toString();
+    notifyListeners();
+  }
+
+  removeCourse(CourseModel course) async {
+    user.courses.removeWhere((e) => e.courseCode == course.courseCode);
+    user.registeredHours =
+        (num.parse(user.registeredHours) - course.courseHours).toString();
+    final tmp = List.of(user.courses);
+    user.courses = null;
+    notifyListeners();
+    await Future.delayed(Duration(milliseconds: 500));
+    user.courses = List.of(tmp);
+    notifyListeners();
   }
 }

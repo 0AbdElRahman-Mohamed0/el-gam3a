@@ -1,25 +1,31 @@
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
-import 'package:elgam3a/screens/course_details_screen.dart';
 import 'package:elgam3a/widgets/course_info_popup.dart';
 import 'package:flutter/material.dart';
 
 class CourseCard extends StatelessWidget {
+  _addCourse(BuildContext context) {
+    final provider = context.read<CourseProvider>();
+    final course = provider.course;
+    context.read<AuthProvider>().addCourse(course);
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = context.watch<AuthProvider>().user;
     final provider = context.watch<CourseProvider>();
     final course = provider.course;
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChangeNotifierProvider<CourseProvider>.value(
-            value: provider,
-            child: CourseDetailsScreen(),
-          ),
-        ),
-      ),
+      // onTap: () => Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => ChangeNotifierProvider<CourseProvider>.value(
+      //       value: provider,
+      //       child: CourseDetailsScreen(),
+      //     ),
+      //   ),
+      // ),
+      onTap: () => _addCourse(context),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).dividerColor.withOpacity(0.3),

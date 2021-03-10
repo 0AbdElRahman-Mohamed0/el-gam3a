@@ -1,5 +1,7 @@
 import 'package:elgam3a/services/vars.dart';
 
+import 'course_model.dart';
+
 class UserModel {
   String email;
   String name;
@@ -15,6 +17,7 @@ class UserModel {
   String imageUrl;
   String imagePath;
   String userID;
+  List<CourseModel> courses = [];
 
   UserModel({
     this.type,
@@ -31,6 +34,7 @@ class UserModel {
     this.imageUrl,
     this.userID,
     this.imagePath,
+    this.courses,
   });
   UserModel.fromMap(Map<String, dynamic> m) {
     email = m[UserData.EMAIL];
@@ -47,6 +51,10 @@ class UserModel {
     imageUrl = m[UserData.IMAGE_URL];
     imagePath = m[UserData.IMAGE_PATH];
     userID = m[UserData.ID];
+    if (m[UserData.COURSES] != null) {
+      m[UserData.COURSES]
+          .forEach((course) => courses.add(CourseModel.fromMap(course)));
+    }
   }
 
   Map<String, dynamic> toMap() {
@@ -65,6 +73,7 @@ class UserModel {
       UserData.IMAGE_URL: imageUrl ?? '',
       UserData.IMAGE_PATH: imagePath ?? '',
       UserData.ID: userID,
+      UserData.COURSES: courses,
     };
   }
 
@@ -83,6 +92,7 @@ class UserModel {
     String imageUrl,
     String imagePath,
     String userID,
+    List<CourseModel> courses,
   }) {
     return UserModel(
       email: email ?? this.email,
@@ -99,6 +109,7 @@ class UserModel {
       imageUrl: imageUrl ?? this.imageUrl,
       imagePath: imagePath ?? this.imagePath,
       userID: userID ?? this.userID,
+      courses: courses ?? this.courses,
     );
   }
 }

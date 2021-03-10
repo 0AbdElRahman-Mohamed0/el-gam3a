@@ -1,10 +1,12 @@
 import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/providers/department_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/widgets/register_course_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../providers/auth_provider.dart';
 import '../../utilities/loading.dart';
 
 class RegisterCoursesDoctorScreen extends StatefulWidget {
@@ -41,6 +43,7 @@ class _RegisterCoursesDoctorScreenState
     final majorDepartment =
         context.watch<DepartmentsProvider>().majorDepartment;
     final university = context.watch<DepartmentsProvider>().university;
+    final user = context.watch<AuthProvider>().user;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -60,68 +63,27 @@ class _RegisterCoursesDoctorScreenState
               )
             : Column(
                 children: [
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 3.0),
-                            child: Row(
-                              children: [
-                                Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: 'CS 205',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .button
-                                            .copyWith(
-                                                fontSize: 12.0,
-                                                fontWeight: FontWeight.w700),
-                                      ),
-                                      TextSpan(text: ' '),
-                                      TextSpan(
-                                        text: '2hr',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .button
-                                            .copyWith(
-                                                color: Theme.of(context)
-                                                    .textTheme
-                                                    .button
-                                                    .color
-                                                    .withOpacity(0.5),
-                                                fontSize: 12.0,
-                                                fontWeight: FontWeight.w700),
-                                      ),
-                                      TextSpan(text: ' '),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  child: Icon(
-                                    Icons.clear,
-                                    size: 16.0,
-                                    color: Theme.of(context)
-                                        .scaffoldBackgroundColor,
-                                  ),
-                                  onTap: () {},
-                                )
-                              ],
+                  user.courses == null
+                      ? LoadingWidget(size: 80)
+                      : Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20.0),
+                          child: Container(
+                            height: 30,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              children: user.courses
+                                  .map(
+                                    (course) =>
+                                        ChangeNotifierProvider<CourseProvider>(
+                                      create: (_) => CourseProvider(course),
+                                      child: CourseChoosedCard(),
+                                    ),
+                                  )
+                                  .toList(),
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
                   Padding(
                     padding:
                         EdgeInsets.only(left: 10.0, right: 10.0, bottom: 24.0),
@@ -154,28 +116,14 @@ class _RegisterCoursesDoctorScreenState
                                         ),
                                   ),
                                   SizedBox(height: 8.0),
-                                  Text.rich(
-                                    TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: '10',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1
-                                              .copyWith(
-                                                  fontSize: 48.0,
-                                                  fontWeight: FontWeight.w700),
-                                        ),
-//                                  TextSpan(
-//                                    text: '/18',
-//                                    style: TextStyle(
-//                                        color: kPrimaryColor.withOpacity(
-//                                            0.5), //Colors.black.withOpacity(0.4),
-//                                        fontSize: 24.0,
-//                                        fontWeight: FontWeight.w700),
-//                                  ),
-                                      ],
-                                    ),
+                                  Text(
+                                    '${user.registeredHours}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        .copyWith(
+                                            fontSize: 48.0,
+                                            fontWeight: FontWeight.w700),
                                   ),
                                 ],
                               ),
@@ -200,7 +148,6 @@ class _RegisterCoursesDoctorScreenState
                                           34.0) /
                                       375),
                               child: Row(
-//                        crossAxisAlignment: CrossAxisAlignment,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -330,16 +277,8 @@ class _RegisterCoursesDoctorScreenState
                                 fontWeight: FontWeight.w700,
                               ),
                       tabs: [
-                        FittedBox(
-                          child: Tab(
-                            text: "Department",
-                          ),
-                        ),
-                        FittedBox(
-                          child: Tab(
-                            text: "University",
-                          ),
-                        ),
+                        FittedBox(child: Tab(text: "Department")),
+                        FittedBox(child: Tab(text: "University")),
                       ],
                     ),
                   ),
@@ -362,6 +301,70 @@ class _RegisterCoursesDoctorScreenState
                 ],
               ),
       ),
+    );
+  }
+}
+
+class CourseChoosedCard extends StatelessWidget {
+  _removeCourse(BuildContext context) {
+    final course = context.read<CourseProvider>().course;
+    context.read<AuthProvider>().removeCourse(course);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final course = context.watch<CourseProvider>().course;
+    return Row(
+      children: [
+        InkWell(
+          onTap: () => _removeCourse(context),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 3.0),
+              child: Row(
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '${course.courseCode}',
+                          style: Theme.of(context).textTheme.button.copyWith(
+                              fontSize: 12.0, fontWeight: FontWeight.w700),
+                        ),
+                        TextSpan(text: ' '),
+                        TextSpan(
+                          text: '${course.courseHours}hr',
+                          style: Theme.of(context).textTheme.button.copyWith(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .button
+                                  .color
+                                  .withOpacity(0.5),
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        TextSpan(text: ' '),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.clear,
+                    size: 16.0,
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 8,
+        ),
+      ],
     );
   }
 }

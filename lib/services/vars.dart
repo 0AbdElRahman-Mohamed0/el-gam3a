@@ -14,6 +14,7 @@ abstract class UserData {
   static const String UNIV_ID = 'univ_ID';
   static const String IMAGE_URL = 'image';
   static const String IMAGE_PATH = 'imagePath';
+  static const String COURSES = 'courses';
 }
 
 abstract class DepartmentData {
