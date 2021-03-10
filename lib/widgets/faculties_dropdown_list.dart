@@ -1,6 +1,5 @@
-import 'package:elgam3a/utilities/constants.dart';
-import 'package:flutter/material.dart';
 import 'package:animate_icons/animate_icons.dart';
+import 'package:flutter/material.dart';
 
 class FacultiesDropDownList extends StatefulWidget {
   FacultiesDropDownList({
@@ -76,7 +75,9 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                     controller: _animationController,
                     duration: Duration(milliseconds: 200),
                     clockwise: false,
-                    color: Color(0xFF707070).withOpacity(0.54),
+                    // color: Color(0xFF707070).withOpacity(0.54),
+                    startIconColor: Color(0xFF707070).withOpacity(0.54),
+                    endIconColor: Color(0xFF707070).withOpacity(0.54),
                     size: 25.0,
                     startTooltip: '',
                     endTooltip: '',

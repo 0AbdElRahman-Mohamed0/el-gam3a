@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class ShowPicturePopUp extends StatelessWidget {
   final String image;
   ShowPicturePopUp(this.image);
+
   @override
   Widget build(BuildContext context) {
     return Column(
