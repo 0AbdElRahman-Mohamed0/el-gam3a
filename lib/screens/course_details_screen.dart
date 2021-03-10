@@ -2,7 +2,6 @@ import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/screens/select_section_screen.dart';
 import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class CourseDetailsScreen extends StatelessWidget {
   @override
