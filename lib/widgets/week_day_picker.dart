@@ -79,10 +79,14 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
           width: 50,
           height: 50,
           child: Container(
+            decoration: BoxDecoration(
+                color: _setSelectedColor(item.isSelected),
+                shape: BoxShape.circle),
+            padding: EdgeInsets.all(1.0),
+            alignment: Alignment.center,
             margin: EdgeInsets.only(right: 5.0),
-            child: FlatButton(
-              padding: EdgeInsets.all(1.0),
-              onPressed: () {
+            child: InkWell(
+              onTap: () {
                 setState(() {
                   //// to make all the buttons not selected
                   // then make the selected day isSelected = true
@@ -97,8 +101,8 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
                 });
               },
               child: _setName(item.name),
-              shape: CircleBorder(),
-              color: _setSelectedColor(item.isSelected),
+//              shape: CircleBorder(),
+//              color: _setSelectedColor(item.isSelected),
             ),
           ),
         ),

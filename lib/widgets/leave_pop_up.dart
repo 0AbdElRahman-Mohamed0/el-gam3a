@@ -24,24 +24,54 @@ class LeavePopUp extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RaisedButton(
-                onPressed: () => SystemNavigator.pop(),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0),
+              GestureDetector(
+                onTap: () => SystemNavigator.pop(),
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(4.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xFF000000).withOpacity(0.34),
+                        offset: Offset(0, 3),
+                        blurRadius: 6,
+                      )
+                    ],
+                  ),
+                  child: Text(
+                    'Yes',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                child: Text('Yes'),
               ),
               SizedBox(width: 12.0),
-              RaisedButton(
-                onPressed: () => Navigator.pop(context),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0),
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4.0),
+                    color: Theme.of(context).accentColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xFF000000).withOpacity(0.34),
+                        offset: Offset(0, 3),
+                        blurRadius: 6,
+                      )
+                    ],
+                  ),
+                  child: Text(
+                    'No',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-                color: Theme.of(context).accentColor,
-                textColor: Colors.white,
-                child: Text('No'),
               ),
             ],
           ),

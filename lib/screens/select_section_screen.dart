@@ -68,19 +68,29 @@ class SelectSectionScreen extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                RaisedButton(
-                  onPressed: () {},
-                  color: Color(0xFF2699FB),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.0),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Join',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      color: Color(0xFF2699FB),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xFF000000).withOpacity(0.34),
+                          offset: Offset(0, 3),
+                          blurRadius: 6,
+                        )
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Join',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

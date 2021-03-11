@@ -21,13 +21,8 @@ class CoursesScreen extends StatelessWidget {
           SizedBox(
             height: 18,
           ),
-          RaisedButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18.0),
-            ),
-            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 18),
-            color: Theme.of(context).cardColor,
-            onPressed: () async {
+          InkWell(
+            onTap: () async {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -37,12 +32,26 @@ class CoursesScreen extends StatelessWidget {
                 ),
               );
             },
-            child: Text(
-              'Register',
-              style: Theme.of(context).textTheme.button.copyWith(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w700,
-                  ),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18.0),
+                color: Theme.of(context).cardColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFF000000).withOpacity(0.34),
+                    offset: Offset(0, 3),
+                    blurRadius: 6,
+                  )
+                ],
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 18),
+              child: Text(
+                'Register',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
             ),
           ),
         ],

@@ -151,19 +151,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(
                               height: 20,
                             ),
-                            RaisedButton(
-                              color: Theme.of(context).buttonColor,
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide.none,
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              onPressed: () => Navigator.push(
+                            InkWell(
+                              onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => EditProfileScreen(),
                                 ),
                               ),
-                              child: Text('Edit Data'),
+                              child: Container(
+//                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: Theme.of(context).buttonColor,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color:
+                                          Color(0xFF000000).withOpacity(0.34),
+                                      offset: Offset(0, 3),
+                                      blurRadius: 6,
+                                    )
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10.0, horizontal: 14),
+                                  child: Text('Edit Data'),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -218,15 +232,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 width: double.infinity,
                 height: 44,
-                child: RaisedButton(
-                  color: Theme.of(context).errorColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  onPressed: _logout,
-                  child: Text(
-                    'Logout',
-                    style: TextStyle(color: Colors.white),
+                child: InkWell(
+                  onTap: _logout,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).errorColor,
+                      borderRadius: BorderRadius.circular(4),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xFF000000).withOpacity(0.34),
+                          offset: Offset(0, 3),
+                          blurRadius: 6,
+                        )
+                      ],
+                    ),
+                    child: Text(
+                      'Logout',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),

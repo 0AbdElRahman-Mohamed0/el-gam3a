@@ -140,15 +140,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 15.0,
                 ),
-                FlatButton(
-                  child: Text(
-                    'Forgot your password ?',
-                    style: Theme.of(context).textTheme.headline1.copyWith(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w500,
-                        ),
+                InkWell(
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(
+                      'Forgot your password ?',
+                      style: Theme.of(context).textTheme.headline1.copyWith(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
                   ),
-                  onPressed: () => _forgetPassword(),
+                  onTap: () => _forgetPassword(),
                 ),
                 _emailSent
                     ? Row(
@@ -176,17 +179,26 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                    color: Theme.of(context).cardColor,
-                    child: Text(
-                      'Login',
-                      style: Theme.of(context).textTheme.button,
-                    ),
+                  child: InkWell(
+                    onTap: () => _login(),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(18.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0xFF000000).withOpacity(0.34),
+                            offset: Offset(0, 3),
+                            blurRadius: 6,
+                          )
+                        ],
+                      ),
+                      child: Text(
+                        'Login',
+                        style: Theme.of(context).textTheme.button,
+                      ),
 //                  textColor: kButtonTextColor,
-                    onPressed: () => _login(),
+                    ),
                   ),
                 ),
               ],

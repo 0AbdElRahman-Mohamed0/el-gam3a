@@ -59,8 +59,8 @@ class _ResetPasswordPopUpState extends State<ResetPasswordPopUp> {
             child: TextFormField(
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               maxLength: 11,
-              onSaved: (ID) {
-                univCodeReset = ID;
+              onSaved: (id) {
+                univCodeReset = id;
               },
               keyboardType: TextInputType.number,
               validator: Validator<String>(
@@ -83,12 +83,14 @@ class _ResetPasswordPopUpState extends State<ResetPasswordPopUp> {
           SizedBox(
             height: 20,
           ),
-          RaisedButton(
-            onPressed: _resetPassword,
-            color: Theme.of(context).primaryColor,
-            child: Text(
-              "Reset Password",
-              style: TextStyle(color: Colors.white, fontSize: 16),
+          InkWell(
+            onTap: _resetPassword,
+            child: Container(
+              color: Theme.of(context).primaryColor,
+              child: Text(
+                "Reset Password",
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
             ),
           ),
         ],
