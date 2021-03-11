@@ -83,7 +83,9 @@ class AuthProvider with ChangeNotifier {
   }
 
   addCourse(CourseModel course) {
-    if (user.courses.contains(course)) {
+    if (user.courses
+        .where((element) => element.courseCode == course.courseCode)
+        .isNotEmpty) {
       return;
     }
     user.courses.add(course);
