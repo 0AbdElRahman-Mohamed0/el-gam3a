@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elgam3a/models/user_model.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/password_reset_provider.dart';
 import 'package:elgam3a/screens/edit_profile_screen.dart';
@@ -15,18 +14,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String _uploadedFileURL;
-
-  @override
-  void initState() {
-    super.initState();
-    Future.wait([context.read<AuthProvider>().getUserData()]);
-    UserModel user = context.read<AuthProvider>().user;
-    user?.imageUrl != null ?? false
-        ? _uploadedFileURL = user.imageUrl
-        : _uploadedFileURL = '';
-  }
-
   _logout() {
     context.read<AuthProvider>().logOut();
     Navigator.pushAndRemoveUntil(
