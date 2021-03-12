@@ -343,6 +343,7 @@ class _RegisterCoursesDoctorScreenState
 class CourseChoosedCard extends StatelessWidget {
   _removeCourse(BuildContext context) {
     final course = context.read<CourseProvider>().course;
+    context.read<DepartmentsProvider>().updateDepHours(course: course, type: 1);
     context.read<AuthProvider>().removeCourse(course);
   }
 

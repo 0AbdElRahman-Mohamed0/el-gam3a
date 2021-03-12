@@ -9,7 +9,9 @@ class CourseCard extends StatelessWidget {
     final provider = context.read<CourseProvider>();
     final course = provider.course;
     final user = context.read<AuthProvider>().user;
-    context.read<DepartmentsProvider>().getDepHours(course, user);
+    context
+        .read<DepartmentsProvider>()
+        .updateDepHours(course: course, user: user, type: 0);
     context.read<AuthProvider>().addCourse(course);
   }
 

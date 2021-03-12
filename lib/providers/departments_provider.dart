@@ -117,10 +117,11 @@ class DepartmentsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  getDepHours(CourseModel course, UserModel user) async {
-    if (user.courses
-        .where((element) => element.courseCode == course.courseCode)
-        .isNotEmpty) {
+  updateDepHours({CourseModel course, UserModel user, int type}) async {
+    if (type == 0 &&
+        user.courses
+            .where((element) => element.courseCode == course.courseCode)
+            .isNotEmpty) {
       return;
     }
     if (majorDepartment != null) {
@@ -128,7 +129,9 @@ class DepartmentsProvider with ChangeNotifier {
               .where((element) => element.courseCode == course.courseCode)
               ?.isNotEmpty ??
           false) {
-        majorDepartmentHours += course.courseHours;
+        type == 0
+            ? majorDepartmentHours += course.courseHours
+            : majorDepartmentHours -= course.courseHours;
         notifyListeners();
         return;
       }
@@ -139,7 +142,9 @@ class DepartmentsProvider with ChangeNotifier {
               .where((element) => element.courseCode == course.courseCode)
               ?.isNotEmpty ??
           false) {
-        minorDepartmentHours += course.courseHours;
+        type == 0
+            ? minorDepartmentHours += course.courseHours
+            : minorDepartmentHours -= course.courseHours;
         notifyListeners();
         return;
       }
@@ -148,7 +153,9 @@ class DepartmentsProvider with ChangeNotifier {
     if (college.courses
         .where((element) => element.courseCode == course.courseCode)
         .isNotEmpty) {
-      collegeHours += course.courseHours;
+      type == 0
+          ? collegeHours += course.courseHours
+          : collegeHours -= course.courseHours;
       notifyListeners();
       return;
     }
@@ -157,7 +164,9 @@ class DepartmentsProvider with ChangeNotifier {
             .where((element) => element.courseCode == course.courseCode)
             ?.isNotEmpty ??
         false) {
-      universityHours += course.courseHours;
+      type == 0
+          ? universityHours += course.courseHours
+          : universityHours -= course.courseHours;
       notifyListeners();
       return;
     }
