@@ -73,7 +73,7 @@ class UserModel {
       UserData.IMAGE_URL: imageUrl ?? '',
       UserData.IMAGE_PATH: imagePath ?? '',
       UserData.ID: userID,
-      UserData.COURSES: courses,
+      UserData.COURSES: courses.map((course) => course.toMap()).toList(),
     };
   }
 

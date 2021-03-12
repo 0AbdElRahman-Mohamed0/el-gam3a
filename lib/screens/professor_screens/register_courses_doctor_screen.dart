@@ -41,7 +41,10 @@ class _RegisterCoursesDoctorScreenState
   _updateCourse() async {
     LoadingScreen.show(context);
     final user = context.read<AuthProvider>().user;
-    await context.read<DepartmentsProvider>().updateCourse(user);
+    await Future.wait({
+      context.read<DepartmentsProvider>().updateCourse(user),
+      context.read<AuthProvider>().updateUserData(user),
+    });
     Navigator.pop(context);
   }
 
