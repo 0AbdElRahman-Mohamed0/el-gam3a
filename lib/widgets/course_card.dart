@@ -1,5 +1,6 @@
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
+import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/widgets/course_info_popup.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,8 @@ class CourseCard extends StatelessWidget {
   _addCourse(BuildContext context) {
     final provider = context.read<CourseProvider>();
     final course = provider.course;
+    final user = context.read<AuthProvider>().user;
+    context.read<DepartmentsProvider>().getDepHours(course, user);
     context.read<AuthProvider>().addCourse(course);
   }
 

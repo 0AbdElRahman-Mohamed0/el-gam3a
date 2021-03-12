@@ -14,6 +14,10 @@ class DepartmentsProvider with ChangeNotifier {
   DepartmentModel minorDepartment;
   DepartmentModel university;
   DepartmentModel college;
+  int majorDepartmentHours = 0;
+  int minorDepartmentHours = 0;
+  int universityHours = 0;
+  int collegeHours = 0;
 
   Future<void> getCoursesDataByMajorDepartmentName(
       String departmentName) async {
@@ -51,6 +55,7 @@ class DepartmentsProvider with ChangeNotifier {
           } else {
             tmp.students.add(user.name);
           }
+
           await updateEachCourse(tmp, majorDepartment);
         }
       }
@@ -67,6 +72,7 @@ class DepartmentsProvider with ChangeNotifier {
           } else {
             tmp.students.add(user.name);
           }
+
           await updateEachCourse(tmp, minorDepartment);
         }
       }
@@ -81,6 +87,7 @@ class DepartmentsProvider with ChangeNotifier {
         } else {
           tmp.students.add(user.name);
         }
+
         await updateEachCourse(tmp, college);
       }
 
@@ -95,6 +102,7 @@ class DepartmentsProvider with ChangeNotifier {
         } else {
           tmp.students.add(user.name);
         }
+
         await updateEachCourse(tmp, university);
       }
     }
@@ -107,5 +115,51 @@ class DepartmentsProvider with ChangeNotifier {
     department.courses.add(course);
     await _api.updateCourse(department.courses, department.departmentID);
     notifyListeners();
+  }
+
+  getDepHours(CourseModel course, UserModel user) async {
+    if (user.courses
+        .where((element) => element.courseCode == course.courseCode)
+        .isNotEmpty) {
+      return;
+    }
+    if (majorDepartment != null) {
+      if (majorDepartment.courses
+              .where((element) => element.courseCode == course.courseCode)
+              ?.isNotEmpty ??
+          false) {
+        majorDepartmentHours += course.courseHours;
+        notifyListeners();
+        return;
+      }
+    }
+
+    if (minorDepartment != null) {
+      if (minorDepartment.courses
+              .where((element) => element.courseCode == course.courseCode)
+              ?.isNotEmpty ??
+          false) {
+        minorDepartmentHours += course.courseHours;
+        notifyListeners();
+        return;
+      }
+    }
+
+    if (college.courses
+        .where((element) => element.courseCode == course.courseCode)
+        .isNotEmpty) {
+      collegeHours += course.courseHours;
+      notifyListeners();
+      return;
+    }
+
+    if (university.courses
+            .where((element) => element.courseCode == course.courseCode)
+            ?.isNotEmpty ??
+        false) {
+      universityHours += course.courseHours;
+      notifyListeners();
+      return;
+    }
   }
 }

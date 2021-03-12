@@ -53,6 +53,10 @@ class _RegisterCoursesDoctorScreenState
     final majorDepartment =
         context.watch<DepartmentsProvider>().majorDepartment;
     final university = context.watch<DepartmentsProvider>().university;
+    final universityHours =
+        context.watch<DepartmentsProvider>().universityHours;
+    final majorHours =
+        context.watch<DepartmentsProvider>().majorDepartmentHours;
     final user = context.watch<AuthProvider>().user;
     return DefaultTabController(
       length: 2,
@@ -71,7 +75,7 @@ class _RegisterCoursesDoctorScreenState
               InkWell(
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
-                onTap: () => _updateCourse(),
+                onTap: _updateCourse,
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
@@ -220,7 +224,7 @@ class _RegisterCoursesDoctorScreenState
                                         TextSpan(
                                           children: [
                                             TextSpan(
-                                              text: '6',
+                                              text: '$majorHours',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .button
@@ -230,7 +234,7 @@ class _RegisterCoursesDoctorScreenState
                                                           FontWeight.w700),
                                             ),
                                             TextSpan(
-                                              text: '/10',
+                                              text: '/${user.registeredHours}',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .button
@@ -251,14 +255,14 @@ class _RegisterCoursesDoctorScreenState
                                         TextSpan(
                                           children: [
                                             TextSpan(
-                                              text: '4',
+                                              text: '$universityHours',
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 14.0,
                                                   fontWeight: FontWeight.w700),
                                             ),
                                             TextSpan(
-                                              text: '/10',
+                                              text: '/${user.registeredHours}',
                                               style: TextStyle(
                                                   color: Colors.white
                                                       .withOpacity(0.5),
