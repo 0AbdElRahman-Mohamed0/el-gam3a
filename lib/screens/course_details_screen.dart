@@ -1,6 +1,5 @@
 import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/screens/select_section_screen.dart';
-import 'package:elgam3a/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class CourseDetailsScreen extends StatelessWidget {
@@ -10,7 +9,6 @@ class CourseDetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFF1F9FF),
       appBar: AppBar(
-        backgroundColor: kPrimaryColor,
         title: Text(courseDetails.courseCode),
         centerTitle: true,
         elevation: 0.0,
@@ -20,7 +18,7 @@ class CourseDetailsScreen extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 32,
-            color: kPrimaryColor,
+            color: Theme.of(context).primaryColor,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -41,7 +39,9 @@ class CourseDetailsScreen extends StatelessWidget {
                                   Text(
                                     'Required',
                                     style: TextStyle(
-                                        color: kPrimaryColor.withOpacity(0.5),
+                                        color: Theme.of(context)
+                                            .primaryColor
+                                            .withOpacity(0.5),
                                         fontSize: 12.0,
                                         fontWeight: FontWeight.w400),
                                   ),

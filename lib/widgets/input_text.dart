@@ -1,4 +1,3 @@
-import 'package:elgam3a/utilities/constants.dart';
 import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/material.dart';
 
@@ -90,7 +89,11 @@ class _InputTextState extends State<InputText> {
           hintStyle: TextStyle(
             color: Colors.grey,
           ),
-          border: kTextFieldCircularBorder,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(18.0),
+            ),
+          ),
         ),
 
         // This makes password invisible
