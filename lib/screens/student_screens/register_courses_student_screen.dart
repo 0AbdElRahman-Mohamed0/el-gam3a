@@ -1,7 +1,9 @@
 import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/providers/department_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
+import 'package:elgam3a/widgets/course_choosed_card.dart';
 import 'package:elgam3a/widgets/register_course_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +42,16 @@ class _RegisterCoursesStudentScreenState
     setState(() {});
   }
 
+  _updateCourse() async {
+    LoadingScreen.show(context);
+    final user = context.read<AuthProvider>().user;
+    await Future.wait({
+      context.read<DepartmentsProvider>().updateCourse(user),
+      context.read<AuthProvider>().updateUserData(user),
+    });
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final majorDepartment =
@@ -48,6 +60,13 @@ class _RegisterCoursesStudentScreenState
         context.watch<DepartmentsProvider>().minorDepartment;
     final college = context.watch<DepartmentsProvider>().college;
     final university = context.watch<DepartmentsProvider>().university;
+    final majorHours =
+        context.watch<DepartmentsProvider>().majorDepartmentHours;
+    final minorHours =
+        context.watch<DepartmentsProvider>().minorDepartmentHours;
+    final universityHours =
+        context.watch<DepartmentsProvider>().universityHours;
+    final collegeHours = context.watch<DepartmentsProvider>().collegeHours;
     final user = context.watch<AuthProvider>().user;
     return DefaultTabController(
       length: user.department != null ? 4 : 2,
@@ -61,6 +80,27 @@ class _RegisterCoursesStudentScreenState
                 .button
                 .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
           ),
+          actions: [
+            if (user.courses?.isNotEmpty ?? false) ...{
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: _updateCourse,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    child: Text('Register'),
+                  ),
+                ),
+              ),
+            },
+          ],
         ),
         body: _isLoading
             ? Center(
@@ -68,68 +108,27 @@ class _RegisterCoursesStudentScreenState
               )
             : Column(
                 children: [
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 3.0),
-                            child: Row(
-                              children: [
-                                Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: 'CS 205',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .button
-                                            .copyWith(
-                                                fontSize: 12.0,
-                                                fontWeight: FontWeight.w700),
-                                      ),
-                                      TextSpan(text: ' '),
-                                      TextSpan(
-                                        text: '2hr',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .button
-                                            .copyWith(
-                                                color: Theme.of(context)
-                                                    .textTheme
-                                                    .button
-                                                    .color
-                                                    .withOpacity(0.5),
-                                                fontSize: 12.0,
-                                                fontWeight: FontWeight.w700),
-                                      ),
-                                      TextSpan(text: ' '),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  child: Icon(
-                                    Icons.clear,
-                                    size: 16.0,
-                                    color: Theme.of(context)
-                                        .scaffoldBackgroundColor,
-                                  ),
-                                  onTap: () {},
-                                )
-                              ],
+                  user.courses == null
+                      ? LoadingWidget(size: 80)
+                      : Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20.0),
+                          child: Container(
+                            height: 30,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              children: user.courses
+                                  .map(
+                                    (course) =>
+                                        ChangeNotifierProvider<CourseProvider>(
+                                      create: (_) => CourseProvider(course),
+                                      child: CourseChoosedCard(),
+                                    ),
+                                  )
+                                  .toList(),
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
                   Padding(
                     padding:
                         EdgeInsets.only(left: 10.0, right: 10.0, bottom: 24.0),
@@ -166,7 +165,7 @@ class _RegisterCoursesStudentScreenState
                                     TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: '5',
+                                          text: '${user.registeredHours}',
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline1
@@ -274,7 +273,7 @@ class _RegisterCoursesStudentScreenState
                                         TextSpan(
                                           children: [
                                             TextSpan(
-                                              text: '5',
+                                              text: '$majorHours',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .button
@@ -284,38 +283,7 @@ class _RegisterCoursesStudentScreenState
                                                           FontWeight.w700),
                                             ),
                                             TextSpan(
-                                              text: '/42',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .button
-                                                  .copyWith(
-                                                      color: Theme.of(context)
-                                                          .textTheme
-                                                          .button
-                                                          .color
-                                                          .withOpacity(0.5),
-                                                      fontSize: 14.0,
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Text.rich(
-                                        TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: '5',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .button
-                                                  .copyWith(
-                                                      fontSize: 14.0,
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                            ),
-                                            TextSpan(
-                                              text: '/42',
+                                              text: '/${user.registeredHours}',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .button
@@ -336,7 +304,7 @@ class _RegisterCoursesStudentScreenState
                                         TextSpan(
                                           children: [
                                             TextSpan(
-                                              text: '5',
+                                              text: '$minorHours',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .button
@@ -346,7 +314,7 @@ class _RegisterCoursesStudentScreenState
                                                           FontWeight.w700),
                                             ),
                                             TextSpan(
-                                              text: '/42',
+                                              text: '/${user.registeredHours}',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .button
@@ -367,7 +335,7 @@ class _RegisterCoursesStudentScreenState
                                         TextSpan(
                                           children: [
                                             TextSpan(
-                                              text: '5',
+                                              text: '$collegeHours',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .button
@@ -377,7 +345,38 @@ class _RegisterCoursesStudentScreenState
                                                           FontWeight.w700),
                                             ),
                                             TextSpan(
-                                              text: '/42',
+                                              text: '/${user.registeredHours}',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .button
+                                                  .copyWith(
+                                                      color: Theme.of(context)
+                                                          .textTheme
+                                                          .button
+                                                          .color
+                                                          .withOpacity(0.5),
+                                                      fontSize: 14.0,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Text.rich(
+                                        TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: '$universityHours',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .button
+                                                  .copyWith(
+                                                      fontSize: 14.0,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                            ),
+                                            TextSpan(
+                                              text: '/${user.registeredHours}',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .button
