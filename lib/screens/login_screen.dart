@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.infinity,
                   height: 50,
                   child: InkWell(
-                    onTap: () => _login(),
+                    onTap: _login,
                     child: Container(
                       decoration: BoxDecoration(
                         color: Theme.of(context).cardColor,
@@ -188,9 +188,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           )
                         ],
                       ),
-                      child: Text(
-                        'Login',
-                        style: Theme.of(context).textTheme.button,
+                      child: Center(
+                        child: Text(
+                          'Login',
+                          style: Theme.of(context).textTheme.button,
+                        ),
                       ),
                     ),
                   ),

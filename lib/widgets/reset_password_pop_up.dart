@@ -86,6 +86,7 @@ class _ResetPasswordPopUpState extends State<ResetPasswordPopUp> {
           InkWell(
             onTap: _resetPassword,
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
               color: Theme.of(context).primaryColor,
               child: Text(
                 "Reset Password",
