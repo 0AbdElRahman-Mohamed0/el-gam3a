@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   tabs: [
                     GButton(
                       icon: Icons.schedule,
-                      text: "Schedule",
+                      text: 'Schedule',
                     ),
                     GButton(
                       icon: Icons.school,

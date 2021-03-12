@@ -89,7 +89,7 @@ class _ResetPasswordPopUpState extends State<ResetPasswordPopUp> {
               padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
               color: Theme.of(context).primaryColor,
               child: Text(
-                "Reset Password",
+                'Reset Password',
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
