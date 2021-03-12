@@ -22,10 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
 
-  final _formKeyReset = GlobalKey<FormState>();
-  String univCodeReset;
-  bool _autoValidateReset = false;
-
   _login() async {
     if (!_formKey.currentState.validate()) {
       setState(() => _autoValidate = true);
@@ -38,7 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
           .read<AuthProvider>()
           .getEmailOfStudentByUnivID(univCode);
       await context.read<AuthProvider>().logIn(email, password);
-      //TODO: use type to go to screens
       Navigator.pop(context);
       Navigator.pushAndRemoveUntil(
           context,
@@ -197,7 +192,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Login',
                         style: Theme.of(context).textTheme.button,
                       ),
-//                  textColor: kButtonTextColor,
                     ),
                   ),
                 ),
