@@ -8,12 +8,12 @@ const kMoreeColor = Color(0xFF95743F);
 //const kSecondaryColor = Color(0xFFFA685E);
 const kSelectedCalenderItemColor = Color(0x61BAA8A4);
 
-const kTitleTextStyle = TextTheme(
-  title: TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 25.0,
-  ),
-);
+//const kTitleTextStyle = TextTheme(
+//  title: TextStyle(
+//    fontWeight: FontWeight.bold,
+//    fontSize: 25.0,
+//  ),
+//);
 
 const kLoginButtonSize = EdgeInsets.only(
   left: 132.0,

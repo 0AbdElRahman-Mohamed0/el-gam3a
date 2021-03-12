@@ -20,23 +20,49 @@ class PickPhotoPopUp extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              RaisedButton(
-                onPressed: takePhotoOnPressed,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0),
+              InkWell(
+                onTap: takePhotoOnPressed,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(4.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xFF000000).withOpacity(0.34),
+                        offset: Offset(0, 3),
+                        blurRadius: 6,
+                      )
+                    ],
+                  ),
+                  child: Text(
+                    'Camera',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                child: Text('Camera'),
               ),
-              RaisedButton(
-                onPressed: pickPhotoOnPressed,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0),
+              InkWell(
+                onTap: pickPhotoOnPressed,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).accentColor,
+                    borderRadius: BorderRadius.circular(4.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xFF000000).withOpacity(0.34),
+                        offset: Offset(0, 3),
+                        blurRadius: 6,
+                      )
+                    ],
+                  ),
+                  child: Text(
+                    'Gallery',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-                color: Theme.of(context).accentColor,
-                textColor: Colors.white,
-                child: Text('Gallery'),
               ),
             ],
           ),

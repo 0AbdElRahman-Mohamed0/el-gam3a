@@ -22,14 +22,27 @@ class ErrorPopUp extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24.0),
-          RaisedButton(
-            onPressed: () => Navigator.of(context).pop(),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4.0),
+          InkWell(
+            onTap: () => Navigator.of(context).pop(),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(4.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFF000000).withOpacity(0.34),
+                    offset: Offset(0, 3),
+                    blurRadius: 6,
+                  )
+                ],
+              ),
+              child: Text(
+                'OK',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
-            color: Theme.of(context).primaryColor,
-            textColor: Colors.white,
-            child: Text('OK'),
           ),
           SizedBox(height: 8.0),
         ],

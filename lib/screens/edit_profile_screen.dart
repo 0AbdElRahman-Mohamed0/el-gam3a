@@ -407,9 +407,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ),
                               ],
                             )
-                          : FlatButton(
-                              onPressed: _changePassword,
-                              child: Text('Change password'),
+                          : InkWell(
+                              onTap: _changePassword,
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Text('Change password'),
+                              ),
                             ),
                     ],
                   ),
@@ -425,15 +428,25 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   Expanded(
                     flex: 3,
-                    child: RaisedButton(
-                      color: Colors.green[300],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      onPressed: () => _update(),
-                      child: Text(
-                        'Update',
-                        style: TextStyle(color: Colors.white),
+                    child: InkWell(
+                      onTap: () => _update(),
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.green[300],
+                          borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xFF000000).withOpacity(0.34),
+                              offset: Offset(0, 3),
+                              blurRadius: 6,
+                            )
+                          ],
+                        ),
+                        child: Text(
+                          'Update',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
@@ -442,15 +455,25 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   Expanded(
                     flex: 2,
-                    child: RaisedButton(
-                      color: Theme.of(context).errorColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      onPressed: () => Navigator.pop(context),
-                      child: Text(
-                        'Cancel',
-                        style: TextStyle(color: Colors.white),
+                    child: InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).errorColor,
+                          borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xFF000000).withOpacity(0.34),
+                              offset: Offset(0, 3),
+                              blurRadius: 6,
+                            )
+                          ],
+                        ),
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
