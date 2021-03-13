@@ -33,8 +33,8 @@ class _FacultiesPartState extends State<FacultiesPart> {
     return Column(
       children: [
         FacultiesDropDownList(listTitle: 'El-Shatby'),
-        FacultiesDropDownList(listTitle: 'Moharem Bek'),
-        FacultiesDropDownList(listTitle: 'El-Anfoshi'),
+        FacultiesDropDownList(listTitle: 'Moharem-Bek'),
+        FacultiesDropDownList(listTitle: 'El-Anfoshy'),
       ],
     );
   }
