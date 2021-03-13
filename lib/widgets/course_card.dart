@@ -1,6 +1,7 @@
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
+import 'package:elgam3a/screens/professor_screens/choose_course_time_screen.dart';
 import 'package:elgam3a/widgets/course_info_popup.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,18 @@ class CourseCard extends StatelessWidget {
       //     ),
       //   ),
       // ),
-      onTap: () => _addCourse(context),
+      onTap: () => user.type.toLowerCase() == 'student'
+          ? _addCourse(context)
+          : Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    ChangeNotifierProvider<CourseProvider>.value(
+                  value: provider,
+                  child: ChooseCourseTimeScreen(),
+                ),
+              ),
+            ),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).dividerColor.withOpacity(0.3),

@@ -13,6 +13,9 @@ class CourseModel {
     this.courseHours,
     this.isRequired,
     this.show,
+    this.students,
+    this.courseDepartment,
+    this.courseBuilding,
   });
 
   String courseName;
@@ -22,6 +25,7 @@ class CourseModel {
   List<String> courseAssistants = [];
   List<String> students = [];
   String courseLocation;
+  String courseBuilding;
   String courseDay;
   String courseTime;
   String courseDepartment;
@@ -34,6 +38,7 @@ class CourseModel {
     courseHours = m[CourseData.CREDIT_HOURS];
     courseCode = m[CourseData.CODE];
     courseDoctor = m[CourseData.DOCTOR];
+    courseBuilding = m[CourseData.BUILDING];
     if (m[CourseData.ASSISTANTS] != null)
       m[CourseData.ASSISTANTS].forEach((e) => courseAssistants.add(e));
     courseLocation = m[CourseData.LOCATION];
@@ -54,6 +59,7 @@ class CourseModel {
       CourseData.ASSISTANTS: courseAssistants ?? [],
       CourseData.STUDENTS: students ?? [],
       CourseData.LOCATION: courseLocation,
+      CourseData.BUILDING: courseBuilding,
       CourseData.DAY: courseDay,
       CourseData.TIME: courseTime,
       CourseData.HALL: courseHall,
@@ -61,5 +67,39 @@ class CourseModel {
       CourseData.REQUIRED: isRequired,
       CourseData.SHOW: show,
     };
+  }
+
+  CourseModel copyWith({
+    String courseName,
+    int courseHours,
+    String courseCode,
+    String courseDoctor,
+    List<String> courseAssistants,
+    List<String> students,
+    String courseLocation,
+    String courseDay,
+    String courseTime,
+    String courseDepartment,
+    int courseHall,
+    bool isRequired,
+    bool show,
+    String courseBuilding,
+  }) {
+    return CourseModel(
+      courseName: courseName ?? this.courseName,
+      courseHours: courseHours ?? this.courseHours,
+      courseCode: courseCode ?? this.courseCode,
+      courseDoctor: courseDoctor ?? this.courseDoctor,
+      courseAssistants: courseAssistants ?? this.courseAssistants,
+      students: students ?? this.students,
+      courseLocation: courseLocation ?? this.courseLocation,
+      courseDay: courseDay ?? this.courseDay,
+      courseTime: courseTime ?? this.courseTime,
+      courseDepartment: courseDepartment ?? this.courseDepartment,
+      courseHall: courseHall ?? this.courseHall,
+      isRequired: isRequired ?? this.isRequired,
+      courseBuilding: courseBuilding ?? this.courseBuilding,
+      show: show ?? this.show,
+    );
   }
 }
