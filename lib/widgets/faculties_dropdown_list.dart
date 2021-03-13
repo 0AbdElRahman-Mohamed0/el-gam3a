@@ -1,7 +1,6 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/schedule_course_provider.dart';
-import 'package:elgam3a/utilities/loading.dart';
 import 'package:flutter/material.dart';
 
 class FacultiesDropDownList extends StatefulWidget {
@@ -243,7 +242,7 @@ class LectureTimeInSchedule extends StatelessWidget {
                         ),
                   ),
                   Text(
-                    'Hall (${course.courseHall}) - Build (B)',
+                    'Hall (${course.courseHall}) - Build (${course.courseBuilding})',
                     style: Theme.of(context).textTheme.bodyText1.copyWith(
                           fontSize: 12.0,
                           fontWeight: FontWeight.w400,
