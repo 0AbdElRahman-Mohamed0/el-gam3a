@@ -106,4 +106,20 @@ class AuthProvider with ChangeNotifier {
     user.courses = List.of(tmp);
     notifyListeners();
   }
+
+  Future<void> getUserCourses(String day) async {
+    courses = [];
+
+    final _response =
+        await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
+    if (_response.data().isNotEmpty) {
+      user = UserModel.fromMap(_response.data());
+      courses.addAll(user.courses.where((element) =>
+          element.courseDay?.toUpperCase()?.substring(0, 3) == day));
+      notifyListeners();
+    } else {
+      print('api Error@userCourses');
+      throw 'error';
+    }
+  }
 }

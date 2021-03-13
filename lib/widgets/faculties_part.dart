@@ -14,10 +14,21 @@ class FacultiesPart extends StatefulWidget {
 
 class _FacultiesPartState extends State<FacultiesPart> {
   @override
+  void initState() {
+    super.initState();
+    initData();
+  }
+
+  initData() async {
+    await context.read<AuthProvider>().getUserCourses(widget.item.name);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final itemm = context.watch<ScheduleProvider>().item;
     print('day ${widget.item.name}');
-    final courses = context.watch<AuthProvider>().user.courses;
+    final courses = context.watch<AuthProvider>().courses;
+    print(courses.length);
 
     return Column(
       children: [
