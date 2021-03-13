@@ -21,6 +21,7 @@ class AuthProvider with ChangeNotifier {
   User get currentUser => auth.currentUser;
 
   UserModel user;
+  List<CourseModel> courses = [];
 
   isSignedIn() {
     return auth.currentUser != null;
@@ -104,5 +105,21 @@ class AuthProvider with ChangeNotifier {
     await Future.delayed(Duration(milliseconds: 500));
     user.courses = List.of(tmp);
     notifyListeners();
+  }
+
+  Future<void> getUserCourses(String day) async {
+    courses = [];
+
+    final _response =
+        await firestore.collection(UserData.USER_DATA_TABLE).doc(uid).get();
+    if (_response.data().isNotEmpty) {
+      user = UserModel.fromMap(_response.data());
+      courses.addAll(user.courses.where((element) =>
+          element.courseDay?.toUpperCase()?.substring(0, 3) == day));
+      notifyListeners();
+    } else {
+      print('api Error@userCourses');
+      throw 'error';
+    }
   }
 }

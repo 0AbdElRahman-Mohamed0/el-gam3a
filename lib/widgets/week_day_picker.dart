@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:selection_picker/selection_item.dart';
@@ -86,7 +87,7 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
             alignment: Alignment.center,
             margin: EdgeInsets.only(right: 5.0),
             child: InkWell(
-              onTap: () {
+              onTap: () async {
                 setState(() {
                   //// to make all the buttons not selected
                   // then make the selected day isSelected = true
@@ -99,6 +100,7 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
                   }
                   widget.onSelected(selectedDay);
                 });
+                await context.read<AuthProvider>().getUserCourses(item.name);
               },
               child: _setName(item.name),
 //              shape: CircleBorder(),

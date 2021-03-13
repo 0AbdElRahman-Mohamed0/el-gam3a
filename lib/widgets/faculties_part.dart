@@ -1,14 +1,38 @@
+import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/schedule_provider.dart';
 import 'package:elgam3a/widgets/faculties_dropdown_list.dart';
 import 'package:flutter/material.dart';
+import 'package:selection_picker/selection_item.dart';
 
-class FacultiesPart extends StatelessWidget {
-  final String day;
-  FacultiesPart({this.day});
+class FacultiesPart extends StatefulWidget {
+  final SelectionItem item;
+  FacultiesPart({this.item});
+
+  @override
+  _FacultiesPartState createState() => _FacultiesPartState();
+}
+
+class _FacultiesPartState extends State<FacultiesPart> {
+  @override
+  void initState() {
+    super.initState();
+    initData();
+  }
+
+  initData() async {
+    await context.read<AuthProvider>().getUserCourses(widget.item.name);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final itemm = context.watch<ScheduleProvider>().item;
+    print('day ${widget.item.name}');
+    final courses = context.watch<AuthProvider>().courses;
+    print(courses.length);
+
     return Column(
       children: [
-        FacultiesDropDownList(listTitle: 'El-Shatbi'),
+        FacultiesDropDownList(listTitle: 'El-Shatby'),
         FacultiesDropDownList(listTitle: 'Moharem Bek'),
         FacultiesDropDownList(listTitle: 'El-Anfoshi'),
       ],
