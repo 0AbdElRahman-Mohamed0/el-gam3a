@@ -38,6 +38,7 @@ class _ChooseCourseTimeScreenState extends State<ChooseCourseTimeScreen> {
       courseHall: _hall.id,
       courseLocation: _faculty.name,
       courseBuilding: _hall.building,
+      courseDoctor: user.name,
     );
     context
         .read<DepartmentsProvider>()
