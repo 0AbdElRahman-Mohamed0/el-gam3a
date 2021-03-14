@@ -26,8 +26,7 @@ class CourseDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.37,
+                    width: double.infinity,
                     padding: EdgeInsets.all(24),
                     color: Colors.white,
                     child: Column(
@@ -120,30 +119,33 @@ class CourseDetailsScreen extends StatelessWidget {
                           height: 16,
                         ),
                         Row(
+                          children: [
+                            Text(
+                              'Day',
+                              style: TextStyle(
+                                color: Color(0xFF2699FB).withOpacity(0.5),
+                                fontSize: 12,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              '${courseDetails.courseDay}',
+                              style: TextStyle(
+                                color: Color(0xFF2699FB),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'Day',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB).withOpacity(0.5),
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 4,
-                                ),
-                                Text(
-                                  '${courseDetails.courseDay}',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
                             Row(
                               children: [
                                 Text(
@@ -156,26 +158,12 @@ class CourseDetailsScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 4,
                                 ),
-                                Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: courseDetails.courseTime,
-                                        style: TextStyle(
-                                          color: Color(0xFF2699FB),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'pm',
-                                        style: TextStyle(
-                                          color: Color(0xFF2699FB),
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
+                                Text(
+                                  courseDetails.courseTime,
+                                  style: TextStyle(
+                                    color: Color(0xFF2699FB),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ],
@@ -193,7 +181,25 @@ class CourseDetailsScreen extends StatelessWidget {
                                   width: 4,
                                 ),
                                 Text(
-                                  courseDetails.courseHall.toString(),
+                                  '(${courseDetails.courseHall}) - ',
+                                  style: TextStyle(
+                                    color: Color(0xFF2699FB),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Build',
+                                  style: TextStyle(
+                                    color: Color(0xFF2699FB).withOpacity(0.5),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  '(${courseDetails.courseBuilding})',
                                   style: TextStyle(
                                     color: Color(0xFF2699FB),
                                     fontSize: 14,

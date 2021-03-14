@@ -1,11 +1,15 @@
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
+import 'package:elgam3a/screens/course_details_screen.dart';
 import 'package:elgam3a/screens/professor_screens/choose_course_time_screen.dart';
 import 'package:elgam3a/widgets/course_info_popup.dart';
 import 'package:flutter/material.dart';
 
 class CourseCard extends StatelessWidget {
+  final bool viewDetails;
+  CourseCard({this.viewDetails = false});
+
   _addCourse(BuildContext context) {
     final provider = context.read<CourseProvider>();
     final course = provider.course;
@@ -22,27 +26,29 @@ class CourseCard extends StatelessWidget {
     final provider = context.watch<CourseProvider>();
     final course = provider.course;
     return GestureDetector(
-      // onTap: () => Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => ChangeNotifierProvider<CourseProvider>.value(
-      //       value: provider,
-      //       child: CourseDetailsScreen(),
-      //     ),
-      //   ),
-      // ),
-      onTap: () => user.type.toLowerCase() == 'student'
-          ? _addCourse(context)
-          : Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    ChangeNotifierProvider<CourseProvider>.value(
-                  value: provider,
-                  child: ChooseCourseTimeScreen(),
+      onTap: viewDetails
+          ? () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ChangeNotifierProvider<CourseProvider>.value(
+                    value: provider,
+                    child: CourseDetailsScreen(),
+                  ),
                 ),
-              ),
-            ),
+              )
+          : () => user.type.toLowerCase() == 'student'
+              ? _addCourse(context)
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ChangeNotifierProvider<CourseProvider>.value(
+                      value: provider,
+                      child: ChooseCourseTimeScreen(),
+                    ),
+                  ),
+                ),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).dividerColor.withOpacity(0.3),

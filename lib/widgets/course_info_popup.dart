@@ -98,29 +98,32 @@ class CourseInfoPopUp extends StatelessWidget {
             height: 16,
           ),
           Row(
+            children: [
+              Text(
+                'Day',
+                style: Theme.of(context).textTheme.headline5.copyWith(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w400,
+                    ),
+              ),
+              SizedBox(
+                width: 4,
+              ),
+              Text(
+                '${courseDetails?.courseDay}',
+                style: Theme.of(context).textTheme.headline1.copyWith(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 18,
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Text(
-                    'Day',
-                    style: Theme.of(context).textTheme.headline5.copyWith(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w400,
-                        ),
-                  ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    '${courseDetails?.courseDay}',
-                    style: Theme.of(context).textTheme.headline1.copyWith(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w700,
-                        ),
-                  ),
-                ],
-              ),
               Row(
                 children: [
                   Text(
@@ -133,25 +136,12 @@ class CourseInfoPopUp extends StatelessWidget {
                   SizedBox(
                     width: 4,
                   ),
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: courseDetails.courseTime,
-                          style: Theme.of(context).textTheme.headline1.copyWith(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w700,
-                              ),
+                  Text(
+                    courseDetails.courseTime,
+                    style: Theme.of(context).textTheme.headline1.copyWith(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w700,
                         ),
-                        TextSpan(
-                          text: 'pm',
-                          style: Theme.of(context).textTheme.headline5.copyWith(
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                        ),
-                      ],
-                    ),
                   ),
                 ],
               ),
@@ -168,7 +158,24 @@ class CourseInfoPopUp extends StatelessWidget {
                     width: 4,
                   ),
                   Text(
-                    courseDetails.courseHall.toString(),
+                    '(${courseDetails.courseHall}) - ',
+                    style: Theme.of(context).textTheme.headline1.copyWith(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                  Text(
+                    'Build',
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w400,
+                        ),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    '(${courseDetails.courseBuilding})',
                     style: Theme.of(context).textTheme.headline1.copyWith(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w700,
