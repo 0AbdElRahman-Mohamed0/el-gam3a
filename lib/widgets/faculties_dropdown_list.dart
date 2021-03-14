@@ -47,7 +47,7 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
 
   @override
   Widget build(BuildContext context) {
-    final courses = context.watch<AuthProvider>().courses;
+    final courses = context.watch<AuthProvider>().mySchedule;
     final collegeCourses =
         courses.where((element) => element.courseLocation == widget.listTitle);
     return collegeCourses.isEmpty

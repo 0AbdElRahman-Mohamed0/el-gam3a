@@ -16,18 +16,20 @@ class _FacultiesPartState extends State<FacultiesPart> {
   @override
   void initState() {
     super.initState();
-    initData();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      initData();
+    });
   }
 
   initData() async {
-    await context.read<AuthProvider>().getUserCourses(widget.item.name);
+    await context.read<AuthProvider>().getScheduleCourses(widget.item.name);
   }
 
   @override
   Widget build(BuildContext context) {
     final itemm = context.watch<ScheduleProvider>().item;
     print('day ${widget.item.name}');
-    final courses = context.watch<AuthProvider>().courses;
+    final courses = context.watch<AuthProvider>().mySchedule;
     print(courses.length);
 
     return Column(

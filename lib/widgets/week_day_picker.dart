@@ -100,7 +100,9 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
                   }
                   widget.onSelected(selectedDay);
                 });
-                await context.read<AuthProvider>().getUserCourses(item.name);
+                await context
+                    .read<AuthProvider>()
+                    .getScheduleCourses(item.name);
               },
               child: _setName(item.name),
 //              shape: CircleBorder(),
