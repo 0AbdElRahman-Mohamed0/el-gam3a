@@ -13,18 +13,8 @@ class ShowPicturePopUp extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            color: const Color(0xffffffff),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0x1a000000),
-                offset: Offset(0, 3),
-                blurRadius: 4,
-              ),
-            ],
-          ),
+        Hero(
+          tag: 'user/image',
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: InteractiveViewer(

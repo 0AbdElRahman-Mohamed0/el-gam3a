@@ -42,11 +42,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       if (user?.imageUrl?.isNotEmpty ?? false) ...{
                         InkWell(
-                          onTap: () => showDialog(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                ShowPicturePopUp(user.imageUrl),
-                          ),
+                          // onTap: () => showDialog(
+                          //   context: context,
+                          //   builder: (BuildContext context) =>
+                          //       ShowPicturePopUp(user.imageUrl),
+                          // ),
+                          onTap: () => Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                  opaque: false,
+                                  barrierDismissible: true,
+                                  barrierColor: Colors.black.withOpacity(0.5),
+                                  pageBuilder: (BuildContext context, _, __) {
+                                    return ShowPicturePopUp(user.imageUrl);
+                                  })),
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
@@ -59,24 +68,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ],
                             ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: CachedNetworkImage(
-                                imageUrl: '${user.imageUrl}',
-                                height: 112,
-                                width: 112,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
+                            child: Hero(
+                              tag: 'user/image',
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: CachedNetworkImage(
+                                  imageUrl: '${user.imageUrl}',
+                                  height: 112,
+                                  width: 112,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
+                                  placeholder: (context, url) =>
+                                      LoadingWidget(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
                                 ),
-                                placeholder: (context, url) => LoadingWidget(),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
                               ),
                             ),
                           ),
