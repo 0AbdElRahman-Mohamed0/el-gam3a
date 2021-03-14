@@ -50,7 +50,6 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
     final courses = context.watch<AuthProvider>().courses;
     final collegeCourses =
         courses.where((element) => element.courseLocation == widget.listTitle);
-    print('collegeCourses ${collegeCourses.length}');
     return collegeCourses.isEmpty
         ? SizedBox()
         : Column(
