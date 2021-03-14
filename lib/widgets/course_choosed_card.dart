@@ -6,8 +6,13 @@ import 'package:flutter/material.dart';
 class CourseChoosedCard extends StatelessWidget {
   _removeCourse(BuildContext context) {
     final course = context.read<CourseProvider>().course;
-    context.read<DepartmentsProvider>().updateDepHours(course: course, type: 1);
-    context.read<AuthProvider>().removeCourse(course);
+    final user = context.read<AuthProvider>().user;
+    if (user.courses.length != 1) {
+      context
+          .read<DepartmentsProvider>()
+          .updateDepHours(course: course, type: 1);
+      context.read<AuthProvider>().removeCourse(course);
+    }
   }
 
   @override
