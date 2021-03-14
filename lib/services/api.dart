@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elgam3a/models/department_model.dart';
+import 'package:elgam3a/models/faculty_model.dart';
+import 'package:elgam3a/models/hall_model.dart';
 import 'package:elgam3a/services/vars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -71,6 +73,31 @@ class ApiProvider {
         .doc(departmentID)
         .update({
       DepartmentData.COURSES: courses.map((course) => course.toMap()).toList(),
+    });
+  }
+
+  Future<List<FacultyModel>> getFaculties() async {
+    final _response =
+        await firestore.collection(FacultyData.FACULTY_TABLE).get();
+    if (_response.docs.isNotEmpty) {
+      final List<FacultyModel> _faculties = [];
+      _response.docs.forEach((element) {
+        _faculties.add(FacultyModel.fromMap(element.data()));
+      });
+      return _faculties;
+    } else {
+      print('api Error@getFaculties');
+      // Err
+      throw _response.docs;
+    }
+  }
+
+  Future<void> updateHall(List<HallModel> halls, String facultyID) async {
+    await firestore
+        .collection(FacultyData.FACULTY_TABLE)
+        .doc(facultyID)
+        .update({
+      FacultyData.HALLS: halls.map((hall) => hall.toMap()).toList(),
     });
   }
 }

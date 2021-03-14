@@ -1,5 +1,8 @@
 import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/faculties_provider.dart';
 import 'package:elgam3a/screens/home_screen.dart';
+import 'package:elgam3a/widgets/error_pop_up.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,6 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _isSignIn();
+      _getFaculties();
     });
   }
 
@@ -39,6 +43,27 @@ class _SplashScreenState extends State<SplashScreen> {
         builder: (context) => LoginScreen(),
       ),
     );
+  }
+
+  _getFaculties() async {
+    try {
+      await context.read<FacultiesProvider>().getFaculties();
+    } on FirebaseException catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => ErrorPopUp(
+            message: 'Something went wrong, please try again \n ${e.message}'),
+      );
+    } catch (e, s) {
+      print(e);
+      print(s);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => ErrorPopUp(
+            message:
+                'Something went wrong, please try again \n ${e.toString()}'),
+      );
+    }
   }
 
   @override

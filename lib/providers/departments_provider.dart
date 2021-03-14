@@ -1,10 +1,8 @@
+import 'package:elgam3a/models/course_model.dart';
 import 'package:elgam3a/models/department_model.dart';
+import 'package:elgam3a/models/user_model.dart';
 import 'package:elgam3a/services/api.dart';
 import 'package:flutter/material.dart';
-
-import '../models/course_model.dart';
-import '../models/department_model.dart';
-import '../models/user_model.dart';
 
 export 'package:provider/provider.dart';
 
@@ -51,7 +49,12 @@ class DepartmentsProvider with ChangeNotifier {
           final tmp = majorDepartment.courses
               .firstWhere((element) => element.courseCode == course.courseCode);
           if (user.type.toLowerCase() == 'professor') {
-            tmp.courseDoctor = '${user.name}';
+            tmp.courseDoctor = user.name;
+            tmp.courseDay = course.courseDay;
+            tmp.courseTime = course.courseTime;
+            tmp.courseHall = course.courseHall;
+            tmp.courseLocation = course.courseLocation;
+            tmp.courseBuilding = course.courseBuilding;
           } else {
             tmp.students.add(user.name);
           }
@@ -68,7 +71,12 @@ class DepartmentsProvider with ChangeNotifier {
           final tmp = minorDepartment.courses
               .firstWhere((element) => element.courseCode == course.courseCode);
           if (user.type.toLowerCase() == 'professor') {
-            tmp.courseDoctor = '${user.name}';
+            tmp.courseDoctor = user.name;
+            tmp.courseDay = course.courseDay;
+            tmp.courseTime = course.courseTime;
+            tmp.courseHall = course.courseHall;
+            tmp.courseLocation = course.courseLocation;
+            tmp.courseBuilding = course.courseBuilding;
           } else {
             tmp.students.add(user.name);
           }
@@ -83,7 +91,12 @@ class DepartmentsProvider with ChangeNotifier {
         final tmp = college.courses
             .firstWhere((element) => element.courseCode == course.courseCode);
         if (user.type.toLowerCase() == 'professor') {
-          tmp.courseDoctor = '${user.name}';
+          tmp.courseDoctor = user.name;
+          tmp.courseDay = course.courseDay;
+          tmp.courseTime = course.courseTime;
+          tmp.courseHall = course.courseHall;
+          tmp.courseLocation = course.courseLocation;
+          tmp.courseBuilding = course.courseBuilding;
         } else {
           tmp.students.add(user.name);
         }
@@ -98,11 +111,15 @@ class DepartmentsProvider with ChangeNotifier {
         final tmp = university.courses
             .firstWhere((element) => element.courseCode == course.courseCode);
         if (user.type.toLowerCase() == 'professor') {
-          tmp.courseDoctor = '${user.name}';
+          tmp.courseDoctor = user.name;
+          tmp.courseDay = course.courseDay;
+          tmp.courseTime = course.courseTime;
+          tmp.courseHall = course.courseHall;
+          tmp.courseLocation = course.courseLocation;
+          tmp.courseBuilding = course.courseBuilding;
         } else {
           tmp.students.add(user.name);
         }
-
         await updateEachCourse(tmp, university);
       }
     }

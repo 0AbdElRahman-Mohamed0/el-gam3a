@@ -2,6 +2,7 @@ import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/providers/department_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
+import 'package:elgam3a/providers/faculties_provider.dart';
 import 'package:elgam3a/utilities/loading.dart';
 import 'package:elgam3a/widgets/course_choosed_card.dart';
 import 'package:elgam3a/widgets/register_course_widget.dart';
