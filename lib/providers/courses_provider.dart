@@ -21,7 +21,7 @@ class CoursesProvider extends ChangeNotifier {
   filterData(String facultyName, int hallID) async {
     filteredCourses = null;
     notifyListeners();
-    await Future.delayed(Duration(milliseconds: 500));a
+    await Future.delayed(Duration(milliseconds: 500));
     filteredCourses = List.of(courses.where((element) =>
         element.courseLocation == facultyName && element.courseHall == hallID));
     notifyListeners();
