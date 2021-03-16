@@ -130,7 +130,7 @@ class _HallScheduleScreenState extends State<HallScheduleScreen> {
                             return Padding(
                               padding: EdgeInsets.only(top: 150),
                               child: Text(
-                                'There are no courses today',
+                                'There are no courses this day',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1
