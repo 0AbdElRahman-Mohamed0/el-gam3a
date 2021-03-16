@@ -1,4 +1,5 @@
 import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/providers/faculties_provider.dart';
 import 'package:elgam3a/screens/home_screen.dart';
 import 'package:elgam3a/widgets/error_pop_up.dart';
@@ -20,6 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _isSignIn();
       _getFaculties();
+      _getGeneralCourses();
     });
   }
 
@@ -43,6 +45,10 @@ class _SplashScreenState extends State<SplashScreen> {
         builder: (context) => LoginScreen(),
       ),
     );
+  }
+
+  _getGeneralCourses() async {
+    await context.read<CoursesProvider>().getCourseGeneral();
   }
 
   _getFaculties() async {

@@ -14,11 +14,6 @@ class _HallScheduleScreenState extends State<HallScheduleScreen> {
   void initState() {
     super.initState();
     _resetFilter();
-    _getData();
-  }
-
-  _getData() async {
-    await context.read<CoursesProvider>().getCourseGeneral();
     _filterData();
   }
 
