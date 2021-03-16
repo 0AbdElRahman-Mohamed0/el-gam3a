@@ -71,67 +71,80 @@ class _HallScheduleScreenState extends State<HallScheduleScreen> {
           ? Center(
               child: LoadingWidget(),
             )
-          : Column(
-              children: [
-                WeekDayPicker(
-                  items: days,
-                  textColor: Color(0xff050737),
-                  showTitle: true,
-                  title: Text(
-                    "Week days",
-                    style: Theme.of(context).textTheme.headline1,
+          : filteredCourses.isEmpty
+              ? Center(
+                  child: Text(
+                    'There are no courses',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        .copyWith(fontSize: 20, fontWeight: FontWeight.w700),
                   ),
-                  //// with opacity 38%
-                  backgroundColorSelected:
-                      Theme.of(context).shadowColor.withOpacity(0.5),
-                  onSelected: (item) {
-                    //// to check which day is selected
+                )
+              : Column(
+                  children: [
+                    WeekDayPicker(
+                      items: days,
+                      textColor: Color(0xff050737),
+                      showTitle: true,
+                      title: Text(
+                        "Week days",
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
+                      //// with opacity 38%
+                      backgroundColorSelected:
+                          Theme.of(context).shadowColor.withOpacity(0.5),
+                      onSelected: (item) {
+                        //// to check which day is selected
 //              setState(() {
-                    day = item.name;
-                    setState(() {
-                      selectedItem = item;
-                    });
-                    print('${selectedItem.name} - ${selectedItem.isSelected}');
+                        day = item.name;
+                        setState(() {
+                          selectedItem = item;
+                        });
+                        print(
+                            '${selectedItem.name} - ${selectedItem.isSelected}');
 
 //                item.isSelected = true;
 //              });
-                    //  TODO: change screen
-                  },
-                  alignment: Alignment.center,
-                ),
-                Divider(
-                  color: Theme.of(context).dividerColor,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 18, horizontal: 24),
-                  child: Column(
-                    children: filteredCourses.map(
-                      (course) {
-                        if (course.courseDay
-                            .toLowerCase()
-                            .contains(selectedItem.name.toLowerCase())) {
-                          return ChangeNotifierProvider<CourseProvider>(
-                            create: (_) => CourseProvider(course),
-                            child: HallScheduleCard(),
-                          );
-                        }
-                        return Padding(
-                          padding: EdgeInsets.only(top: 150),
-                          child: Text(
-                            'There are no courses today',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText1
-                                .copyWith(
-                                    fontSize: 20, fontWeight: FontWeight.w700),
-                          ),
-                        );
+                        //  TODO: change screen
                       },
-                    ).toList(),
-                  ),
+                      alignment: Alignment.center,
+                    ),
+                    Divider(
+                      color: Theme.of(context).dividerColor,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 24),
+                      child: Column(
+                        children: filteredCourses.map(
+                          (course) {
+                            if (course.courseDay
+                                .toLowerCase()
+                                .contains(selectedItem.name.toLowerCase())) {
+                              return ChangeNotifierProvider<CourseProvider>(
+                                create: (_) => CourseProvider(course),
+                                child: HallScheduleCard(),
+                              );
+                            }
+                            return Padding(
+                              padding: EdgeInsets.only(top: 150),
+                              child: Text(
+                                'There are no courses today',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    .copyWith(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700),
+                              ),
+                            );
+                          },
+                        ).toList(),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
     );
   }
 }
