@@ -13,12 +13,17 @@ class _HallScheduleScreenState extends State<HallScheduleScreen> {
   @override
   void initState() {
     super.initState();
+    _resetFilter();
     _getData();
   }
 
   _getData() async {
     await context.read<CoursesProvider>().getCourseGeneral();
     _filterData();
+  }
+
+  _resetFilter() {
+    context.read<CoursesProvider>().resetFilter();
   }
 
   _filterData() {
@@ -34,9 +39,24 @@ class _HallScheduleScreenState extends State<HallScheduleScreen> {
     final filteredCourses = context.watch<CoursesProvider>().filteredCourses;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Hall $hall ($facultyName)',
-          style: Theme.of(context).appBarTheme.textTheme.headline1,
+        title: Row(
+          children: [
+            Text(
+              'Hall $hall',
+              style: Theme.of(context).appBarTheme.textTheme.headline1,
+            ),
+            SizedBox(
+              width: 4,
+            ),
+            Text(
+              '($facultyName)',
+              style: Theme.of(context)
+                  .appBarTheme
+                  .textTheme
+                  .headline1
+                  .copyWith(fontSize: 12),
+            ),
+          ],
         ),
       ),
       body: filteredCourses == null
