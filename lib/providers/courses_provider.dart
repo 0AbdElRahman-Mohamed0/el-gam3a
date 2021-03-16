@@ -1,144 +1,29 @@
 import 'package:elgam3a/models/course_model.dart';
+import 'package:elgam3a/services/api.dart';
 import 'package:flutter/material.dart';
 
 export 'package:provider/provider.dart';
 
 class CoursesProvider extends ChangeNotifier {
-  List<CourseModel> courses = [];
+  final ApiProvider _api = ApiProvider.instance;
+  List<CourseModel> courses;
+  List<CourseModel> filteredCourses;
 
-  getCourses() {
-    courses.add(
-      CourseModel(
-        courseDoctor: 'Ahmed Younis',
-        courseCode: 'Cs 309',
-        courseDay: 'Sunday',
-        courseHall: 5,
-        courseName: 'Data Science and Mining',
-        courseTime: '3:00',
-        courseLocation: 'El-shatby',
-        isRequired: true,
-        courseAssistants: ['Sara Anwer', 'Yostina Nabil'],
-        courseHours: 3,
-      ),
-    );
+  Future<void> addCourseGeneral(CourseModel course) async {
+    await _api.addCourseGeneral(course);
+  }
 
-    courses.add(
-      CourseModel(
-        courseDoctor: 'Shimaa Aly',
-        courseCode: 'Cs 205',
-        courseDay: 'Monday',
-        courseHall: 2,
-        courseName: 'Operating Systems',
-        courseTime: '2:30',
-        courseLocation: 'El-shatby',
-        isRequired: false,
-        courseAssistants: ['Ahmed Ramadan', 'Ahmed Saleh'],
-        courseHours: 2,
-      ),
-    );
+  Future<void> getCourseGeneral() async {
+    courses = await _api.getCourseGeneral();
+    notifyListeners();
+  }
 
-    courses.add(
-      CourseModel(
-        courseDoctor: 'Yasser Fouad',
-        courseCode: 'Cs 401',
-        courseDay: 'Monday',
-        courseHall: 5,
-        courseName: 'Graphics',
-        courseTime: '12:00',
-        courseLocation: 'Moharem bek',
-        isRequired: false,
-        courseAssistants: ['Doha'],
-        courseHours: 3,
-      ),
-    );
-    courses.add(
-      CourseModel(
-        courseDoctor: 'Ahmed Younis',
-        courseCode: 'Cs 309',
-        courseDay: 'Sunday',
-        courseHall: 5,
-        courseName: 'Data Science and Mining',
-        courseTime: '3:00',
-        courseLocation: 'El-shatby',
-        isRequired: true,
-        courseAssistants: ['Sara Anwer', 'Yostina Nabil'],
-        courseHours: 3,
-      ),
-    );
-
-    courses.add(
-      CourseModel(
-        courseDoctor: 'Shimaa Aly',
-        courseCode: 'Cs 205',
-        courseDay: 'Monday',
-        courseHall: 2,
-        courseName: 'Operating Systems',
-        courseTime: '2:30',
-        courseLocation: 'El-shatby',
-        isRequired: false,
-        courseAssistants: ['Ahmed Ramadan', 'Ahmed Saleh'],
-        courseHours: 2,
-      ),
-    );
-
-    courses.add(
-      CourseModel(
-        courseDoctor: 'Yasser Fouad',
-        courseCode: 'Cs 401',
-        courseDay: 'Monday',
-        courseHall: 5,
-        courseName: 'Graphics',
-        courseTime: '12:00',
-        courseLocation: 'Moharem bek',
-        isRequired: false,
-        courseAssistants: ['Doha'],
-        courseHours: 3,
-      ),
-    );
-    courses.add(
-      CourseModel(
-        courseDoctor: 'Ahmed Younis',
-        courseCode: 'Cs 309',
-        courseDay: 'Sunday',
-        courseHall: 5,
-        courseName: 'Data Science and Mining',
-        courseTime: '3:00',
-        courseLocation: 'El-shatby',
-        isRequired: true,
-        courseAssistants: ['Sara Anwer', 'Yostina Nabil'],
-        courseHours: 3,
-      ),
-    );
-
-    courses.add(
-      CourseModel(
-        courseDoctor: 'Shimaa Aly',
-        courseCode: 'Cs 205',
-        courseDay: 'Monday',
-        courseHall: 2,
-        courseName: 'Operating Systems',
-        courseTime: '2:30',
-        courseLocation: 'El-shatby',
-        isRequired: false,
-        courseAssistants: ['Ahmed Ramadan', 'Ahmed Saleh'],
-        courseHours: 2,
-      ),
-    );
-
-    courses.add(
-      CourseModel(
-        courseDoctor: 'Yasser Fouad',
-        courseCode: 'Cs 401',
-        courseDay: 'Monday',
-        courseHall: 5,
-        courseName: 'Graphics',
-        courseTime: '12:00',
-        courseLocation: 'Moharem bek',
-        isRequired: false,
-        courseAssistants: ['Doha'],
-        courseHours: 3,
-      ),
-    );
+  filterData(String facultyName, int hallID) async {
+    filteredCourses = null;
+    notifyListeners();
+    await Future.delayed(Duration(milliseconds: 500));a
+    filteredCourses = List.of(courses.where((element) =>
+        element.courseLocation == facultyName && element.courseHall == hallID));
     notifyListeners();
   }
 }

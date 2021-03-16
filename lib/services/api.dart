@@ -100,4 +100,28 @@ class ApiProvider {
       FacultyData.HALLS: halls.map((hall) => hall.toMap()).toList(),
     });
   }
+
+  Future<void> addCourseGeneral(CourseModel course) async {
+    final _response =
+        await firestore.collection('course_data').add(course.toMap());
+    await firestore
+        .collection('course_data')
+        .doc(_response.id)
+        .update({'id': _response.id});
+  }
+
+  Future<List<CourseModel>> getCourseGeneral() async {
+    final _response = await firestore.collection('course_data').get();
+    if (_response.docs.isNotEmpty) {
+      final List<CourseModel> _courses = [];
+      _response.docs.forEach((element) {
+        _courses.add(CourseModel.fromMap(element.data()));
+      });
+      return _courses;
+    } else {
+      print('api Error@getCourseGeneral');
+      // Err
+      throw _response.docs;
+    }
+  }
 }

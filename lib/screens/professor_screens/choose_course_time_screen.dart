@@ -3,6 +3,7 @@ import 'package:elgam3a/models/faculty_model.dart';
 import 'package:elgam3a/models/hall_model.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
+import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/providers/faculties_provider.dart';
 import 'package:elgam3a/utilities/loading.dart';
@@ -44,8 +45,11 @@ class _ChooseCourseTimeScreenState extends State<ChooseCourseTimeScreen> {
         .read<DepartmentsProvider>()
         .updateDepHours(course: provider.course, user: user, type: 0);
     context.read<AuthProvider>().addCourse(provider.course);
-    await context.read<FacultiesProvider>().updateHallTimes(
-        time: _time, hall: _hall, faculty: _faculty, day: _day);
+    await Future.wait({
+      context.read<CoursesProvider>().addCourseGeneral(provider.course),
+      context.read<FacultiesProvider>().updateHallTimes(
+          time: _time, hall: _hall, faculty: _faculty, day: _day),
+    });
     Navigator.pop(context);
     Navigator.pop(context);
   }

@@ -1,5 +1,6 @@
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
+import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/providers/department_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/providers/faculties_provider.dart';

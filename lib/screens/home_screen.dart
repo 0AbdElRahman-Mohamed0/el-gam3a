@@ -1,9 +1,14 @@
+import 'package:elgam3a/providers/auth_provider.dart';
+import 'package:elgam3a/providers/hall_provider.dart';
 import 'package:elgam3a/screens/courses_screen.dart';
+import 'package:elgam3a/screens/hall_schedule_screen.dart';
 import 'package:elgam3a/screens/profile_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
 import 'package:elgam3a/widgets/leave_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,6 +23,20 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfileScreen(),
   ];
 
+  _qrScan() async {
+    await Permission.camera.request();
+    final qrResult = await scanner.scan();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChangeNotifierProvider<HallProvider>(
+          create: (_) => HallProvider(hallDetails: qrResult),
+          child: HallScheduleScreen(),
+        ),
+      ),
+    );
+  }
+
   _youWantLeave() {
     showDialog(
       context: context,
@@ -31,6 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
       onWillPop: () => _youWantLeave(),
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: _qrScan,
+            icon: Icon(Icons.qr_code_scanner),
+          ),
           title: _selectedIndex == 0
               ? Text(
                   'My Schedule',
