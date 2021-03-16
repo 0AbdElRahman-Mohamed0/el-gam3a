@@ -28,7 +28,6 @@ class Utilities {
 // expanded = false
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
-  GlobalKey<ScaffoldState> drawerKey = GlobalKey();
   String day;
   List<SelectionItem> days = [];
   SelectionItem selectedItem;
