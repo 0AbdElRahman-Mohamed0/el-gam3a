@@ -80,7 +80,7 @@ class CourseCard extends StatelessWidget {
                                       .textTheme
                                       .headline1
                                       .copyWith(
-                                          fontSize: 14.0,
+                                          fontSize: 16.0,
                                           fontWeight: FontWeight.w700),
                                 ),
                                 TextSpan(
@@ -92,7 +92,7 @@ class CourseCard extends StatelessWidget {
                                       .textTheme
                                       .headline1
                                       .copyWith(
-                                          fontSize: 12.0,
+                                          fontSize: 14.0,
                                           fontWeight: FontWeight.w700),
                                 ),
                               ],
@@ -106,7 +106,7 @@ class CourseCard extends StatelessWidget {
                                   .textTheme
                                   .headline5
                                   .copyWith(
-                                      fontSize: 12.0,
+                                      fontSize: 14.0,
                                       fontWeight: FontWeight.w700),
                             ),
                           },
@@ -122,7 +122,7 @@ class CourseCard extends StatelessWidget {
                                     .textTheme
                                     .headline5
                                     .copyWith(
-                                        fontSize: 12.0,
+                                        fontSize: 14.0,
                                         fontWeight: FontWeight.w400),
                               ),
                             },

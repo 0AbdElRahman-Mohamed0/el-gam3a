@@ -32,12 +32,28 @@ class _FacultiesPartState extends State<FacultiesPart> {
     final courses = context.watch<AuthProvider>().mySchedule;
     print(courses.length);
 
-    return Column(
-      children: [
-        FacultiesDropDownList(listTitle: 'El-Shatby'),
-        FacultiesDropDownList(listTitle: 'Moharem-Bek'),
-        FacultiesDropDownList(listTitle: 'El-Anfoshy'),
-      ],
-    );
+    return courses.isEmpty
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 150),
+                  child: Text(
+                    'Day OFF',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        .copyWith(fontSize: 20, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ])
+        : Column(
+            children: [
+              FacultiesDropDownList(listTitle: 'El-Shatby'),
+              FacultiesDropDownList(listTitle: 'Moharem-Bek'),
+              FacultiesDropDownList(listTitle: 'El-Anfoshy'),
+            ],
+          );
   }
 }

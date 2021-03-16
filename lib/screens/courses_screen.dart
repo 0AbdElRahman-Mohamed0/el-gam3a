@@ -45,7 +45,7 @@ class CoursesScreen extends StatelessWidget {
                       child: Text(
                         'Add and remove',
                         style: Theme.of(context).textTheme.button.copyWith(
-                              fontSize: 12.0,
+                              fontSize: 14.0,
                               fontWeight: FontWeight.w700,
                             ),
                       ),

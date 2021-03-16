@@ -32,10 +32,19 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: _selectedIndex == 0
-              ? Text('My Schedule')
+              ? Text(
+                  'My Schedule',
+                  style: Theme.of(context).appBarTheme.textTheme.headline1,
+                )
               : _selectedIndex == 1
-                  ? Text('Courses')
-                  : Text('Profile'),
+                  ? Text(
+                      'Courses',
+                      style: Theme.of(context).appBarTheme.textTheme.headline1,
+                    )
+                  : Text(
+                      'Profile',
+                      style: Theme.of(context).appBarTheme.textTheme.headline1,
+                    ),
         ),
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(

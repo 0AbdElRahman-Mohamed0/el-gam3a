@@ -37,7 +37,7 @@ class CourseChoosedCard extends StatelessWidget {
                         TextSpan(
                           text: '${course.courseCode}',
                           style: Theme.of(context).textTheme.button.copyWith(
-                              fontSize: 12.0, fontWeight: FontWeight.w700),
+                              fontSize: 14.0, fontWeight: FontWeight.w700),
                         ),
                         TextSpan(text: ' '),
                         TextSpan(
@@ -48,7 +48,7 @@ class CourseChoosedCard extends StatelessWidget {
                                   .button
                                   .color
                                   .withOpacity(0.5),
-                              fontSize: 12.0,
+                              fontSize: 14.0,
                               fontWeight: FontWeight.w700),
                         ),
                         TextSpan(text: ' '),

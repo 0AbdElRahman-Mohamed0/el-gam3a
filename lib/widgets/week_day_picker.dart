@@ -129,13 +129,13 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
       return Text(
         name.substring(0, 3),
         style: TextStyle(
-            color: colorItem, fontWeight: FontWeight.bold, fontSize: 15.0),
+            color: colorItem, fontWeight: FontWeight.w700, fontSize: 16.0),
       );
     }
     return Text(
       name,
       style: TextStyle(
-          color: colorItem, fontWeight: FontWeight.bold, fontSize: 17.0),
+          color: colorItem, fontWeight: FontWeight.w700, fontSize: 16.0),
     );
   }
 

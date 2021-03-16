@@ -39,7 +39,7 @@ class _TextDataFieldState extends State<TextDataField> {
       children: [
         Text(
           '${widget.labelName}',
-          style: Theme.of(context).textTheme.headline2.copyWith(fontSize: 16),
+          style: Theme.of(context).textTheme.headline2.copyWith(fontSize: 18),
         ),
         SizedBox(
           height: 6,
@@ -64,7 +64,8 @@ class _TextDataFieldState extends State<TextDataField> {
               vertical: 17.6,
             ),
             hintText: widget.hintText,
-            hintStyle: Theme.of(context).textTheme.headline2,
+            hintStyle:
+                Theme.of(context).textTheme.headline2.copyWith(fontSize: 20),
             isDense: true,
             filled: true,
             fillColor: Theme.of(context).backgroundColor,

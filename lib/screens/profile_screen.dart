@@ -131,6 +131,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             Text(
                               '${user?.name ?? ''}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline2
+                                  .copyWith(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                               overflow: TextOverflow.ellipsis,
                             ),
                             SizedBox(
@@ -145,7 +152,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               child: Text(
                                 '${user.type}',
-                                style: TextStyle(color: Colors.white),
+                                style:
+                                    Theme.of(context).textTheme.button.copyWith(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                               ),
                             ),
                             SizedBox(
@@ -175,7 +186,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       vertical: 10.0, horizontal: 14),
-                                  child: Text('Edit Data'),
+                                  child: Text(
+                                    'Edit Data',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -249,7 +269,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     child: Text(
                       'Logout',
-                      style: TextStyle(color: Colors.white),
+                      style: Theme.of(context)
+                          .textTheme
+                          .button
+                          .copyWith(fontSize: 16, fontWeight: FontWeight.w400),
                     ),
                   ),
                 ),
@@ -279,7 +302,7 @@ class UserData extends StatelessWidget {
                 '$dataTitle : ',
                 style: Theme.of(context).textTheme.headline4.copyWith(
                       fontFamily: 'SF Mono',
-                      fontSize: 14,
+                      fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
               ),
@@ -288,7 +311,7 @@ class UserData extends StatelessWidget {
                   '$dataValue',
                   style: Theme.of(context).textTheme.headline1.copyWith(
                         fontFamily: 'SF Pro Display',
-                        fontSize: 14,
+                        fontSize: 16,
                         fontWeight: FontWeight.w300,
                       ),
                   overflow: TextOverflow.ellipsis,

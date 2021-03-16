@@ -44,7 +44,7 @@ class _InputTextState extends State<InputText> {
         onSaved: onSaved,
         validator: validator,
         style: Theme.of(context).textTheme.bodyText1.copyWith(
-              fontSize: 20.0,
+              fontSize: 22.0,
               fontWeight: FontWeight.w400,
             ),
         maxLength: maxLength,
@@ -86,9 +86,10 @@ class _InputTextState extends State<InputText> {
           //// If inputType is password write a hint password else check if
           //// Person is a student put hint university number else put hint university code
 
-          hintStyle: TextStyle(
-            color: Colors.grey,
-          ),
+          hintStyle: Theme.of(context).textTheme.subtitle2.copyWith(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w400,
+              ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(18.0),

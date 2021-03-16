@@ -11,6 +11,7 @@ class AppTheme {
     disabledColor: Color(0xFF515C6F),
     buttonColor: Color(0xFFE5E5ED),
     errorColor: Color(0xFFFF5858),
+    fontFamily: 'Calibri',
 
     ///////////
 //    primaryColor: Color(0xFF425B53),
@@ -23,17 +24,23 @@ class AppTheme {
 //    shadowColor: Color(0xFF000000).withOpacity(0.1),
     appBarTheme: AppBarTheme(
       color: Color(0xFF64668E),
+      textTheme: TextTheme(
+        headline1: TextStyle(
+            color: Color(0xFFFFFFFF),
+            fontSize: 22,
+            fontWeight: FontWeight.w700),
+      ),
     ),
 
     textTheme: TextTheme(
       headline1: TextStyle(
-        fontSize: 18.0,
-        fontWeight: FontWeight.bold,
+        fontSize: 20.0,
+        fontWeight: FontWeight.w700,
         color: Color(0xff3A3B61),
       ),
       headline2: TextStyle(
         fontSize: 18.0,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w700,
         color: Color(0xff151719),
       ),
       headline3: TextStyle(
@@ -43,7 +50,6 @@ class AppTheme {
       ),
       headline4: TextStyle(
         color: Color(0xff64668E),
-//        fontFamily: 'Bahij TheSansArabic',
       ),
       headline5: TextStyle(
         color: Color(0xff3A3B61).withOpacity(0.5),
@@ -56,6 +62,12 @@ class AppTheme {
       ),
       subtitle1: TextStyle(
         color: Color(0xffB0B1C6),
+      ),
+      subtitle2: TextStyle(
+        color: Colors.grey,
+      ),
+      caption: TextStyle(
+        color: Colors.white.withOpacity(0.5),
       ),
     ),
 //    textTheme: TextTheme(

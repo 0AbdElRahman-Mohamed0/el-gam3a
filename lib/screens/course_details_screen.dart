@@ -7,9 +7,14 @@ class CourseDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final courseDetails = context.watch<CourseProvider>().course;
     return Scaffold(
-      backgroundColor: Color(0xFFF1F9FF),
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        title: Text(courseDetails.courseCode),
+        title: Text(
+          '${courseDetails.courseCode}',
+          style: Theme.of(context).appBarTheme.textTheme.headline1.copyWith(
+                fontSize: 20,
+              ),
+        ),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -37,35 +42,29 @@ class CourseDetailsScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     'Required',
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .primaryColor
-                                            .withOpacity(0.5),
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w400),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline5
+                                        .copyWith(
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.w400),
                                   ),
                                   SizedBox(height: 16.0),
                                 ],
                               )
                             : SizedBox(),
                         Text(
-                          courseDetails.courseName,
-                          style: TextStyle(
-                            color: Color(0xFF2699FB),
-                            fontSize: 20,
-                            fontWeight: FontWeight.normal,
-                          ),
+                          '${courseDetails.courseName}',
+                          style: Theme.of(context).textTheme.headline4.copyWith(
+                              fontSize: 22.0, fontWeight: FontWeight.w400),
                         ),
                         SizedBox(
                           height: 4,
                         ),
                         Text(
-                          courseDetails.courseCode,
-                          style: TextStyle(
-                            color: Color(0xFF2699FB),
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          '${courseDetails.courseCode}',
+                          style: Theme.of(context).textTheme.headline1.copyWith(
+                              fontSize: 22.0, fontWeight: FontWeight.w700),
                         ),
                         SizedBox(
                           height: 12,
@@ -78,18 +77,23 @@ class CourseDetailsScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   'Doctor',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB).withOpacity(0.5),
-                                    fontSize: 12,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                 ),
                                 Text(
                                   'Dr ${courseDetails.courseDoctor}',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      .copyWith(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                               ],
                             ),
@@ -98,18 +102,23 @@ class CourseDetailsScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   'Location',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB).withOpacity(0.5),
-                                    fontSize: 12,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                 ),
                                 Text(
                                   '${courseDetails.courseLocation}',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      .copyWith(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                               ],
                             ),
@@ -122,21 +131,26 @@ class CourseDetailsScreen extends StatelessWidget {
                           children: [
                             Text(
                               'Day',
-                              style: TextStyle(
-                                color: Color(0xFF2699FB).withOpacity(0.5),
-                                fontSize: 12,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  .copyWith(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                             ),
                             SizedBox(
                               width: 4,
                             ),
                             Text(
                               '${courseDetails.courseDay}',
-                              style: TextStyle(
-                                color: Color(0xFF2699FB),
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  .copyWith(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                             ),
                           ],
                         ),
@@ -150,21 +164,26 @@ class CourseDetailsScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   'Time',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB).withOpacity(0.5),
-                                    fontSize: 12,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                 ),
                                 SizedBox(
                                   width: 4,
                                 ),
                                 Text(
-                                  courseDetails.courseTime,
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  '${courseDetails.courseTime}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      .copyWith(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                               ],
                             ),
@@ -172,39 +191,49 @@ class CourseDetailsScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   'Hall',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB).withOpacity(0.5),
-                                    fontSize: 12,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                 ),
                                 SizedBox(
                                   width: 4,
                                 ),
                                 Text(
                                   '(${courseDetails.courseHall}) - ',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      .copyWith(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                                 Text(
                                   'Build',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB).withOpacity(0.5),
-                                    fontSize: 12,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                 ),
                                 SizedBox(
                                   width: 4,
                                 ),
                                 Text(
                                   '(${courseDetails.courseBuilding})',
-                                  style: TextStyle(
-                                    color: Color(0xFF2699FB),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1
+                                      .copyWith(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                               ],
                             ),
@@ -215,11 +244,10 @@ class CourseDetailsScreen extends StatelessWidget {
                         ),
                         Text(
                           'Section',
-                          style: TextStyle(
-                            color: Color(0xFF2699FB),
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.headline1.copyWith(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                         SizedBox(
                           height: 8,
@@ -238,20 +266,21 @@ class CourseDetailsScreen extends StatelessWidget {
                             );
                           },
                           height: MediaQuery.of(context).size.height * 0.055,
-                          color: Color(0xFFBCE0FD).withOpacity(0.5),
+                          color:
+                              Theme.of(context).dividerColor.withOpacity(0.3),
                           buttonTitle: 'No section selected',
-                          buttonTitleStyle: TextStyle(
-                            color: Color(0xFF2699FB).withOpacity(0.5),
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          buttonTitleStyle:
+                              Theme.of(context).textTheme.headline5.copyWith(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                           tail: Text(
                             'Join section',
-                            style: TextStyle(
-                              color: Color(0xFF2699FB),
-                              fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.headline1.copyWith(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                           ),
                         ),
                       ],
@@ -267,45 +296,46 @@ class CourseDetailsScreen extends StatelessWidget {
                       height: 20,
                       width: 20,
                       decoration: BoxDecoration(
-                        color: Color(0xFF2699FB),
+                        color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Center(
                         child: Text(
                           '2',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                          style: Theme.of(context).textTheme.button.copyWith(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
                         ),
                       ),
                     ),
                     color: Colors.white,
                     buttonTitle: 'Community',
-                    buttonTitleStyle: TextStyle(
-                      color: Color(0xFF2699FB),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    buttonTitleStyle:
+                        Theme.of(context).textTheme.headline1.copyWith(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w700,
+                            ),
                   ),
                   SizedBox(
                     height: 16,
                   ),
                   CustomButton(
-                    height: MediaQuery.of(context).size.height * 0.065,
+                    height: MediaQuery.of(context).size.height * 0.09,
                     onPressed: () {},
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     buttonTitle: 'Lectures',
                     buttonSubTitle: '10 Lectures',
-                    buttonTitleStyle: TextStyle(
-                      color: Color(0xFF2699FB),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    buttonSubTitleStyle: TextStyle(
-                      color: Color(0xFF2699FB).withOpacity(0.5),
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    buttonTitleStyle:
+                        Theme.of(context).textTheme.headline1.copyWith(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                    buttonSubTitleStyle:
+                        Theme.of(context).textTheme.headline5.copyWith(
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w700,
+                            ),
                   ),
                   SizedBox(
                     height: 16,
@@ -313,13 +343,13 @@ class CourseDetailsScreen extends StatelessWidget {
                   CustomButton(
                     height: MediaQuery.of(context).size.height * 0.065,
                     onPressed: () {},
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     buttonTitle: 'Quizzes',
-                    buttonTitleStyle: TextStyle(
-                      color: Color(0xFF2699FB),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    buttonTitleStyle:
+                        Theme.of(context).textTheme.headline1.copyWith(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w700,
+                            ),
                   ),
                   SizedBox(
                     height: 16,
@@ -327,23 +357,23 @@ class CourseDetailsScreen extends StatelessWidget {
                   CustomButton(
                     height: MediaQuery.of(context).size.height * 0.065,
                     onPressed: () {},
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     buttonTitle: 'Sheets',
-                    buttonTitleStyle: TextStyle(
-                      color: Color(0xFF2699FB),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    buttonTitleStyle:
+                        Theme.of(context).textTheme.headline1.copyWith(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w700,
+                            ),
                   ),
                   SizedBox(
                     height: 16,
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.23,
+                    height: MediaQuery.of(context).size.height * 0.27,
                     width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Color(0xFFBCE0FD).withOpacity(0.5),
+                      color: Theme.of(context).dividerColor.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -351,24 +381,24 @@ class CourseDetailsScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Prerequisite',
-                          style: TextStyle(
-                            color: Color(0xFF2699FB),
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.headline4.copyWith(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                         SizedBox(
                           height: 16,
                         ),
                         InfoCard(
-                          height: MediaQuery.of(context).size.height * 0.07,
-                          color: Color(0xFF2699FB),
+                          height: MediaQuery.of(context).size.height * 0.08,
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.8),
                           courseTitle: 'Algorithms',
-                          buttonTitleStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          buttonTitleStyle:
+                              Theme.of(context).textTheme.button.copyWith(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                           courseCode: 'CS 302',
                           courseHours: 2,
                         ),
@@ -376,14 +406,15 @@ class CourseDetailsScreen extends StatelessWidget {
                           height: 8,
                         ),
                         InfoCard(
-                          height: MediaQuery.of(context).size.height * 0.07,
-                          color: Color(0xFF2699FB),
+                          height: MediaQuery.of(context).size.height * 0.08,
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.8),
                           courseTitle: 'Data Mining',
-                          buttonTitleStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          buttonTitleStyle:
+                              Theme.of(context).textTheme.button.copyWith(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                           courseCode: 'CS 420',
                           courseHours: 3,
                         ),
@@ -458,8 +489,8 @@ class CustomButton extends StatelessWidget {
             tail == null
                 ? Icon(
                     Icons.arrow_forward_ios,
-                    color: Color(0xFF2699FB),
-                    size: 15,
+                    color: Theme.of(context).primaryColor,
+                    size: 16,
                   )
                 : Row(
                     children: [
@@ -469,8 +500,8 @@ class CustomButton extends StatelessWidget {
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
-                        color: Color(0xFF2699FB),
-                        size: 15,
+                        color: Theme.of(context).primaryColor,
+                        size: 16,
                       ),
                     ],
                   ),
@@ -513,7 +544,7 @@ class InfoCard extends StatelessWidget {
           Column(
             children: [
               Text(
-                courseTitle,
+                '$courseTitle',
                 style: buttonTitleStyle,
               ),
               SizedBox(
@@ -522,23 +553,21 @@ class InfoCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    courseCode,
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.5),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    '$courseCode',
+                    style: Theme.of(context).textTheme.caption.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
                   ),
                   SizedBox(
                     width: 8,
                   ),
                   Text(
                     '$courseHours hr',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.button.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
                   ),
                 ],
               ),
@@ -548,11 +577,10 @@ class InfoCard extends StatelessWidget {
             children: [
               Text(
                 'Done',
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.5),
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.caption.copyWith(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               SizedBox(
                 width: 6,
@@ -560,7 +588,7 @@ class InfoCard extends StatelessWidget {
               Icon(
                 Icons.lock,
                 color: Colors.white.withOpacity(0.5),
-                size: 15,
+                size: 16,
               ),
             ],
           ),

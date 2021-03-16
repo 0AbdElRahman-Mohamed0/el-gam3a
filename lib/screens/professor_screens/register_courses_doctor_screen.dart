@@ -66,9 +66,10 @@ class _RegisterCoursesDoctorScreenState
           title: Text(
             'Register Your Courses',
             style: Theme.of(context)
+                .appBarTheme
                 .textTheme
-                .button
-                .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
+                .headline1
+                .copyWith(fontSize: 20),
           ),
           actions: [
             if (user.courses?.isNotEmpty ?? false) ...{
@@ -81,11 +82,23 @@ class _RegisterCoursesDoctorScreenState
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0xFF000000).withOpacity(0.16),
+                            offset: Offset(0, 3),
+                            blurRadius: 6,
+                          )
+                        ]),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    child: Text('Register'),
+                    child: Text(
+                      'Register',
+                      style: Theme.of(context)
+                          .textTheme
+                          .button
+                          .copyWith(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
                   ),
                 ),
               ),
@@ -126,8 +139,8 @@ class _RegisterCoursesDoctorScreenState
                       children: [
                         Expanded(
                           child: Container(
-                            height: (MediaQuery.of(context).size.height * 100) /
-                                667,
+//                            height: (MediaQuery.of(context).size.height * 100) /
+//                                667,
                             margin: EdgeInsets.only(right: 8.0),
                             decoration: BoxDecoration(
                               color: Theme.of(context)
@@ -146,7 +159,7 @@ class _RegisterCoursesDoctorScreenState
                                         .textTheme
                                         .headline1
                                         .copyWith(
-                                          fontSize: 14.0,
+                                          fontSize: 16.0,
                                           fontWeight: FontWeight.w400,
                                         ),
                                   ),
@@ -157,7 +170,7 @@ class _RegisterCoursesDoctorScreenState
                                         .textTheme
                                         .headline1
                                         .copyWith(
-                                            fontSize: 48.0,
+                                            fontSize: 50.0,
                                             fontWeight: FontWeight.w700),
                                   ),
                                 ],
@@ -198,7 +211,7 @@ class _RegisterCoursesDoctorScreenState
                                             .textTheme
                                             .button
                                             .copyWith(
-                                              fontSize: 14.0,
+                                              fontSize: 16.0,
                                               fontWeight: FontWeight.w700,
                                             ),
                                       ),
@@ -208,7 +221,7 @@ class _RegisterCoursesDoctorScreenState
                                             .textTheme
                                             .button
                                             .copyWith(
-                                              fontSize: 14.0,
+                                              fontSize: 16.0,
                                               fontWeight: FontWeight.w700,
                                             ),
                                       ),
@@ -229,7 +242,7 @@ class _RegisterCoursesDoctorScreenState
                                                   .textTheme
                                                   .button
                                                   .copyWith(
-                                                      fontSize: 14.0,
+                                                      fontSize: 16.0,
                                                       fontWeight:
                                                           FontWeight.w700),
                                             ),
@@ -244,7 +257,7 @@ class _RegisterCoursesDoctorScreenState
                                                           .button
                                                           .color
                                                           .withOpacity(0.5),
-                                                      fontSize: 14.0,
+                                                      fontSize: 16.0,
                                                       fontWeight:
                                                           FontWeight.w700),
                                             ),
@@ -258,7 +271,7 @@ class _RegisterCoursesDoctorScreenState
                                               text: '$universityHours',
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 14.0,
+                                                  fontSize: 16.0,
                                                   fontWeight: FontWeight.w700),
                                             ),
                                             TextSpan(
@@ -266,7 +279,7 @@ class _RegisterCoursesDoctorScreenState
                                               style: TextStyle(
                                                   color: Colors.white
                                                       .withOpacity(0.5),
-                                                  fontSize: 14.0,
+                                                  fontSize: 16.0,
                                                   fontWeight: FontWeight.w700),
                                             ),
                                           ],
@@ -303,12 +316,12 @@ class _RegisterCoursesDoctorScreenState
                       unselectedLabelColor:
                           Theme.of(context).primaryColor.withOpacity(0.5),
                       labelStyle: Theme.of(context).textTheme.button.copyWith(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.w700,
                           ),
                       unselectedLabelStyle:
                           Theme.of(context).textTheme.headline5.copyWith(
-                                fontSize: 14,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w700,
                               ),
                       tabs: [

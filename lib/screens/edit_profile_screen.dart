@@ -199,7 +199,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final user = context.watch<AuthProvider>().user;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit your data'),
+        title: Text(
+          'Edit your data',
+          style: Theme.of(context)
+              .appBarTheme
+              .textTheme
+              .headline1
+              .copyWith(fontSize: 20),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
@@ -411,7 +418,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               onTap: _changePassword,
                               child: Padding(
                                 padding: EdgeInsets.all(5.0),
-                                child: Text('Change password'),
+                                child: Text(
+                                  'Change password',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline2
+                                      .copyWith(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                ),
                               ),
                             ),
                     ],
@@ -445,7 +461,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         child: Text(
                           'Update',
-                          style: TextStyle(color: Colors.white),
+                          style: Theme.of(context).textTheme.button.copyWith(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
                         ),
                       ),
                     ),
@@ -472,7 +491,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         child: Text(
                           'Cancel',
-                          style: TextStyle(color: Colors.white),
+                          style: Theme.of(context).textTheme.button.copyWith(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
                         ),
                       ),
                     ),

@@ -18,7 +18,7 @@ class LeavePopUp extends StatelessWidget {
           SizedBox(height: 24.0),
           Text(
             'Do you want to close app ?',
-            style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 12),
+            style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 14),
           ),
           SizedBox(height: 24.0),
           Row(
@@ -42,9 +42,10 @@ class LeavePopUp extends StatelessWidget {
                   ),
                   child: Text(
                     'Yes',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                    style: Theme.of(context).textTheme.button.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
                   ),
                 ),
               ),
@@ -67,9 +68,10 @@ class LeavePopUp extends StatelessWidget {
                   ),
                   child: Text(
                     'No',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                    style: Theme.of(context).textTheme.button.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
                   ),
                 ),
               ),

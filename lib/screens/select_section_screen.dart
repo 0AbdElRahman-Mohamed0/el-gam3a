@@ -8,14 +8,11 @@ class SelectSectionScreen extends StatelessWidget {
     final courseDetails = context.watch<CourseProvider>().course;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: Text(
           '${courseDetails.courseCode} Section',
-          style: TextStyle(
-            color: Color(0xFF2699FB),
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).appBarTheme.textTheme.headline1.copyWith(
+                fontSize: 20,
+              ),
         ),
         centerTitle: true,
       ),
@@ -32,22 +29,20 @@ class SelectSectionScreen extends StatelessWidget {
               children: [
                 Text(
                   '${courseDetails.courseCode} Section',
-                  style: TextStyle(
-                    color: Color(0xFF2699FB),
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.headline1.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
                 ),
                 SizedBox(
                   height: 16,
                 ),
                 Text(
                   'it while be an easy semester with this course, hope you enjoy the section',
-                  style: TextStyle(
-                    color: Color(0xFF2699FB).withOpacity(0.65),
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
+                  style: Theme.of(context).textTheme.headline5.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -68,28 +63,31 @@ class SelectSectionScreen extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.0),
-                      color: Color(0xFF2699FB),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xFF000000).withOpacity(0.34),
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        )
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Join',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 14),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18.0),
+                        color: Theme.of(context).cardColor,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0xFF000000).withOpacity(0.34),
+                            offset: Offset(0, 3),
+                            blurRadius: 6,
+                          )
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Join',
+                          style: Theme.of(context).textTheme.button.copyWith(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                       ),
                     ),

@@ -78,8 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
             title: Text(
               'El-Gam3a',
               style: Theme.of(context).textTheme.button.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25.0,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 26.0,
                   ),
             ),
           ),
@@ -141,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       'Forgot your password ?',
                       style: Theme.of(context).textTheme.headline1.copyWith(
-                            fontSize: 12.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w500,
                           ),
                     ),
@@ -191,7 +191,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Center(
                         child: Text(
                           'Login',
-                          style: Theme.of(context).textTheme.button,
+                          style: Theme.of(context).textTheme.button.copyWith(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
                         ),
                       ),
                     ),

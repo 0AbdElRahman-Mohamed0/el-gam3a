@@ -84,7 +84,7 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                           clockwise: false,
                           startIconColor: Color(0xFF707070).withOpacity(0.54),
                           endIconColor: Color(0xFF707070).withOpacity(0.54),
-                          size: 25.0,
+                          size: 24.0,
                           startTooltip: '',
                           endTooltip: '',
                           onEndIconPress: () {
@@ -130,15 +130,19 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                                             .textTheme
                                             .headline4
                                             .copyWith(
-                                              fontSize: 14,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w700,
                                             ),
                                       ),
                                       Text(
-                                          '(${collegeCourses.length} lectures)',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline3)
+                                        '(${collegeCourses.length} lectures)',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline3
+                                            .copyWith(
+                                              fontSize: 14,
+                                            ),
+                                      )
                                     ],
                             ),
                           ),
@@ -161,13 +165,19 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                                       .textTheme
                                       .headline4
                                       .copyWith(
-                                        fontSize: 14,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w700,
                                       ),
                                 ),
-                                Text('(2 sections)',
-                                    style:
-                                        Theme.of(context).textTheme.headline3),
+                                Text(
+                                  '(2 sections)',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3
+                                      .copyWith(
+                                        fontSize: 14,
+                                      ),
+                                ),
                               ],
                             ),
                           ),
@@ -209,7 +219,7 @@ class LectureTimeInSchedule extends StatelessWidget {
                   Text(
                     '${course.courseName}', //'Machine learning'
                     style: Theme.of(context).textTheme.bodyText1.copyWith(
-                          fontSize: 12.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.w700,
                         ),
                   ),
@@ -217,7 +227,7 @@ class LectureTimeInSchedule extends StatelessWidget {
                       ? Text(
                           'Dr. ${course.courseDoctor}',
                           style: Theme.of(context).textTheme.bodyText1.copyWith(
-                              fontSize: 12.0, fontWeight: FontWeight.w400),
+                              fontSize: 14.0, fontWeight: FontWeight.w400),
                         )
                       : SizedBox(),
                 ],
@@ -237,14 +247,14 @@ class LectureTimeInSchedule extends StatelessWidget {
                   Text(
                     '${course.courseTime}',
                     style: Theme.of(context).textTheme.bodyText1.copyWith(
-                          fontSize: 12.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.w700,
                         ),
                   ),
                   Text(
                     'Hall (${course.courseHall}) - Build (${course.courseBuilding})',
                     style: Theme.of(context).textTheme.bodyText1.copyWith(
-                          fontSize: 12.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.w400,
                         ),
                   ),
