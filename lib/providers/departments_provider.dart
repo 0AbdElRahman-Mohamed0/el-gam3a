@@ -134,6 +134,66 @@ class DepartmentsProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> removeProfFromCourse(CourseModel course) async {
+    if (majorDepartment != null) {
+      if (majorDepartment.courses
+              .where((element) => element.courseCode == course.courseCode)
+              ?.isNotEmpty ??
+          false) {
+        final tmp = majorDepartment.courses
+            .firstWhere((element) => element.courseCode == course.courseCode);
+        tmp.courseDoctor = null;
+        majorDepartment.courses
+            .removeWhere((e) => e.courseCode == course.courseCode);
+        majorDepartment.courses.add(tmp);
+
+        await updateEachCourse(tmp, majorDepartment);
+      }
+    }
+
+    if (minorDepartment != null) {
+      if (minorDepartment.courses
+              .where((element) => element.courseCode == course.courseCode)
+              ?.isNotEmpty ??
+          false) {
+        final tmp = minorDepartment.courses
+            .firstWhere((element) => element.courseCode == course.courseCode);
+        tmp.courseDoctor = null;
+        minorDepartment.courses
+            .removeWhere((e) => e.courseCode == course.courseCode);
+        minorDepartment.courses.add(tmp);
+
+        await updateEachCourse(tmp, minorDepartment);
+      }
+    }
+
+    if (college.courses
+        .where((element) => element.courseCode == course.courseCode)
+        .isNotEmpty) {
+      final tmp = college.courses
+          .firstWhere((element) => element.courseCode == course.courseCode);
+      tmp.courseDoctor = null;
+      college.courses.removeWhere((e) => e.courseCode == course.courseCode);
+      college.courses.add(tmp);
+
+      await updateEachCourse(tmp, college);
+    }
+
+    if (university.courses
+            .where((element) => element.courseCode == course.courseCode)
+            ?.isNotEmpty ??
+        false) {
+      final tmp = university.courses
+          .firstWhere((element) => element.courseCode == course.courseCode);
+      tmp.courseDoctor = null;
+      university.courses.removeWhere((e) => e.courseCode == course.courseCode);
+      university.courses.add(tmp);
+
+      await updateEachCourse(tmp, university);
+    }
+    notifyListeners();
+  }
+
   updateDepHours({CourseModel course, UserModel user, int type}) async {
     if (type == 0 &&
         user.courses
@@ -187,5 +247,63 @@ class DepartmentsProvider with ChangeNotifier {
       notifyListeners();
       return;
     }
+  }
+
+  getUserDepHours(UserModel user) async {
+    if (user.courses != null) {
+      if (user.courses.isEmpty) return;
+    }
+    if (user.courses == null) {
+      return;
+    }
+    for (CourseModel course in user.courses) {
+      if (majorDepartment != null) {
+        if (majorDepartment.courses
+                .where((element) => element.courseCode == course.courseCode)
+                ?.isNotEmpty ??
+            false) {
+          final tmp = majorDepartment.courses
+              .where((element) => element.courseCode == course.courseCode);
+          for (CourseModel course in tmp) {
+            majorDepartmentHours += course.courseHours;
+          }
+        }
+      }
+
+      if (minorDepartment != null) {
+        if (minorDepartment.courses
+                .where((element) => element.courseCode == course.courseCode)
+                ?.isNotEmpty ??
+            false) {
+          final tmp = minorDepartment.courses
+              .where((element) => element.courseCode == course.courseCode);
+          for (CourseModel course in tmp) {
+            minorDepartmentHours += course.courseHours;
+          }
+        }
+      }
+
+      if (college.courses
+          .where((element) => element.courseCode == course.courseCode)
+          .isNotEmpty) {
+        final tmp = college.courses
+            .where((element) => element.courseCode == course.courseCode);
+        for (CourseModel course in tmp) {
+          collegeHours += course.courseHours;
+        }
+      }
+
+      if (university.courses
+              .where((element) => element.courseCode == course.courseCode)
+              ?.isNotEmpty ??
+          false) {
+        final tmp = university.courses
+            .where((element) => element.courseCode == course.courseCode);
+        for (CourseModel course in tmp) {
+          universityHours += course.courseHours;
+        }
+      }
+    }
+    notifyListeners();
   }
 }

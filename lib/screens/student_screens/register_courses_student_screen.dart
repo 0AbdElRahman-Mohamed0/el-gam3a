@@ -38,6 +38,7 @@ class _RegisterCoursesStudentScreenState
           .getCoursesDataByMinorDepartmentName(user.minor),
       context.read<DepartmentsProvider>().getCoursesDataGeneral(),
     });
+    context.read<DepartmentsProvider>().getUserDepHours(user);
     _isLoading = false;
     setState(() {});
   }
@@ -49,6 +50,7 @@ class _RegisterCoursesStudentScreenState
       context.read<DepartmentsProvider>().updateCourse(user),
       context.read<AuthProvider>().updateUserData(user),
     });
+    Navigator.pop(context);
     Navigator.pop(context);
   }
 
@@ -74,7 +76,7 @@ class _RegisterCoursesStudentScreenState
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Register Your Courses',
+            'Register Courses',
             style: Theme.of(context)
                 .textTheme
                 .button

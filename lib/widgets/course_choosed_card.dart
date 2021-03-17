@@ -1,10 +1,11 @@
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
+import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:flutter/material.dart';
 
 class CourseChoosedCard extends StatelessWidget {
-  _removeCourse(BuildContext context) {
+  _removeCourse(BuildContext context) async {
     final course = context.read<CourseProvider>().course;
     final user = context.read<AuthProvider>().user;
     if (user.courses.length != 1) {
@@ -12,6 +13,12 @@ class CourseChoosedCard extends StatelessWidget {
           .read<DepartmentsProvider>()
           .updateDepHours(course: course, type: 1);
       context.read<AuthProvider>().removeCourse(course);
+      if (user.type.toLowerCase() == 'professor') {
+        await Future.wait({
+          context.read<DepartmentsProvider>().removeProfFromCourse(course),
+          context.read<CoursesProvider>().removeCourseGeneral(course),
+        });
+      }
     }
   }
 
