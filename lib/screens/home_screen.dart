@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:quiver/strings.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -26,15 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
   _qrScan() async {
     await Permission.camera.request();
     final qrResult = await scanner.scan();
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider<HallProvider>(
-          create: (_) => HallProvider(hallDetails: qrResult),
-          child: HallScheduleScreen(),
+    if (isNotBlank(qrResult)) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider<HallProvider>(
+            create: (_) => HallProvider(hallDetails: qrResult),
+            child: HallScheduleScreen(),
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   _youWantLeave() {
@@ -50,10 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
       onWillPop: () => _youWantLeave(),
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: _qrScan,
-            icon: Icon(Icons.qr_code_scanner),
-          ),
           title: _selectedIndex == 0
               ? Text(
                   'My Schedule',
@@ -68,6 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       'Profile',
                       style: Theme.of(context).appBarTheme.textTheme.headline1,
                     ),
+          actions: [
+            IconButton(
+              onPressed: _qrScan,
+              icon: Icon(Icons.qr_code_scanner),
+            ),
+          ],
         ),
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(

@@ -23,6 +23,7 @@ dependencies:
   google_nav_bar: ^4.0.2
   qrscan: ^0.2.22
   permission_handler: ^5.1.0+2
+  quiver: ^2.1.5
   #Firebase
   firebase_core: ^0.5.2
   firebase_auth: ^0.18.3
