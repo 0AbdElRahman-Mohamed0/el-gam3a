@@ -69,6 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
           actions: [
             IconButton(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               onPressed: _qrScan,
               icon: Icon(Icons.qr_code_scanner),
             ),
