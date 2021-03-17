@@ -147,11 +147,26 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        title: Text(
-          '${course.courseCode}',
-          style: Theme.of(context).appBarTheme.textTheme.headline1.copyWith(
-                fontSize: 20,
-              ),
+        title: Row(
+          children: [
+            Text(
+              '${course.courseName}',
+              style: Theme.of(context).appBarTheme.textTheme.headline1.copyWith(
+                    fontSize: 20,
+                  ),
+            ),
+            SizedBox(
+              width: 4,
+            ),
+            Text(
+              '(${course.courseCode})',
+              style: Theme.of(context)
+                  .appBarTheme
+                  .textTheme
+                  .headline1
+                  .copyWith(fontSize: 12),
+            ),
+          ],
         ),
         centerTitle: true,
         elevation: 0.0,
