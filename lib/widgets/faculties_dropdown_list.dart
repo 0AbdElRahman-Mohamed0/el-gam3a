@@ -54,29 +54,30 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
         ? SizedBox()
         : Column(
             children: [
-              Container(
-                height: 50.0,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border(
-                    bottom: showList
-                        ? BorderSide.none
-                        : BorderSide(
-                            color: Color(0xFF707070).withOpacity(0.16),
-                          ),
+              InkWell(
+                onTap: _handleOnPressed,
+                child: Container(
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                      bottom: showList
+                          ? BorderSide.none
+                          : BorderSide(
+                              color: Color(0xFF707070).withOpacity(0.16),
+                            ),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 16.0, right: 26.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        listTitle,
-                        style: Theme.of(context).textTheme.headline1,
-                      ),
-                      IconButton(
-                        icon: AnimateIcons(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 16.0, right: 26.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          listTitle,
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
+                        AnimateIcons(
                           startIcon: Icons.keyboard_arrow_down,
                           endIcon: Icons.keyboard_arrow_up,
                           controller: _animationController,
@@ -102,9 +103,8 @@ class _FacultiesDropDownListState extends State<FacultiesDropDownList>
                             return true;
                           },
                         ),
-                        onPressed: () => _handleOnPressed(),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
