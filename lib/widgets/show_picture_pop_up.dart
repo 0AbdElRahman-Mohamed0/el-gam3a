@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class ShowPicturePopUp extends StatelessWidget {
   final String image;
-  ShowPicturePopUp(this.image);
+  final String tag;
+  ShowPicturePopUp({this.image, this.tag});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class ShowPicturePopUp extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Hero(
-          tag: 'user/image',
+          tag: '$tag',
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: InteractiveViewer(

@@ -49,7 +49,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   barrierDismissible: true,
                                   barrierColor: Colors.black.withOpacity(0.5),
                                   pageBuilder: (BuildContext context, _, __) {
-                                    return ShowPicturePopUp(user.imageUrl);
+                                    return ShowPicturePopUp(
+                                      image: user.imageUrl,
+                                      tag: 'user/image',
+                                    );
                                   })),
                           child: Container(
                             decoration: BoxDecoration(

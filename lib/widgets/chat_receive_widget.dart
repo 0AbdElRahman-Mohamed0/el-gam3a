@@ -35,7 +35,10 @@ class ChatReceiveWidget extends StatelessWidget {
                       barrierDismissible: true,
                       barrierColor: Colors.black.withOpacity(0.5),
                       pageBuilder: (BuildContext context, _, __) {
-                        return ShowPicturePopUp(message.imageUrl);
+                        return ShowPicturePopUp(
+                          image: message.imageUrl,
+                          tag: 'message/image/${message.id}',
+                        );
                       })),
               child: Container(
                 constraints: BoxConstraints(
