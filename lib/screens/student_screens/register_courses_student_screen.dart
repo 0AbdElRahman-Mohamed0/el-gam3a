@@ -75,7 +75,7 @@ class _RegisterCoursesStudentScreenState
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Register Your Courses',
+            'Register Courses',
             style: Theme.of(context)
                 .textTheme
                 .button

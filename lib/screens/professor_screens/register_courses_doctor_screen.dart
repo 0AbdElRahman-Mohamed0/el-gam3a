@@ -66,7 +66,7 @@ class _RegisterCoursesDoctorScreenState
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Register Your Courses',
+            'Register Courses',
             style: Theme.of(context)
                 .appBarTheme
                 .textTheme
