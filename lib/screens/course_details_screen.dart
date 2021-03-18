@@ -1,11 +1,52 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elgam3a/models/course_model.dart';
 import 'package:elgam3a/providers/course_provider.dart';
+import 'package:elgam3a/screens/chat_screen.dart';
 import 'package:elgam3a/screens/select_section_screen.dart';
 import 'package:flutter/material.dart';
 
-class CourseDetailsScreen extends StatelessWidget {
+class CourseDetailsScreen extends StatefulWidget {
+  @override
+  _CourseDetailsScreenState createState() => _CourseDetailsScreenState();
+}
+
+class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
+  final firestore = FirebaseFirestore.instance;
+
+  selectChat(BuildContext context, CourseModel course) async {
+    try {
+      final chats = await firestore
+          .collection('chats')
+          .where('courseCode', isEqualTo: course.courseCode)
+          .get();
+      if (chats.docs.isEmpty) {
+        final DocumentReference data = await firestore.collection('chats').add({
+          'courseCode': course.courseCode,
+          'created_at': DateTime.now(),
+          'updated_at': DateTime.now()
+        });
+      }
+
+      final provider = context.read<CourseProvider>();
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => ChangeNotifierProvider<CourseProvider>.value(
+            value: provider,
+            child: ChatScreen(),
+          ),
+        ),
+      );
+    } on FirebaseException catch (e) {
+      print('$e');
+    } catch (e) {
+      print('$e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final courseDetails = context.watch<CourseProvider>().course;
+    final provider = context.watch<CourseProvider>();
+    final courseDetails = provider.course;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
@@ -291,24 +332,24 @@ class CourseDetailsScreen extends StatelessWidget {
                   ),
                   CustomButton(
                     height: MediaQuery.of(context).size.height * 0.065,
-                    onPressed: () {},
-                    tail: Container(
-                      height: 20,
-                      width: 20,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '2',
-                          style: Theme.of(context).textTheme.button.copyWith(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
-                        ),
-                      ),
-                    ),
+                    onPressed: () => selectChat(context, courseDetails),
+//                    tail: Container(
+//                      height: 20,
+//                      width: 20,
+//                      decoration: BoxDecoration(
+//                        color: Theme.of(context).primaryColor,
+//                        borderRadius: BorderRadius.circular(30),
+//                      ),
+//                      child: Center(
+//                        child: Text(
+//                          '2',
+//                          style: Theme.of(context).textTheme.button.copyWith(
+//                                fontSize: 14,
+//                                fontWeight: FontWeight.w400,
+//                              ),
+//                        ),
+//                      ),
+//                    ),
                     color: Colors.white,
                     buttonTitle: 'Community',
                     buttonTitleStyle:

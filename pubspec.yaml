@@ -31,6 +31,8 @@ dependencies:
   firebase_performance: ^0.4.2
   cloud_firestore: ^0.14.3
   firebase_storage: ^5.0.1
+  rflutter_alert: ^1.1.0
+  intl: ^0.17.0
 
 
 flutter:
