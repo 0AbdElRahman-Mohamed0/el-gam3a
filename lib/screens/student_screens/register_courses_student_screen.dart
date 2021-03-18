@@ -50,6 +50,7 @@ class _RegisterCoursesStudentScreenState
       context.read<AuthProvider>().updateUserData(user),
     });
     Navigator.pop(context);
+    Navigator.pop(context);
   }
 
   @override

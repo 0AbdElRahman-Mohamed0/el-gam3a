@@ -47,6 +47,7 @@ class _RegisterCoursesDoctorScreenState
       context.read<AuthProvider>().updateUserData(user),
     });
     Navigator.pop(context);
+    Navigator.pop(context);
   }
 
   @override
