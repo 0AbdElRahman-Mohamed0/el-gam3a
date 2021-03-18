@@ -4,13 +4,16 @@ import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:flutter/material.dart';
 
 class CourseChoosedCard extends StatelessWidget {
-  _removeCourse(BuildContext context) {
+  _removeCourse(BuildContext context) async {
     final course = context.read<CourseProvider>().course;
     final user = context.read<AuthProvider>().user;
     if (user.courses.length != 1) {
       context
           .read<DepartmentsProvider>()
           .updateDepHours(course: course, type: 1);
+      if (user.type.toLowerCase() == 'professor') {
+        await context.read<DepartmentsProvider>().removeProfFromCourse(course);
+      }
       context.read<AuthProvider>().removeCourse(course);
     }
   }
