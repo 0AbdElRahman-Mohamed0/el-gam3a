@@ -24,7 +24,6 @@ class _ChatScreenState extends State<ChatScreen> {
   TextEditingController message = TextEditingController();
   File _image;
   String _uploadedFileURL;
-  bool isTyping = false;
   bool isLoading = true;
 
   final firestore = FirebaseFirestore.instance;
