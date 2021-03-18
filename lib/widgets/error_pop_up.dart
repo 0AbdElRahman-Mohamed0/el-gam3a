@@ -9,9 +9,10 @@ class ErrorPopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoAlertDialog(
+    return AlertDialog(
       title: Text(title ?? 'Error!'),
       content: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           SizedBox(height: 24.0),
           Text(
@@ -25,6 +26,8 @@ class ErrorPopUp extends StatelessWidget {
           InkWell(
             onTap: () => Navigator.of(context).pop(),
             child: Container(
+              height: 44,
+              width: 128,
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(4.0),
@@ -36,10 +39,12 @@ class ErrorPopUp extends StatelessWidget {
                   )
                 ],
               ),
-              child: Text(
-                'OK',
-                style: TextStyle(
-                  color: Colors.white,
+              child: Center(
+                child: Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

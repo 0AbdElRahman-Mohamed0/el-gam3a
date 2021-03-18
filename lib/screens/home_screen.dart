@@ -4,6 +4,7 @@ import 'package:elgam3a/screens/courses_screen.dart';
 import 'package:elgam3a/screens/hall_schedule_screen.dart';
 import 'package:elgam3a/screens/profile_screen.dart';
 import 'package:elgam3a/screens/schedule_screen.dart';
+import 'package:elgam3a/widgets/error_pop_up.dart';
 import 'package:elgam3a/widgets/leave_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -28,15 +29,24 @@ class _HomeScreenState extends State<HomeScreen> {
     await Permission.camera.request();
     final qrResult = await scanner.scan();
     if (isNotBlank(qrResult)) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChangeNotifierProvider<HallProvider>(
-            create: (_) => HallProvider(hallDetails: qrResult),
-            child: HallScheduleScreen(),
+      if (qrResult.contains(',')) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChangeNotifierProvider<HallProvider>(
+              create: (_) => HallProvider(hallDetails: qrResult),
+              child: HallScheduleScreen(),
+            ),
           ),
-        ),
-      );
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => ErrorPopUp(
+            message: 'That qr code not defined.',
+          ),
+        );
+      }
     }
   }
 
