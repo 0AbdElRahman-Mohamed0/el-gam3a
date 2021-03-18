@@ -13,6 +13,10 @@ class CoursesProvider extends ChangeNotifier {
     await _api.addCourseGeneral(course);
   }
 
+  Future<void> removeCourseGeneral(CourseModel course) async {
+    await _api.removeCourseGeneral(course);
+  }
+
   Future<void> getCourseGeneral() async {
     courses = await _api.getCourseGeneral();
     notifyListeners();

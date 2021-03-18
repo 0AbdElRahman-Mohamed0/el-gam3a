@@ -102,12 +102,14 @@ class ApiProvider {
   }
 
   Future<void> addCourseGeneral(CourseModel course) async {
-    final _response =
-        await firestore.collection('course_data').add(course.toMap());
     await firestore
         .collection('course_data')
-        .doc(_response.id)
-        .update({'id': _response.id});
+        .doc(course.courseCode)
+        .set(course.toMap());
+  }
+
+  Future<void> removeCourseGeneral(CourseModel course) async {
+    await firestore.collection('course_data').doc(course.courseCode).delete();
   }
 
   Future<List<CourseModel>> getCourseGeneral() async {
