@@ -248,4 +248,62 @@ class DepartmentsProvider with ChangeNotifier {
       return;
     }
   }
+
+  getUserDepHours(UserModel user) async {
+    if (user.courses != null) {
+      if (user.courses.isEmpty) return;
+    }
+    if (user.courses == null) {
+      return;
+    }
+    for (CourseModel course in user.courses) {
+      if (majorDepartment != null) {
+        if (majorDepartment.courses
+                .where((element) => element.courseCode == course.courseCode)
+                ?.isNotEmpty ??
+            false) {
+          final tmp = majorDepartment.courses
+              .where((element) => element.courseCode == course.courseCode);
+          for (CourseModel course in tmp) {
+            majorDepartmentHours += course.courseHours;
+          }
+        }
+      }
+
+      if (minorDepartment != null) {
+        if (minorDepartment.courses
+                .where((element) => element.courseCode == course.courseCode)
+                ?.isNotEmpty ??
+            false) {
+          final tmp = minorDepartment.courses
+              .where((element) => element.courseCode == course.courseCode);
+          for (CourseModel course in tmp) {
+            minorDepartmentHours += course.courseHours;
+          }
+        }
+      }
+
+      if (college.courses
+          .where((element) => element.courseCode == course.courseCode)
+          .isNotEmpty) {
+        final tmp = college.courses
+            .where((element) => element.courseCode == course.courseCode);
+        for (CourseModel course in tmp) {
+          collegeHours += course.courseHours;
+        }
+      }
+
+      if (university.courses
+              .where((element) => element.courseCode == course.courseCode)
+              ?.isNotEmpty ??
+          false) {
+        final tmp = university.courses
+            .where((element) => element.courseCode == course.courseCode);
+        for (CourseModel course in tmp) {
+          universityHours += course.courseHours;
+        }
+      }
+    }
+    notifyListeners();
+  }
 }

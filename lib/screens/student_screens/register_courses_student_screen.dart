@@ -38,6 +38,7 @@ class _RegisterCoursesStudentScreenState
           .getCoursesDataByMinorDepartmentName(user.minor),
       context.read<DepartmentsProvider>().getCoursesDataGeneral(),
     });
+    context.read<DepartmentsProvider>().getUserDepHours(user);
     _isLoading = false;
     setState(() {});
   }

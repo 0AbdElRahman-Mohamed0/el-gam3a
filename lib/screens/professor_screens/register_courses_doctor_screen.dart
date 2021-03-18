@@ -35,6 +35,7 @@ class _RegisterCoursesDoctorScreenState
           .getCoursesDataByMajorDepartmentName(user.department),
       context.read<DepartmentsProvider>().getCoursesDataGeneral(),
     });
+    context.read<DepartmentsProvider>().getUserDepHours(user);
     _isLoading = false;
     setState(() {});
   }
