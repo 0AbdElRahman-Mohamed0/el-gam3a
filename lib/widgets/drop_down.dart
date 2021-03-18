@@ -71,7 +71,15 @@ class _DropDownState<T> extends State<DropDown<T>> {
           validator: widget.validator,
           onSaved: widget.onSaved,
           items: widget.list
-              ?.map((T e) => DropdownMenuItem<T>(value: e, child: Text('$e')))
+              ?.map((T e) => DropdownMenuItem<T>(
+                  value: e,
+                  child: Text(
+                    '$e',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2
+                        .copyWith(fontSize: 16),
+                  )))
               ?.toList(),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
