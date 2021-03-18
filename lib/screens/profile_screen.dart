@@ -42,11 +42,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       if (user?.imageUrl?.isNotEmpty ?? false) ...{
                         InkWell(
-                          // onTap: () => showDialog(
-                          //   context: context,
-                          //   builder: (BuildContext context) =>
-                          //       ShowPicturePopUp(user.imageUrl),
-                          // ),
                           onTap: () => Navigator.push(
                               context,
                               PageRouteBuilder(
@@ -170,7 +165,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
                               child: Container(
-//                                alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4),
                                   color: Theme.of(context).buttonColor,
@@ -241,10 +235,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           dataValue: '${user.gpa} / 4.0',
                         ),
                         UserData(
-                          dataTitle: 'Hours',
+                          dataTitle: 'Total Hours',
                           dataValue: '${user.completedHours} / 132',
                         ),
                       },
+                      UserData(
+                        dataTitle: 'Registered Hours',
+                        dataValue: '${user.registeredHours}',
+                      ),
                     ],
                   ),
                 ],
