@@ -27,11 +27,13 @@ class CourseCard extends StatelessWidget {
     final course = provider.course;
     return user.type.toLowerCase() == 'student' &&
             course.courseDoctor == null &&
-            !viewDetails
+            !viewDetails &&
+            !course.show
         ? SizedBox()
         : user.type.toLowerCase() == 'professor' &&
                 course.courseDoctor != null &&
-                !viewDetails
+                !viewDetails &&
+                !course.show
             ? SizedBox()
             : GestureDetector(
                 onTap: viewDetails
