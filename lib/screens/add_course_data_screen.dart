@@ -120,7 +120,13 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
         title: '${e.message}',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -140,7 +146,13 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
         title: 'Something wrong happened, please try again',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -204,7 +216,13 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
         title: '${e.message}',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -224,7 +242,13 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
         title: 'Something wrong happened, please try again',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -293,7 +317,13 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -312,7 +342,13 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
           title: '${e.message}',
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -333,7 +369,13 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
         title: 'Something wrong happened, please try again',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -460,7 +502,7 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
                                   children: [
                                     Icon(
                                       FontAwesomeIcons.filePdf,
-                                      color: Theme.of(context).cardColor,
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                     SizedBox(
                                       width: 4,
@@ -492,7 +534,13 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
+                        gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Theme.of(context).primaryColor,
+                              Theme.of(context).cardColor
+                            ]),
                         borderRadius: BorderRadius.circular(18.0),
                         boxShadow: [
                           BoxShadow(

@@ -72,7 +72,13 @@ class SelectSectionScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18.0),
-                        color: Theme.of(context).cardColor,
+                        gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Theme.of(context).primaryColor,
+                              Theme.of(context).cardColor
+                            ]),
                         boxShadow: [
                           BoxShadow(
                             color: Color(0xFF000000).withOpacity(0.34),
