@@ -26,35 +26,31 @@ class ChatReceiveWidget extends StatelessWidget {
                   ),
             ),
           ),
-          if (message.imageUrl != null) ...[
-            InkWell(
-              onTap: () => Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                      opaque: false,
-                      barrierDismissible: true,
-                      barrierColor: Colors.black.withOpacity(0.5),
-                      pageBuilder: (BuildContext context, _, __) {
-                        return ShowPicturePopUp(
-                          image: message.imageUrl,
-                          tag: 'message/image/${message.id}',
-                        );
-                      })),
-              child: Container(
-                constraints: BoxConstraints(
-                    maxHeight: 186,
-                    maxWidth: MediaQuery.of(context).size.width * 0.6),
-                child: Hero(
-                  tag: 'message/image/${message.id}',
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
+          Row(
+            children: [
+              InkWell(
+                onTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                        opaque: false,
+                        barrierDismissible: true,
+                        barrierColor: Colors.black.withOpacity(0.5),
+                        pageBuilder: (BuildContext context, _, __) {
+                          return ShowPicturePopUp(
+                            image: message.senderImage,
+                            tag: 'message/user/${message.id}',
+                          );
+                        })),
+                child: Container(
+                  child: Hero(
+                    tag: 'message/user/${message.id}',
                     child: CachedNetworkImage(
-                      imageUrl: '${message.imageUrl}',
-                      height: 186,
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      fit: BoxFit.cover,
+                      imageUrl: '${message.senderImage}',
+                      height: 44,
+                      width: 44,
                       imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(200),
                           image: DecorationImage(
                             image: imageProvider,
                             fit: BoxFit.cover,
@@ -67,30 +63,78 @@ class ChatReceiveWidget extends StatelessWidget {
                   ),
                 ),
               ),
-            )
-          ],
-          if (message.imageUrl == null) ...[
-            Container(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.6,
+              SizedBox(
+                width: 4,
               ),
-              margin: EdgeInsets.only(bottom: 4.0, top: 4.0),
-              padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6.0),
-                  border: Border.all(
-                    color: Theme.of(context).primaryColor.withOpacity(0.2),
-                  )),
-              child: Text(
-                '${message.message}' ?? '',
-                style: Theme.of(context).textTheme.headline2.copyWith(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
+              if (message.imageUrl != null) ...[
+                InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          opaque: false,
+                          barrierDismissible: true,
+                          barrierColor: Colors.black.withOpacity(0.5),
+                          pageBuilder: (BuildContext context, _, __) {
+                            return ShowPicturePopUp(
+                              image: message.imageUrl,
+                              tag: 'message/image/${message.id}',
+                            );
+                          })),
+                  child: Container(
+                    constraints: BoxConstraints(
+                        maxHeight: 186,
+                        maxWidth: MediaQuery.of(context).size.width * 0.6),
+                    child: Hero(
+                      tag: 'message/image/${message.id}',
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: CachedNetworkImage(
+                          imageUrl: '${message.imageUrl}',
+                          height: 186,
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          fit: BoxFit.cover,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          placeholder: (context, url) => LoadingWidget(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        ),
+                      ),
                     ),
-              ),
-            ),
-          ],
+                  ),
+                )
+              ],
+              if (message.imageUrl == null) ...[
+                Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.6,
+                  ),
+                  margin: EdgeInsets.only(bottom: 4.0, top: 4.0),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6.0),
+                      border: Border.all(
+                        color: Theme.of(context).primaryColor.withOpacity(0.2),
+                      )),
+                  child: Text(
+                    '${message.message}' ?? '',
+                    style: Theme.of(context).textTheme.headline2.copyWith(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w400,
+                        ),
+                  ),
+                ),
+              ],
+            ],
+          ),
           Padding(
             padding: EdgeInsets.only(left: 8.0),
             child: Text(

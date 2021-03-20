@@ -393,6 +393,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                     message: document.data()['message'],
                                     senderName: document.data()['senderName'],
                                     senderEmail: document.data()['senderEmail'],
+                                    senderImage: document.data()['senderImage'],
                                     time:
                                         ((document.data()['time'] as Timestamp)
                                             .toDate()),
@@ -413,6 +414,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       message: message.text,
                       senderEmail: currentUser.email,
                       senderName: currentUser.name,
+                      senderImage: currentUser.imageUrl,
                       time: DateTime.now()),
                   course.courseCode),
               sendImage: () => _pickImage(),

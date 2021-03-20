@@ -20,7 +20,7 @@ class ChatSendWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: 8.0),
             child: Text(
-              'you' ?? '',
+              'you',
               style: Theme.of(context).textTheme.headline5.copyWith(
                     fontSize: 12.0,
                     fontWeight: FontWeight.w400,

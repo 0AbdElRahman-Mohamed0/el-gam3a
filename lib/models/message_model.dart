@@ -6,22 +6,26 @@ class MessageModel {
   String imagePath;
   String imageUrl;
   String senderName;
+  String senderImage;
   String senderEmail;
   DateTime time;
-  MessageModel(
-      {this.message,
-      this.id,
-      this.senderEmail,
-      this.senderName,
-      this.time,
-      this.imagePath,
-      this.imageUrl});
+  MessageModel({
+    this.message,
+    this.id,
+    this.senderEmail,
+    this.senderName,
+    this.time,
+    this.imagePath,
+    this.senderImage,
+    this.imageUrl,
+  });
   MessageModel.fromMap(Map m) {
     id = m['id'];
     message = m['message'];
     senderName = m['senderName'];
     imagePath = m['imagePath'];
     imageUrl = m['imageUrl'];
+    senderImage = m['senderImage'];
     senderEmail = m['senderName'];
     time = (m['time'] as Timestamp).toDate();
   }
@@ -31,6 +35,7 @@ class MessageModel {
       'message': message,
       'senderName': senderName,
       'senderEmail': senderEmail,
+      'senderImage': senderImage,
       'time': time,
       'imageUrl': imageUrl,
       'imagePath': imagePath,
@@ -43,6 +48,7 @@ class MessageModel {
     String imagePath,
     String imageUrl,
     String senderName,
+    String senderImage,
     String senderEmail,
     DateTime time,
   }) =>
@@ -52,6 +58,7 @@ class MessageModel {
         imagePath: imagePath ?? this.imagePath,
         imageUrl: imageUrl ?? this.imageUrl,
         senderName: senderName ?? this.senderName,
+        senderImage: senderImage ?? this.senderImage,
         senderEmail: senderEmail ?? this.senderEmail,
         time: time ?? this.time,
       );
