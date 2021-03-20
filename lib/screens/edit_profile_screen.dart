@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -169,6 +170,51 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       await context.read<AuthProvider>().updateUserData(provider.user);
       Navigator.pop(context);
       Navigator.pop(context);
+    } on FirebaseException catch (e) {
+      Navigator.pop(context);
+      if (e.code == 'network-request-failed') {
+        print(' error ${e.code}');
+        Alert(
+          context: context,
+          title: 'Please check your internet connection!',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      } else {
+        Alert(
+          context: context,
+          title: '${e.message}',
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      }
     } catch (e, s) {
       print('crash');
       Navigator.pop(context);

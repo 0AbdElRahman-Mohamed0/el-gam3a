@@ -5,8 +5,10 @@ import 'package:elgam3a/providers/department_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/widgets/course_choosed_card.dart';
 import 'package:elgam3a/widgets/register_course_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../utilities/loading.dart';
 
@@ -26,32 +28,168 @@ class _RegisterCoursesStudentScreenState
   }
 
   _initData() async {
-    _isLoading = true;
-    setState(() {});
-    final user = context.read<AuthProvider>().user;
-    await Future.wait({
-      context
-          .read<DepartmentsProvider>()
-          .getCoursesDataByMajorDepartmentName(user.department),
-      context
-          .read<DepartmentsProvider>()
-          .getCoursesDataByMinorDepartmentName(user.minor),
-      context.read<DepartmentsProvider>().getCoursesDataGeneral(),
-    });
-    context.read<DepartmentsProvider>().getUserDepHours(user);
-    _isLoading = false;
-    setState(() {});
+    try {
+      _isLoading = true;
+      setState(() {});
+      final user = context.read<AuthProvider>().user;
+      await Future.wait({
+        context
+            .read<DepartmentsProvider>()
+            .getCoursesDataByMajorDepartmentName(user.department),
+        context
+            .read<DepartmentsProvider>()
+            .getCoursesDataByMinorDepartmentName(user.minor),
+        context.read<DepartmentsProvider>().getCoursesDataGeneral(),
+      });
+      context.read<DepartmentsProvider>().getUserDepHours(user);
+      _isLoading = false;
+      setState(() {});
+    } on FirebaseException catch (e) {
+      _isLoading = false;
+      setState(() {});
+      if (e.code == 'network-request-failed') {
+        print(' error ${e.code}');
+        Alert(
+          context: context,
+          title: 'Please check your internet connection!',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      } else {
+        Alert(
+          context: context,
+          title: '${e.message}',
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      }
+    } catch (e) {
+      _isLoading = false;
+      setState(() {});
+      Alert(
+        context: context,
+        title: 'Something wrong happened, please try again',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
+    }
   }
 
   _updateCourse() async {
-    LoadingScreen.show(context);
-    final user = context.read<AuthProvider>().user;
-    await Future.wait({
-      context.read<DepartmentsProvider>().updateCourse(user),
-      context.read<AuthProvider>().updateUserData(user),
-    });
-    Navigator.pop(context);
-    Navigator.pop(context);
+    try {
+      LoadingScreen.show(context);
+      final user = context.read<AuthProvider>().user;
+      await Future.wait({
+        context.read<DepartmentsProvider>().updateCourse(user),
+        context.read<AuthProvider>().updateUserData(user),
+      });
+      Navigator.pop(context);
+      Navigator.pop(context);
+    } on FirebaseException catch (e) {
+      Navigator.pop(context);
+      if (e.code == 'network-request-failed') {
+        print(' error ${e.code}');
+        Alert(
+          context: context,
+          title: 'Please check your internet connection!',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      } else {
+        Alert(
+          context: context,
+          title: '${e.message}',
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      }
+    } catch (e) {
+      Navigator.pop(context);
+      Alert(
+        context: context,
+        title: 'Something wrong happened, please try again',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
+    }
   }
 
   @override

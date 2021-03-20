@@ -114,11 +114,45 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
       Navigator.pop(context);
       Navigator.pop(context);
     } on FirebaseException catch (e) {
-      print('$e');
       Navigator.pop(context);
+      Alert(
+        context: context,
+        title: '${e.message}',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
     } catch (e) {
-      print('$e');
       Navigator.pop(context);
+      Alert(
+        context: context,
+        title: 'Something wrong happened, please try again',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
     }
   }
 
@@ -164,11 +198,45 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
       Navigator.pop(context);
       Navigator.pop(context);
     } on FirebaseException catch (e) {
-      print('$e');
       Navigator.pop(context);
+      Alert(
+        context: context,
+        title: '${e.message}',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
     } catch (e) {
-      print('$e');
       Navigator.pop(context);
+      Alert(
+        context: context,
+        title: 'Something wrong happened, please try again',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
     }
   }
 
@@ -214,11 +282,70 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
       Navigator.pop(context);
       Navigator.pop(context);
     } on FirebaseException catch (e) {
-      print('$e');
       Navigator.pop(context);
+      if (e.code == 'network-request-failed') {
+        print(' error ${e.code}');
+        Alert(
+          context: context,
+          title: 'Please check your internet connection!',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      } else {
+        Alert(
+          context: context,
+          title: '${e.message}',
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      }
     } catch (e) {
-      print('$e');
       Navigator.pop(context);
+      Alert(
+        context: context,
+        title: 'Something wrong happened, please try again',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
     }
   }
 

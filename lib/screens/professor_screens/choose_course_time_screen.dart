@@ -8,7 +8,9 @@ import 'package:elgam3a/providers/departments_provider.dart';
 import 'package:elgam3a/providers/faculties_provider.dart';
 import 'package:elgam3a/utilities/loading.dart';
 import 'package:elgam3a/widgets/drop_down.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ChooseCourseTimeScreen extends StatefulWidget {
   @override
@@ -29,29 +31,95 @@ class _ChooseCourseTimeScreenState extends State<ChooseCourseTimeScreen> {
       return;
     }
     _formKey.currentState.save();
-
-    LoadingScreen.show(context);
-    final provider = context.read<CourseProvider>();
-    final user = context.read<AuthProvider>().user;
-    provider.course = provider.course.copyWith(
-      courseDay: _day.name,
-      courseTime: _time,
-      courseHall: _hall.id,
-      courseLocation: _faculty.name,
-      courseBuilding: _hall.building,
-      courseDoctor: user.name,
-    );
-    context
-        .read<DepartmentsProvider>()
-        .updateDepHours(course: provider.course, user: user, type: 0);
-    context.read<AuthProvider>().addCourse(provider.course);
-    await Future.wait({
-      context.read<CoursesProvider>().addCourseGeneral(provider.course),
-      context.read<FacultiesProvider>().updateHallTimes(
-          time: _time, hall: _hall, faculty: _faculty, day: _day),
-    });
-    Navigator.pop(context);
-    Navigator.pop(context);
+    try {
+      LoadingScreen.show(context);
+      final provider = context.read<CourseProvider>();
+      final user = context.read<AuthProvider>().user;
+      provider.course = provider.course.copyWith(
+        courseDay: _day.name,
+        courseTime: _time,
+        courseHall: _hall.id,
+        courseLocation: _faculty.name,
+        courseBuilding: _hall.building,
+        courseDoctor: user.name,
+      );
+      context
+          .read<DepartmentsProvider>()
+          .updateDepHours(course: provider.course, user: user, type: 0);
+      context.read<AuthProvider>().addCourse(provider.course);
+      await Future.wait({
+        context.read<CoursesProvider>().addCourseGeneral(provider.course),
+        context.read<FacultiesProvider>().updateHallTimes(
+            time: _time, hall: _hall, faculty: _faculty, day: _day),
+      });
+      Navigator.pop(context);
+      Navigator.pop(context);
+    } on FirebaseException catch (e) {
+      Navigator.pop(context);
+      if (e.code == 'network-request-failed') {
+        print(' error ${e.code}');
+        Alert(
+          context: context,
+          title: 'Please check your internet connection!',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      } else {
+        Alert(
+          context: context,
+          title: '${e.message}',
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      }
+    } catch (e) {
+      Navigator.pop(context);
+      Alert(
+        context: context,
+        title: 'Something wrong happened, please try again',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
+    }
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:elgam3a/providers/course_data_provider.dart';
+import 'package:elgam3a/widgets/error_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -7,8 +8,18 @@ class CourseDataCard extends StatelessWidget {
   final String type;
   CourseDataCard({this.type});
   _downloadPDF(BuildContext context) async {
-    await Permission.storage.request();
-    await context.read<CourseDataProvider>().downloadPDF();
+    try {
+      await Permission.storage.request();
+      await context.read<CourseDataProvider>().downloadPDF();
+    } catch (e, s) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            ErrorPopUp(message: 'Something Went Wrong! please try again'),
+      );
+      print(e);
+      print(s);
+    }
   }
 
   @override
