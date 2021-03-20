@@ -29,7 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
     await Permission.camera.request();
     final qrResult = await scanner.scan();
     if (isNotBlank(qrResult)) {
-      if (qrResult.contains(',')) {
+      if (qrResult.contains(',') &&
+          (qrResult.contains('Moharem-Bek') ||
+              qrResult.contains('El-Shatby') ||
+              qrResult.contains('El-Anfoshy'))) {
         Navigator.push(
           context,
           MaterialPageRoute(
