@@ -2,6 +2,7 @@ import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/schedule_provider.dart';
 import 'package:elgam3a/widgets/faculties_dropdown_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:selection_picker/selection_item.dart';
 
 class FacultiesPart extends StatefulWidget {
@@ -37,15 +38,9 @@ class _FacultiesPartState extends State<FacultiesPart> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-                Padding(
+                Container(
                   padding: EdgeInsets.only(top: 150),
-                  child: Text(
-                    'Day OFF',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1
-                        .copyWith(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
+                  child: SvgPicture.asset('assets/svg/dayoff.svg'),
                 ),
               ])
         : Column(
