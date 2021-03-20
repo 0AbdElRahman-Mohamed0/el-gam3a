@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -227,11 +228,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Center(
-                  child: Container(
-                    height: 100.0,
-                    width: 100.0,
-                    color: Theme.of(context).primaryColor,
-                  ),
+                  child: SvgPicture.asset('assets/svg/big logo.svg'),
                 ),
                 SizedBox(height: 36),
                 InputText(
