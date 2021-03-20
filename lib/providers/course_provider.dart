@@ -10,9 +10,11 @@ class CourseProvider with ChangeNotifier {
   CourseProvider(this.course);
   final ApiProvider _api = ApiProvider.instance;
   List<CourseDataModel> lectures;
+  List<CourseDataModel> quizzes;
+  List<CourseDataModel> sheets;
 
   Future<void> getLectures() async {
-    lectures = await _api.getLectures(course) ?? [];
+    lectures = await _api.getLectures(course);
     lectures.sort((a, b) => a.number.compareTo(b.number));
     notifyListeners();
   }
@@ -22,6 +24,34 @@ class CourseProvider with ChangeNotifier {
       lectures = [];
     }
     lectures.add(lecture);
+    notifyListeners();
+  }
+
+  Future<void> getQuizzes() async {
+    quizzes = await _api.getQuizzes(course);
+    quizzes.sort((a, b) => a.number.compareTo(b.number));
+    notifyListeners();
+  }
+
+  addQuiz(CourseDataModel lecture) {
+    if (quizzes == null) {
+      quizzes = [];
+    }
+    quizzes.add(lecture);
+    notifyListeners();
+  }
+
+  Future<void> getSheets() async {
+    sheets = await _api.getSheets(course);
+    sheets.sort((a, b) => a.number.compareTo(b.number));
+    notifyListeners();
+  }
+
+  addSheet(CourseDataModel lecture) {
+    if (sheets == null) {
+      sheets = [];
+    }
+    sheets.add(lecture);
     notifyListeners();
   }
 }

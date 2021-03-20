@@ -72,9 +72,7 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
   String get _pdfFolderPath => "coursePDF"
       "/${Path.basename(_pdf.path)}";
 
-  // CourseDataModel lecture;
-
-  Future<void> _submit() async {
+  Future<void> _submitLecture() async {
     final provider = context.read<CourseProvider>();
     final course = provider.course;
     if (!_formKey.currentState.validate() || _pdf == null) {
@@ -113,6 +111,106 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
           .doc(data.id)
           .update({'id': data.id});
       provider.addLecture(lecture);
+      Navigator.pop(context);
+      Navigator.pop(context);
+    } on FirebaseException catch (e) {
+      print('$e');
+      Navigator.pop(context);
+    } catch (e) {
+      print('$e');
+      Navigator.pop(context);
+    }
+  }
+
+  Future<void> _submitQuiz() async {
+    final provider = context.read<CourseProvider>();
+    final course = provider.course;
+    if (!_formKey.currentState.validate() || _pdf == null) {
+      if (!_autoValidate) setState(() => _autoValidate = true);
+      if (!_pdfNull) setState(() => _pdfNull = true);
+      return;
+    }
+    _formKey.currentState.save();
+    try {
+      LoadingScreen.show(context);
+      await uploadFile(context);
+      final quiz = CourseDataModel(
+        name: _name,
+        number: _number,
+        time: DateTime.now(),
+        pdfPath: _pdf.path,
+        pdfUrl: _uploadedFileURL,
+      );
+      final response = await firestore
+          .collection('each_course_data')
+          .where('courseCode', isEqualTo: course.courseCode)
+          .get();
+      final DocumentReference data = await firestore
+          .collection('each_course_data')
+          .doc(response.docs.first.id)
+          .collection('quizzes')
+          .add(quiz.toMap());
+      await firestore
+          .collection('each_course_data')
+          .doc(response.docs.first.id)
+          .update({'updated_at': DateTime.now()});
+      await firestore
+          .collection('each_course_data')
+          .doc(response.docs.first.id)
+          .collection('quizzes')
+          .doc(data.id)
+          .update({'id': data.id});
+      provider.addQuiz(quiz);
+      Navigator.pop(context);
+      Navigator.pop(context);
+    } on FirebaseException catch (e) {
+      print('$e');
+      Navigator.pop(context);
+    } catch (e) {
+      print('$e');
+      Navigator.pop(context);
+    }
+  }
+
+  Future<void> _submitSheet() async {
+    final provider = context.read<CourseProvider>();
+    final course = provider.course;
+    if (!_formKey.currentState.validate() || _pdf == null) {
+      if (!_autoValidate) setState(() => _autoValidate = true);
+      if (!_pdfNull) setState(() => _pdfNull = true);
+      return;
+    }
+    _formKey.currentState.save();
+    try {
+      LoadingScreen.show(context);
+      await uploadFile(context);
+      final sheet = CourseDataModel(
+        name: _name,
+        number: _number,
+        time: DateTime.now(),
+        pdfPath: _pdf.path,
+        pdfUrl: _uploadedFileURL,
+      );
+      final response = await firestore
+          .collection('each_course_data')
+          .where('courseCode', isEqualTo: course.courseCode)
+          .get();
+      final DocumentReference data = await firestore
+          .collection('each_course_data')
+          .doc(response.docs.first.id)
+          .collection('sheets')
+          .add(sheet.toMap());
+      await firestore
+          .collection('each_course_data')
+          .doc(response.docs.first.id)
+          .update({'updated_at': DateTime.now()});
+      await firestore
+          .collection('each_course_data')
+          .doc(response.docs.first.id)
+          .collection('sheets')
+          .doc(data.id)
+          .update({'id': data.id});
+      provider.addSheet(sheet);
       Navigator.pop(context);
       Navigator.pop(context);
     } on FirebaseException catch (e) {
@@ -259,7 +357,11 @@ class _AddCourseDataScreenState extends State<AddCourseDataScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: _submit,
+                    onTap: widget.title.toLowerCase() == 'lecture'
+                        ? _submitLecture
+                        : widget.title.toLowerCase() == 'quiz'
+                            ? _submitQuiz
+                            : _submitSheet,
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(

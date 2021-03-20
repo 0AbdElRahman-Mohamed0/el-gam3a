@@ -3,7 +3,9 @@ import 'package:elgam3a/models/course_model.dart';
 import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/screens/chat_screen.dart';
 import 'package:elgam3a/screens/lectures_screen.dart';
+import 'package:elgam3a/screens/quizzes_screen.dart';
 import 'package:elgam3a/screens/select_section_screen.dart';
+import 'package:elgam3a/screens/sheets_screen.dart';
 import 'package:flutter/material.dart';
 
 class CourseDetailsScreen extends StatefulWidget {
@@ -22,7 +24,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
     _getData();
   }
 
-  selectChat(BuildContext context, CourseModel course) async {
+  _selectChat(BuildContext context, CourseModel course) async {
     try {
       final chats = await firestore
           .collection('chats')
@@ -52,7 +54,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
     }
   }
 
-  getLectures(BuildContext context, CourseModel course) async {
+  _getLectures(BuildContext context, CourseModel course) async {
     try {
       final lectures = await firestore
           .collection('each_course_data')
@@ -83,9 +85,75 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
     }
   }
 
+  _getQuizzes(BuildContext context, CourseModel course) async {
+    try {
+      final lectures = await firestore
+          .collection('each_course_data')
+          .where('courseCode', isEqualTo: course.courseCode)
+          .get();
+      if (lectures.docs.isEmpty) {
+        await firestore.collection('each_course_data').add({
+          'courseCode': course.courseCode,
+          'created_at': DateTime.now(),
+          'updated_at': DateTime.now()
+        });
+      }
+
+      final provider = context.read<CourseProvider>();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider<CourseProvider>.value(
+            value: provider,
+            child: QuizzesScreen(),
+          ),
+        ),
+      );
+    } on FirebaseException catch (e) {
+      print('$e');
+    } catch (e) {
+      print('$e');
+    }
+  }
+
+  _getSheets(BuildContext context, CourseModel course) async {
+    try {
+      final lectures = await firestore
+          .collection('each_course_data')
+          .where('courseCode', isEqualTo: course.courseCode)
+          .get();
+      if (lectures.docs.isEmpty) {
+        await firestore.collection('each_course_data').add({
+          'courseCode': course.courseCode,
+          'created_at': DateTime.now(),
+          'updated_at': DateTime.now()
+        });
+      }
+
+      final provider = context.read<CourseProvider>();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider<CourseProvider>.value(
+            value: provider,
+            child: SheetsScreen(),
+          ),
+        ),
+      );
+    } on FirebaseException catch (e) {
+      print('$e');
+    } catch (e) {
+      print('$e');
+    }
+  }
+
   _getData() async {
     try {
-      await context.read<CourseProvider>().getLectures();
+      await Future.wait({
+        context.read<CourseProvider>().getLectures(),
+        context.read<CourseProvider>().getQuizzes(),
+        context.read<CourseProvider>().getSheets(),
+      });
       setState(() {
         isLoading = false;
       });
@@ -101,6 +169,8 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
     final provider = context.watch<CourseProvider>();
     final courseDetails = provider.course;
     final lectures = provider.lectures;
+    final quizzes = provider.quizzes;
+    final sheets = provider.sheets;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
@@ -386,7 +456,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                   ),
                   CustomButton(
                     height: MediaQuery.of(context).size.height * 0.065,
-                    onPressed: () => selectChat(context, courseDetails),
+                    onPressed: () => _selectChat(context, courseDetails),
 //                    tail: Container(
 //                      height: 20,
 //                      width: 20,
@@ -417,7 +487,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                   ),
                   CustomButton(
                     // height: MediaQuery.of(context).size.height * 0.09,
-                    onPressed: () => getLectures(context, courseDetails),
+                    onPressed: () => _getLectures(context, courseDetails),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     buttonTitle: 'Lectures',
                     buttonSubTitle: '${lectures?.length ?? 0} Lectures',
@@ -436,13 +506,18 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                     height: 16,
                   ),
                   CustomButton(
-                    height: MediaQuery.of(context).size.height * 0.065,
-                    onPressed: () {},
+                    onPressed: () => _getQuizzes(context, courseDetails),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     buttonTitle: 'Quizzes',
+                    buttonSubTitle: '${quizzes?.length ?? 0} Quizzes',
                     buttonTitleStyle:
                         Theme.of(context).textTheme.headline1.copyWith(
                               fontSize: 16.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                    buttonSubTitleStyle:
+                        Theme.of(context).textTheme.headline5.copyWith(
+                              fontSize: 12.0,
                               fontWeight: FontWeight.w700,
                             ),
                   ),
@@ -450,13 +525,18 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                     height: 16,
                   ),
                   CustomButton(
-                    height: MediaQuery.of(context).size.height * 0.065,
-                    onPressed: () {},
+                    onPressed: () => _getSheets(context, courseDetails),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     buttonTitle: 'Sheets',
+                    buttonSubTitle: '${sheets?.length ?? 0} Sheets',
                     buttonTitleStyle:
                         Theme.of(context).textTheme.headline1.copyWith(
                               fontSize: 16.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                    buttonSubTitleStyle:
+                        Theme.of(context).textTheme.headline5.copyWith(
+                              fontSize: 12.0,
                               fontWeight: FontWeight.w700,
                             ),
                   ),

@@ -116,6 +116,54 @@ class ApiProvider {
     }
   }
 
+  Future<List<CourseDataModel>> getQuizzes(CourseModel course) async {
+    final _response = await firestore
+        .collection('each_course_data')
+        .where('courseCode', isEqualTo: course.courseCode)
+        .get();
+
+    final _data = await firestore
+        .collection('each_course_data')
+        .doc(_response.docs.first.id)
+        .collection('quizzes')
+        .get();
+    if (_data.docs.isNotEmpty) {
+      final List<CourseDataModel> _quizzes = [];
+      _data.docs.forEach((element) {
+        _quizzes.add(CourseDataModel.fromMap(element.data()));
+      });
+      return _quizzes;
+    } else {
+      print('api Error@getQuizzes');
+      // Err
+      throw _response.docs;
+    }
+  }
+
+  Future<List<CourseDataModel>> getSheets(CourseModel course) async {
+    final _response = await firestore
+        .collection('each_course_data')
+        .where('courseCode', isEqualTo: course.courseCode)
+        .get();
+
+    final _data = await firestore
+        .collection('each_course_data')
+        .doc(_response.docs.first.id)
+        .collection('sheets')
+        .get();
+    if (_data.docs.isNotEmpty) {
+      final List<CourseDataModel> _sheets = [];
+      _data.docs.forEach((element) {
+        _sheets.add(CourseDataModel.fromMap(element.data()));
+      });
+      return _sheets;
+    } else {
+      print('api Error@getSheets');
+      // Err
+      throw _response.docs;
+    }
+  }
+
   Future<void> updateHall(List<HallModel> halls, String facultyID) async {
     await firestore
         .collection(FacultyData.FACULTY_TABLE)

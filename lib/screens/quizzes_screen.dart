@@ -5,18 +5,18 @@ import 'package:elgam3a/screens/add_course_data_screen.dart';
 import 'package:elgam3a/widgets/course_data_card.dart';
 import 'package:flutter/material.dart';
 
-class LecturesScreen extends StatefulWidget {
+class QuizzesScreen extends StatefulWidget {
   @override
-  _LecturesScreenState createState() => _LecturesScreenState();
+  _QuizzesScreenState createState() => _QuizzesScreenState();
 }
 
-class _LecturesScreenState extends State<LecturesScreen> {
+class _QuizzesScreenState extends State<QuizzesScreen> {
   @override
   Widget build(BuildContext context) {
     final currentUser = context.watch<AuthProvider>().user;
     final provider = context.watch<CourseProvider>();
     final course = provider.course;
-    final lectures = provider.lectures;
+    final quizzes = provider.quizzes;
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -62,7 +62,7 @@ class _LecturesScreenState extends State<LecturesScreen> {
                         ChangeNotifierProvider<CourseProvider>.value(
                       value: provider,
                       child: AddCourseDataScreen(
-                        title: 'lecture',
+                        title: 'quiz',
                       ),
                     ),
                   ),
@@ -74,18 +74,18 @@ class _LecturesScreenState extends State<LecturesScreen> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: lectures?.isEmpty ?? true
+      body: quizzes?.isEmpty ?? true
           ? Center(
-              child: Text('No Lectures'),
+              child: Text('No Quizzes'),
             )
           : SingleChildScrollView(
               padding: EdgeInsets.symmetric(horizontal: 24, vertical: 18),
               child: Column(
-                children: lectures.map((lecture) {
+                children: quizzes.map((lecture) {
                   return ChangeNotifierProvider<CourseDataProvider>(
                     create: (_) => CourseDataProvider(lecture),
                     child: CourseDataCard(
-                      type: 'Lecture',
+                      type: 'Quiz',
                     ),
                   );
                 }).toList(),
