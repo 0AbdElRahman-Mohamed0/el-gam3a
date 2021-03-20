@@ -66,7 +66,13 @@ class _ChooseCourseTimeScreenState extends State<ChooseCourseTimeScreen> {
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -85,7 +91,13 @@ class _ChooseCourseTimeScreenState extends State<ChooseCourseTimeScreen> {
           title: '${e.message}',
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -106,7 +118,13 @@ class _ChooseCourseTimeScreenState extends State<ChooseCourseTimeScreen> {
         title: 'Something wrong happened, please try again',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -227,7 +245,13 @@ class _ChooseCourseTimeScreenState extends State<ChooseCourseTimeScreen> {
                   height: 48,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Theme.of(context).cardColor,
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Theme.of(context).primaryColor,
+                          Theme.of(context).cardColor
+                        ]),
                   ),
                   child: Center(
                     child: Text(

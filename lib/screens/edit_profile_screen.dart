@@ -182,7 +182,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -201,7 +207,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           title: '${e.message}',
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(

@@ -57,7 +57,13 @@ class _RegisterCoursesStudentScreenState
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -76,7 +82,13 @@ class _RegisterCoursesStudentScreenState
           title: '${e.message}',
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -98,7 +110,13 @@ class _RegisterCoursesStudentScreenState
         title: 'Something wrong happened, please try again',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -136,7 +154,13 @@ class _RegisterCoursesStudentScreenState
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -155,7 +179,13 @@ class _RegisterCoursesStudentScreenState
           title: '${e.message}',
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -176,7 +206,13 @@ class _RegisterCoursesStudentScreenState
         title: 'Something wrong happened, please try again',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -231,7 +267,13 @@ class _RegisterCoursesStudentScreenState
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
+                      gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            Theme.of(context).primaryColor,
+                            Theme.of(context).cardColor
+                          ]),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),

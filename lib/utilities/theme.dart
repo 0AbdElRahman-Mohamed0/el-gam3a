@@ -5,7 +5,7 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.white,
     backgroundColor: Color(0xFFF2F2F2),
     primaryColor: Color(0xff015C93),
-    cardColor: Color(0xFF9DCBBA), //ef7a85 //f28db1 //b768a2
+    cardColor: Color(0xFF51A7D8), //ef7a85 //f28db1 //b768a2
     dividerColor: Color(0xFFBEE6FF).withOpacity(0.5),
     shadowColor: Color(0xFFBEE6FF),
     disabledColor: Color(0xFF515C6F),

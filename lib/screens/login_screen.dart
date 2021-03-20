@@ -55,7 +55,13 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -78,7 +84,13 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -101,7 +113,13 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -125,7 +143,13 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -147,7 +171,13 @@ class _LoginScreenState extends State<LoginScreen> {
       //   title: 'something wrong happened, please try again',
       //   buttons: [
       //     DialogButton(
-      //       color: Theme.of(context).cardColor,
+      //       gradient: LinearGradient(
+//                            begin: Alignment.centerLeft,
+//                            end: Alignment.centerRight,
+//                            colors: [
+//                              Theme.of(context).primaryColor,
+//                              Theme.of(context).cardColor
+//                            ]),
       //       child: Text(
       //         'Okay',
       //         style: Theme.of(context).textTheme.button.copyWith(
@@ -168,7 +198,13 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -322,7 +358,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: _login,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
+                              gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    Theme.of(context).primaryColor,
+                                    Theme.of(context).cardColor
+                                  ]),
                               borderRadius: BorderRadius.circular(18.0),
                               boxShadow: [
                                 BoxShadow(

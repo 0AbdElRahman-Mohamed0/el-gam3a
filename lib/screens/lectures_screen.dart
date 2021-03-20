@@ -46,7 +46,13 @@ class _LecturesScreenState extends State<LecturesScreen> {
               margin: EdgeInsets.all(8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(200),
-                color: Theme.of(context).cardColor,
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).cardColor
+                    ]),
               ),
               child: IconButton(
                 splashColor: Colors.transparent,

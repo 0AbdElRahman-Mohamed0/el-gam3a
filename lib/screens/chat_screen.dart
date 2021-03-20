@@ -116,7 +116,13 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -135,7 +141,13 @@ class _ChatScreenState extends State<ChatScreen> {
           title: '${e.message}',
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -155,7 +167,13 @@ class _ChatScreenState extends State<ChatScreen> {
         title: 'Something wrong happened, please try again',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(
@@ -208,7 +226,13 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -227,7 +251,13 @@ class _ChatScreenState extends State<ChatScreen> {
           title: '${e.message}',
           buttons: [
             DialogButton(
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               child: Text(
                 'Okay',
                 style: Theme.of(context).textTheme.button.copyWith(
@@ -250,7 +280,13 @@ class _ChatScreenState extends State<ChatScreen> {
         title: 'Something wrong happened, please try again',
         buttons: [
           DialogButton(
-            color: Theme.of(context).cardColor,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).cardColor
+                ]),
             child: Text(
               'Okay',
               style: Theme.of(context).textTheme.button.copyWith(

@@ -145,7 +145,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 8, vertical: 2),
                               decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
+                                gradient: LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      Theme.of(context).primaryColor,
+                                      Theme.of(context).cardColor
+                                    ]),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(

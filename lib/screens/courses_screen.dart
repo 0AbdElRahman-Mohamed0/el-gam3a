@@ -31,10 +31,18 @@ class CoursesScreen extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18.0),
-                        color: Theme.of(context).cardColor,
+                        gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Theme.of(context).primaryColor,
+                              Theme.of(context).cardColor
+                            ]),
                         boxShadow: [
                           BoxShadow(
-                            color: Color(0xFF000000).withOpacity(0.34),
+                            color: Theme.of(context)
+                                .primaryColor
+                                .withOpacity(0.16),
                             offset: Offset(0, 3),
                             blurRadius: 6,
                           )
@@ -111,7 +119,13 @@ class NoCoursesWidget extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18.0),
-              color: Theme.of(context).cardColor,
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).cardColor
+                  ]),
               boxShadow: [
                 BoxShadow(
                   color: Color(0xFF000000).withOpacity(0.34),
