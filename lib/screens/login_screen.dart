@@ -258,6 +258,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
+                      SizedBox(),
                       Center(
                         child: SvgPicture.asset(
                           'assets/svg/big logo.svg',
