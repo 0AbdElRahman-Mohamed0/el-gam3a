@@ -63,14 +63,14 @@ class CourseDataCard extends StatelessWidget {
                   children: [
                     Icon(
                       FontAwesomeIcons.filePdf,
-                      color: Theme.of(context).cardColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                     SizedBox(
                       width: 4,
                     ),
                     Icon(
                       Icons.download_outlined,
-                      color: Theme.of(context).cardColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ],
                 ),
