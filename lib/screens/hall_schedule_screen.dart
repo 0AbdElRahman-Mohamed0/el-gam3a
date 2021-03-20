@@ -18,8 +18,10 @@ class _HallScheduleScreenState extends State<HallScheduleScreen> {
   @override
   void initState() {
     super.initState();
-    _resetFilter();
-    _filterData();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _resetFilter();
+      _filterData();
+    });
     days.add(SelectionItem(name: "SAT", isSelected: true, identifier: 1));
     days.add(SelectionItem(name: "SUN", isSelected: false, identifier: 2));
     days.add(SelectionItem(name: "MON", isSelected: false, identifier: 3));

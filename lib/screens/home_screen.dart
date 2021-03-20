@@ -50,6 +50,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       }
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => ErrorPopUp(
+          message: 'That qr code not defined.',
+        ),
+      );
     }
   }
 
