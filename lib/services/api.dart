@@ -201,7 +201,7 @@ class ApiProvider {
 
   Future<void> downloadPDF(String url, String name) async {
     await FlutterDownloader.enqueue(
-      fileName: '$name',
+      fileName: '$name.pdf',
       url: '$url',
       savedDir: '/storage/emulated/0/Download',
       showNotification: true,
