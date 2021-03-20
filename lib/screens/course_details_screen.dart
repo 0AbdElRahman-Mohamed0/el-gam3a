@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elgam3a/models/course_model.dart';
 import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/screens/chat_screen.dart';
+import 'package:elgam3a/screens/lectures_screen.dart';
 import 'package:elgam3a/screens/select_section_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,37 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
           builder: (ctx) => ChangeNotifierProvider<CourseProvider>.value(
             value: provider,
             child: ChatScreen(),
+          ),
+        ),
+      );
+    } on FirebaseException catch (e) {
+      print('$e');
+    } catch (e) {
+      print('$e');
+    }
+  }
+
+  getLectures(BuildContext context, CourseModel course) async {
+    try {
+      final chats = await firestore
+          .collection('each_course_data')
+          .where('courseCode', isEqualTo: course.courseCode)
+          .get();
+      if (chats.docs.isEmpty) {
+        await firestore.collection('each_course_data').add({
+          'courseCode': course.courseCode,
+          'created_at': DateTime.now(),
+          'updated_at': DateTime.now()
+        });
+      }
+
+      final provider = context.read<CourseProvider>();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider<CourseProvider>.value(
+            value: provider,
+            child: LecturesScreen(),
           ),
         ),
       );
@@ -362,8 +394,8 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                     height: 16,
                   ),
                   CustomButton(
-                    height: MediaQuery.of(context).size.height * 0.09,
-                    onPressed: () {},
+                    // height: MediaQuery.of(context).size.height * 0.09,
+                    onPressed: () => getLectures(context, courseDetails),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     buttonTitle: 'Lectures',
                     buttonSubTitle: '10 Lectures',

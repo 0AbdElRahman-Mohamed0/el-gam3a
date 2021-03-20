@@ -55,6 +55,7 @@ class _TextDataFieldState extends State<TextDataField> {
                   ? [FilteringTextInputFormatter.digitsOnly]
                   : null),
           initialValue: widget.initialValue,
+          style: Theme.of(context).textTheme.headline2.copyWith(fontSize: 20),
           onSaved: widget.onSaved,
           validator: widget.validator,
           decoration: InputDecoration(
@@ -64,8 +65,10 @@ class _TextDataFieldState extends State<TextDataField> {
               vertical: 17.6,
             ),
             hintText: widget.hintText,
-            hintStyle:
-                Theme.of(context).textTheme.headline2.copyWith(fontSize: 20),
+            hintStyle: Theme.of(context).textTheme.headline2.copyWith(
+                  fontSize: 20,
+                  color: Color(0xff151719).withOpacity(0.5),
+                ),
             isDense: true,
             filled: true,
             fillColor: Theme.of(context).backgroundColor,

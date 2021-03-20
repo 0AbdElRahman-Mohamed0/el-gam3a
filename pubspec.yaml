@@ -14,6 +14,8 @@ dependencies:
   selection_picker: ^0.1.0
   flrx_validator: ^0.4.0+2
   image_picker: ^0.6.7+14
+  file_picker: ^1.13.3
+  flutter_downloader: ^1.5.2
   font_awesome_flutter: ^8.10.0
   flutter_svg: ^0.19.2+1
   provider: ^4.3.2+3

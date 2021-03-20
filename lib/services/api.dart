@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elgam3a/models/course_data_model.dart';
+import 'package:elgam3a/models/course_model.dart';
 import 'package:elgam3a/models/department_model.dart';
 import 'package:elgam3a/models/faculty_model.dart';
 import 'package:elgam3a/models/hall_model.dart';
 import 'package:elgam3a/services/vars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
-import '../models/course_model.dart';
-import 'vars.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 
 class ApiProvider {
   ApiProvider._();
@@ -92,6 +92,30 @@ class ApiProvider {
     }
   }
 
+  Future<List<CourseDataModel>> getLectures(CourseModel course) async {
+    final _response = await firestore
+        .collection('each_course_data')
+        .where('courseCode', isEqualTo: course.courseCode)
+        .get();
+
+    final _data = await firestore
+        .collection('each_course_data')
+        .doc(_response.docs.first.id)
+        .collection('lectures')
+        .get();
+    if (_data.docs.isNotEmpty) {
+      final List<CourseDataModel> _lectures = [];
+      _data.docs.forEach((element) {
+        _lectures.add(CourseDataModel.fromMap(element.data()));
+      });
+      return _lectures;
+    } else {
+      print('api Error@getLectures');
+      // Err
+      throw _response.docs;
+    }
+  }
+
   Future<void> updateHall(List<HallModel> halls, String facultyID) async {
     await firestore
         .collection(FacultyData.FACULTY_TABLE)
@@ -125,5 +149,15 @@ class ApiProvider {
       // Err
       throw _response.docs;
     }
+  }
+
+  Future<void> downloadPDF(String url, String name) async {
+    await FlutterDownloader.enqueue(
+      fileName: '$name',
+      url: '$url',
+      savedDir: '/storage/emulated/0/Download',
+      showNotification: true,
+      openFileFromNotification: true,
+    );
   }
 }
