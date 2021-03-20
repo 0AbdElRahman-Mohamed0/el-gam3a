@@ -352,38 +352,36 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 15.0,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 50,
-                        child: InkWell(
-                          onTap: _login,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: [
-                                    Theme.of(context).primaryColor,
-                                    Theme.of(context).cardColor
-                                  ]),
-                              borderRadius: BorderRadius.circular(18.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0xFF000000).withOpacity(0.34),
-                                  offset: Offset(0, 3),
-                                  blurRadius: 6,
-                                )
-                              ],
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Login',
-                                style:
-                                    Theme.of(context).textTheme.button.copyWith(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                              ),
+                      InkWell(
+                        onTap: _login,
+                        child: Container(
+                          width: double.infinity,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Theme.of(context).primaryColor,
+                                  Theme.of(context).cardColor
+                                ]),
+                            borderRadius: BorderRadius.circular(18.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(0xFF000000).withOpacity(0.34),
+                                offset: Offset(0, 3),
+                                blurRadius: 6,
+                              )
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Login',
+                              style:
+                                  Theme.of(context).textTheme.button.copyWith(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                             ),
                           ),
                         ),
