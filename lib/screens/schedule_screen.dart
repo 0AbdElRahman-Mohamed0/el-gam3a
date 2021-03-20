@@ -53,11 +53,16 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         children: <Widget>[
           WeekDayPicker(
             items: days,
-            textColor: Color(0xff050737),
+            textColor: Theme.of(context).primaryColor,
             showTitle: true,
             title: Text(
               "Week days",
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.headline1.copyWith(
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline1
+                      .color
+                      .withOpacity(0.5)),
             ),
             //// with opacity 38%
             backgroundColorSelected:

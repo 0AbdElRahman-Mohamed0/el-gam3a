@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: GNav(
                   tabBorderRadius: 10,
                   gap: 8,
-                  color: Theme.of(context).dividerColor,
+                  color: Theme.of(context).primaryColor,
                   activeColor: Theme.of(context).primaryColor,
                   iconSize: 24,
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),

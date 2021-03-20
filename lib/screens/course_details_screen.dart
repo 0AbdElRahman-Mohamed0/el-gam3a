@@ -188,7 +188,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 32,
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).appBarTheme.color,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),

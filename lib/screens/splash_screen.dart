@@ -79,14 +79,15 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Scaffold(
         body: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF64668E).withOpacity(0.0), Color(0xFF64668E)],
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-            ),
+            color: Theme.of(context).scaffoldBackgroundColor,
+//            gradient: LinearGradient(
+//              colors: [Color(0xFF64668E).withOpacity(0.0), Color(0xFF64668E)],
+//              begin: Alignment.bottomCenter,
+//              end: Alignment.topCenter,
+//            ),
           ),
           child: Center(
-            child: SvgPicture.asset('assets/svg/splash.svg'),
+            child: SvgPicture.asset('assets/svg/big logo.svg'),
           ),
         ),
       ),

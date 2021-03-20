@@ -36,7 +36,8 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
+      decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor.withOpacity(0.2)),
 //      margin: EdgeInsets.all(16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -81,8 +82,10 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
           height: 50,
           child: Container(
             decoration: BoxDecoration(
-                color: _setSelectedColor(item.isSelected),
-                shape: BoxShape.circle),
+              color: _setSelectedColor(item.isSelected),
+//                shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(10),
+            ),
             padding: EdgeInsets.all(1.0),
             alignment: Alignment.center,
             margin: EdgeInsets.only(right: 5.0),

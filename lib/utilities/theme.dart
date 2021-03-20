@@ -4,10 +4,10 @@ class AppTheme {
   final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     backgroundColor: Color(0xFFF2F2F2),
-    primaryColor: Color(0xff3A3B61),
-    cardColor: Color(0xFFef7a85), //ef7a85 //f28db1 //b768a2
-    dividerColor: Color(0xFFB0B1C6),
-    shadowColor: Color(0xFF9397B8),
+    primaryColor: Color(0xff015C93),
+    cardColor: Color(0xFF9DCBBA), //ef7a85 //f28db1 //b768a2
+    dividerColor: Color(0xFFBEE6FF).withOpacity(0.5),
+    shadowColor: Color(0xFFBEE6FF),
     disabledColor: Color(0xFF515C6F),
     buttonColor: Color(0xFFE5E5ED),
     errorColor: Color(0xFFFF5858),
@@ -23,7 +23,7 @@ class AppTheme {
 //    cardColor: Colors.white,
 //    shadowColor: Color(0xFF000000).withOpacity(0.1),
     appBarTheme: AppBarTheme(
-      color: Color(0xFF64668E),
+      color: Color(0xFF2D83B6),
       textTheme: TextTheme(
         headline1: TextStyle(
             color: Color(0xFFFFFFFF),
@@ -36,7 +36,7 @@ class AppTheme {
       headline1: TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.w700,
-        color: Color(0xff3A3B61),
+        color: Color(0xff015C93),
       ),
       headline2: TextStyle(
         fontSize: 18.0,
@@ -46,13 +46,13 @@ class AppTheme {
       headline3: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
-        color: Color(0xFFef7a85).withOpacity(0.7),
+        color: Color(0xFF9DCBBA).withOpacity(0.7),
       ),
       headline4: TextStyle(
-        color: Color(0xff64668E),
+        color: Color(0xff2D83B6),
       ),
       headline5: TextStyle(
-        color: Color(0xff3A3B61).withOpacity(0.5),
+        color: Color(0xff015C93).withOpacity(0.5),
       ),
       bodyText1: TextStyle(
         color: Color(0xff050737),
@@ -61,7 +61,7 @@ class AppTheme {
         color: Colors.white,
       ),
       subtitle1: TextStyle(
-        color: Color(0xffB0B1C6),
+        color: Color(0xffBEE6FF),
       ),
       subtitle2: TextStyle(
         color: Colors.grey,
