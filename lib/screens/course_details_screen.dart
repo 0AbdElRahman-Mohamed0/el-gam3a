@@ -14,6 +14,14 @@ class CourseDetailsScreen extends StatefulWidget {
 class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
   final firestore = FirebaseFirestore.instance;
 
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
   selectChat(BuildContext context, CourseModel course) async {
     try {
       final chats = await firestore
@@ -46,11 +54,11 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
 
   getLectures(BuildContext context, CourseModel course) async {
     try {
-      final chats = await firestore
+      final lectures = await firestore
           .collection('each_course_data')
           .where('courseCode', isEqualTo: course.courseCode)
           .get();
-      if (chats.docs.isEmpty) {
+      if (lectures.docs.isEmpty) {
         await firestore.collection('each_course_data').add({
           'courseCode': course.courseCode,
           'created_at': DateTime.now(),
@@ -75,10 +83,24 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
     }
   }
 
+  _getData() async {
+    try {
+      await context.read<CourseProvider>().getLectures();
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<CourseProvider>();
     final courseDetails = provider.course;
+    final lectures = provider.lectures;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
@@ -398,7 +420,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                     onPressed: () => getLectures(context, courseDetails),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     buttonTitle: 'Lectures',
-                    buttonSubTitle: '10 Lectures',
+                    buttonSubTitle: '${lectures?.length ?? 0} Lectures',
                     buttonTitleStyle:
                         Theme.of(context).textTheme.headline1.copyWith(
                               fontSize: 16.0,

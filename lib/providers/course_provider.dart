@@ -12,12 +12,15 @@ class CourseProvider with ChangeNotifier {
   List<CourseDataModel> lectures;
 
   Future<void> getLectures() async {
-    lectures = await _api.getLectures(course);
+    lectures = await _api.getLectures(course) ?? [];
     lectures.sort((a, b) => a.number.compareTo(b.number));
     notifyListeners();
   }
 
   addLecture(CourseDataModel lecture) {
+    if (lectures == null) {
+      lectures = [];
+    }
     lectures.add(lecture);
     notifyListeners();
   }

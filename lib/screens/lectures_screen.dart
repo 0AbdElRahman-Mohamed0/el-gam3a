@@ -2,7 +2,6 @@ import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_data_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/screens/add_course_data_screen.dart';
-import 'package:elgam3a/utilities/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -13,21 +12,6 @@ class LecturesScreen extends StatefulWidget {
 }
 
 class _LecturesScreenState extends State<LecturesScreen> {
-  bool isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _getData();
-  }
-
-  _getData() async {
-    await context.read<CourseProvider>().getLectures();
-    setState(() {
-      isLoading = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final currentUser = context.watch<AuthProvider>().user;
@@ -91,27 +75,23 @@ class _LecturesScreenState extends State<LecturesScreen> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: isLoading || lectures == null
+      body: lectures?.isEmpty ?? true
           ? Center(
-              child: LoadingWidget(),
+              child: Text('No Lectures'),
             )
-          : lectures.isEmpty
-              ? Center(
-                  child: Text('No Lectures'),
-                )
-              : SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 18),
-                  child: Column(
-                    children: lectures.map((lecture) {
-                      return ChangeNotifierProvider<CourseDataProvider>(
-                        create: (_) => CourseDataProvider(lecture),
-                        child: CourseDataCard(
-                          type: 'Lecture',
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
+          : SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+              child: Column(
+                children: lectures.map((lecture) {
+                  return ChangeNotifierProvider<CourseDataProvider>(
+                    create: (_) => CourseDataProvider(lecture),
+                    child: CourseDataCard(
+                      type: 'Lecture',
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
     );
   }
 }
