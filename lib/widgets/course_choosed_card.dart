@@ -2,23 +2,90 @@ import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/course_provider.dart';
 import 'package:elgam3a/providers/courses_provider.dart';
 import 'package:elgam3a/providers/departments_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class CourseChoosedCard extends StatelessWidget {
   _removeCourse(BuildContext context) async {
-    final course = context.read<CourseProvider>().course;
-    final user = context.read<AuthProvider>().user;
-    if (user.courses.length != 1) {
-      context
-          .read<DepartmentsProvider>()
-          .updateDepHours(course: course, type: 1);
-      context.read<AuthProvider>().removeCourse(course);
-      if (user.type.toLowerCase() == 'professor') {
-        await Future.wait({
-          context.read<DepartmentsProvider>().removeProfFromCourse(course),
-          context.read<CoursesProvider>().removeCourseGeneral(course),
-        });
+    try {
+      final course = context.read<CourseProvider>().course;
+      final user = context.read<AuthProvider>().user;
+      if (user.courses.length != 1) {
+        if (user.type.toLowerCase() == 'professor') {
+          await Future.wait({
+            context.read<DepartmentsProvider>().removeProfFromCourse(course),
+            context.read<CoursesProvider>().removeCourseGeneral(course),
+          });
+        }
+        context
+            .read<DepartmentsProvider>()
+            .updateDepHours(course: course, type: 1);
+        context.read<AuthProvider>().removeCourse(course);
       }
+    } on FirebaseException catch (e) {
+      if (e.code == 'network-request-failed') {
+        print(' error ${e.code}');
+        Alert(
+          context: context,
+          title: 'Please check your internet connection!',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      } else {
+        Alert(
+          context: context,
+          title: '${e.message}',
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      }
+    } catch (e) {
+      Alert(
+        context: context,
+        title: 'Something wrong happened, please try again',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
     }
   }
 

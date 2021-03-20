@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elgam3a/providers/auth_provider.dart';
 import 'package:elgam3a/providers/password_reset_provider.dart';
 import 'package:elgam3a/screens/home_screen.dart';
@@ -7,9 +6,11 @@ import 'package:elgam3a/widgets/input_text.dart';
 import 'package:elgam3a/widgets/leave_pop_up.dart';
 import 'package:elgam3a/widgets/login_app_bar.dart';
 import 'package:elgam3a/widgets/reset_password_pop_up.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -41,18 +42,149 @@ class _LoginScreenState extends State<LoginScreen> {
             builder: (context) => HomeScreen(),
           ),
           (route) => false);
-    } on FirebaseException catch (e, s) {
-      Navigator.pop(context);
-      print(e);
-      print(s);
-    } catch (e, s) {
-      Navigator.pop(context);
-      print(e);
-      print(s);
+    } on FirebaseAuthException catch (e) {
+      Navigator.of(context).pop();
+      print(' error ${e.code}');
+      if (e.code == 'user-not-found') {
+        print(' error ${e.code}');
+        Alert(
+          context: context,
+          title: 'No user found for that email.',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      } else if (e.code == 'wrong-password') {
+        print(' error ${e.code}');
+        Alert(
+          context: context,
+          title: 'Wrong password for that user.',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      } else if (e.code == 'network-request-failed') {
+        print(' error ${e.code}');
+        Alert(
+          context: context,
+          title: 'Please check your internet connection!',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      } else {
+        print(' error ${e.code}');
+
+        Alert(
+          context: context,
+          title: 'Error happened, please try again',
+          style: AlertStyle(
+            alertElevation: 0,
+          ),
+          buttons: [
+            DialogButton(
+              color: Theme.of(context).cardColor,
+              child: Text(
+                'Okay',
+                style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ).show();
+      }
+    } catch (e) {
+      print(' error $e');
+      Navigator.of(context).pop();
+      // Alert(
+      //   context: context,
+      //   title: 'something wrong happened, please try again',
+      //   buttons: [
+      //     DialogButton(
+      //       color: Theme.of(context).cardColor,
+      //       child: Text(
+      //         'Okay',
+      //         style: Theme.of(context).textTheme.button.copyWith(
+      //               fontSize: 16,
+      //               fontWeight: FontWeight.w400,
+      //             ),
+      //         textAlign: TextAlign.center,
+      //       ),
+      //       onPressed: () => Navigator.of(context).pop(),
+      //     ),
+      //   ],
+      // ).show();
+      Alert(
+        context: context,
+        title: 'No user found for that id.',
+        style: AlertStyle(
+          alertElevation: 0,
+        ),
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      ).show();
     }
   }
 
-  _forgetPassword() async {
+  _forgetPassword() {
     showDialog(
       context: context,
       builder: (BuildContext context) => ResetPasswordPopUp(),

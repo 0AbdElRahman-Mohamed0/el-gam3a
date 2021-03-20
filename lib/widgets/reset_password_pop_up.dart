@@ -5,6 +5,7 @@ import 'package:flrx_validator/flrx_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ResetPasswordPopUp extends StatefulWidget {
   @override
@@ -31,10 +32,26 @@ class _ResetPasswordPopUpState extends State<ResetPasswordPopUp> {
       context.read<PasswordResetProvider>().updateEmailSent(true);
       Navigator.pop(context);
       Navigator.pop(context);
-    } catch (e, s) {
+    } catch (e) {
       Navigator.pop(context);
-      print(e);
-      print(s);
+      Alert(
+        context: context,
+        title: 'Something wrong happened, please try again',
+        buttons: [
+          DialogButton(
+            color: Theme.of(context).cardColor,
+            child: Text(
+              'Okay',
+              style: Theme.of(context).textTheme.button.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
     }
   }
 
