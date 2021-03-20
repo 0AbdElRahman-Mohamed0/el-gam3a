@@ -352,55 +352,55 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                 ),
                               ],
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Hall',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline5
-                                      .copyWith(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 4,
-                                ),
-                                Text(
-                                  '(${courseDetails.courseHall}) - ',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline1
-                                      .copyWith(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                ),
-                                Text(
-                                  'Build',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline5
-                                      .copyWith(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 4,
-                                ),
-                                Text(
-                                  '(${courseDetails.courseBuilding})',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline1
-                                      .copyWith(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                ),
-                              ],
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Hall',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  .copyWith(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              '(${courseDetails.courseHall}) - ',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  .copyWith(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                            ),
+                            Text(
+                              'Build',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  .copyWith(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              '(${courseDetails.courseBuilding})',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  .copyWith(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                             ),
                           ],
                         ),
