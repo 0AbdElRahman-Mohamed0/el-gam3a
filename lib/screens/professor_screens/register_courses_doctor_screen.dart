@@ -373,11 +373,7 @@ class _RegisterCoursesDoctorScreenState
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 12.0,
-                                  right: (MediaQuery.of(context).size.width *
-                                          34.0) /
-                                      375),
+                              padding: EdgeInsets.symmetric(horizontal: 12),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
