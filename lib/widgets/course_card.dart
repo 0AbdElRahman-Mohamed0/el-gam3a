@@ -129,25 +129,28 @@ class CourseCard extends StatelessWidget {
                                   ),
                                 },
                               },
-                              IconButton(
-                                onPressed: () {
-                                  showDialog(
-                                    barrierColor: Colors.black.withOpacity(0.6),
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        ChangeNotifierProvider<
-                                            CourseProvider>.value(
-                                      value: provider,
-                                      child: CourseInfoPopUp(),
-                                    ),
-                                  );
-                                },
-                                icon: Icon(
-                                  Icons.info,
-                                  color: Theme.of(context).primaryColor,
-                                  size: 20.0,
+                              if (user.type.toLowerCase() == 'student') ...{
+                                IconButton(
+                                  onPressed: () {
+                                    showDialog(
+                                      barrierColor:
+                                          Colors.black.withOpacity(0.6),
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          ChangeNotifierProvider<
+                                              CourseProvider>.value(
+                                        value: provider,
+                                        child: CourseInfoPopUp(),
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(
+                                    Icons.info,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 20.0,
+                                  ),
                                 ),
-                              ),
+                              },
                             ],
                           ),
                         ],

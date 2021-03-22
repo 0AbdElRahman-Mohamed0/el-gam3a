@@ -8,6 +8,7 @@ class CourseInfoPopUp extends StatelessWidget {
     final provider = context.watch<CourseProvider>();
     final courseDetails = provider.course;
     return AlertDialog(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       insetPadding: EdgeInsets.only(
         left: 24,
         right: 24,
@@ -34,7 +35,7 @@ class CourseInfoPopUp extends StatelessWidget {
       ),
       content: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.52,
+          height: MediaQuery.of(context).size.height * 0.4,
           width: MediaQuery.of(context).size.width - 48,
           decoration: BoxDecoration(
             color: Theme.of(context).scaffoldBackgroundColor,
@@ -198,89 +199,89 @@ class CourseInfoPopUp extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 24.0,
-              ),
-              Text(
-                'Prerequisite',
-                style: Theme.of(context).textTheme.headline5.copyWith(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
-                    ),
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              Expanded(
-                child: GridView(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 3,
-                    crossAxisSpacing: 50,
-                  ),
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Machine Learning',
-                          style: Theme.of(context).textTheme.headline1.copyWith(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w700,
-                              ),
-                        ),
-                        Text(
-                          'Cs 250',
-                          style: Theme.of(context).textTheme.headline5.copyWith(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Algorithms',
-                          style: Theme.of(context).textTheme.headline1.copyWith(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w700,
-                              ),
-                        ),
-                        Text(
-                          'Cs 301',
-                          style: Theme.of(context).textTheme.headline5.copyWith(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'AI',
-                          style: Theme.of(context).textTheme.headline1.copyWith(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w700,
-                              ),
-                        ),
-                        Text(
-                          'Cs 305',
-                          style: Theme.of(context).textTheme.headline5.copyWith(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              // SizedBox(
+              //   height: 24.0,
+              // ),
+              // Text(
+              //   'Prerequisite',
+              //   style: Theme.of(context).textTheme.headline5.copyWith(
+              //         fontSize: 14.0,
+              //         fontWeight: FontWeight.w400,
+              //       ),
+              // ),
+              // SizedBox(
+              //   height: 16.0,
+              // ),
+              // Expanded(
+              //   child: GridView(
+              //     shrinkWrap: true,
+              //     physics: NeverScrollableScrollPhysics(),
+              //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 2,
+              //       childAspectRatio: 3,
+              //       crossAxisSpacing: 50,
+              //     ),
+              //     children: [
+              //       Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             'Machine Learning',
+              //             style: Theme.of(context).textTheme.headline1.copyWith(
+              //                   fontSize: 16.0,
+              //                   fontWeight: FontWeight.w700,
+              //                 ),
+              //           ),
+              //           Text(
+              //             'Cs 250',
+              //             style: Theme.of(context).textTheme.headline5.copyWith(
+              //                   fontSize: 14.0,
+              //                   fontWeight: FontWeight.w400,
+              //                 ),
+              //           ),
+              //         ],
+              //       ),
+              //       Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             'Algorithms',
+              //             style: Theme.of(context).textTheme.headline1.copyWith(
+              //                   fontSize: 16.0,
+              //                   fontWeight: FontWeight.w700,
+              //                 ),
+              //           ),
+              //           Text(
+              //             'Cs 301',
+              //             style: Theme.of(context).textTheme.headline5.copyWith(
+              //                   fontSize: 14.0,
+              //                   fontWeight: FontWeight.w400,
+              //                 ),
+              //           ),
+              //         ],
+              //       ),
+              //       Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             'AI',
+              //             style: Theme.of(context).textTheme.headline1.copyWith(
+              //                   fontSize: 16.0,
+              //                   fontWeight: FontWeight.w700,
+              //                 ),
+              //           ),
+              //           Text(
+              //             'Cs 305',
+              //             style: Theme.of(context).textTheme.headline5.copyWith(
+              //                   fontSize: 14.0,
+              //                   fontWeight: FontWeight.w400,
+              //                 ),
+              //           ),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
